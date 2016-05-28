@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>Users</title>
+</head>
+<body>
+	<div class="container">
+		<h2>Users</h2>
+		{% for u in users %}
+		<strong>Number:</strong> {{u.number}} <br>
+		<strong>Operator:</strong> {{u.operator}} <br>
+		<strong>Contract:</strong> {{u.contract}} <br>
+		<strong>manufacturer: </strong> {{u.manufacturer}} <br>
+		<strong>network_roaming: </strong> {{u.network_roaming}} <br>
+		<br>
+		
+		{% endfor %}
+	</div>
+	<br>
+
+</body>
+</html>

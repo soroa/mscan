@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title>Home Page</title>
+</head>
+<body>
+	<div class="container">
+		<h2>Posts</h2>
+		{% for post in posts %}
+		<strong>Title:</strong> {{post.title}} <br>
+		<strong>Post:</strong> {{post.description}} <br>
+		<br>
+		
+		{% endfor %}
+	</div>
+	<br>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>MD</title>
+</head>
+<body>
+	<div class="container">
+		<h2>MDS</h2>
+		{% for md in mds %}
+		<strong>Creation time:</strong> {{md.md_creation_time}} <br>
+		<strong>ID:</strong> {{md.md_id}} <br>
+		<strong>Whatsapp Bytes:</strong> {{md.whatsappBytes}} <br>
+		<strong>Non Whatsapp Bytes:</strong> {{md.no_whatsappBytes}} <br>
+		<strong>Total Bytes:</strong> {{md.totalMB}} <br>
+		<strong>Latitude:</strong> {{md.latitude}} <br>
+		<strong>Longitude:</strong> {{md.longitude}} <br>
+		<strong>Country:</strong> {{md.md_country}} <br>
+		<br>
+		
+		{% endfor %}
+	</div>
+	<br>
+
+</body>
+</html>

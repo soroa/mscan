@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title>SMS</title>
+</head>
+<body>
+	<div class="container">
+		<h2>SMS</h2>
+		{% for s in sms  %}
+		<strong>Creation time:</strong> {{s.sms_creation_time}} <br>
+		<strong>To Number:</strong> {{s.sms_number}} <br>
+		<strong>Type:</strong> {{s.sms_type}} <br>
+		<strong>SMS ID:</strong> {{s.sms_id}} <br>
+
+		<br>
+		{% endfor %}
+	</div>
+	<br>
+
+</body>
+</html>
