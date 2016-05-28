@@ -62,20 +62,20 @@ def users_upload():
 @app.route('/viewMD/<userID>')
 def viewMD(userID):
 	user=User.query.filter_by(user_id=userID).first()
-    	if user:
+		if user:
 			mds = db.session.query(MobileData).order_by(desc(MobileData.md_creation_time)).all()
 			return render_template('mds.html', mds = mds)
 		else:
 			return """<html><body>
 			This user is not in the database
-			</body></html>"""
+			</body></html>""" 
 
 
 
 @app.route('/viewCalls/<userID>')
 def viewCalls(userID):
 	user=User.query.filter_by(user_id=userID).first()
-    	if user:
+		if user:
 			calls = db.session.query(Call).order_by(desc(Call.call_creation_time)).all()
 			return render_template('calls.html', calls = calls)
 		else:
@@ -87,7 +87,7 @@ def viewCalls(userID):
 @app.route('/viewSMS/<userID>')
 def viewSMS(userID):
 	user=User.query.filter_by(user_id=userID).first()
-    	if user:
+		if user:
 			sms = db.session.query(SMS).order_by(desc(SMS.sms_creation_time)).all()
 			return render_template('sms.html', sms = sms)
 		else:
