@@ -65,6 +65,11 @@ def viewMD(userID):
     	if user:
 			mds = db.session.query(MobileData).order_by(desc(MobileData.md_creation_time)).all()
 			return render_template('mds.html', mds = mds)
+		else:
+			return """<html><body>
+			This user is not in the database
+			</body></html>"""
+
 
 
 @app.route('/viewCalls/<userID>')
@@ -73,6 +78,11 @@ def viewCalls(userID):
     	if user:
 			calls = db.session.query(Call).order_by(desc(Call.call_creation_time)).all()
 			return render_template('calls.html', calls = calls)
+		else:
+			return """<html><body>
+			This user is not in the database
+			</body></html>"""
+
 
 @app.route('/viewSMS/<userID>')
 def viewSMS(userID):
@@ -80,6 +90,11 @@ def viewSMS(userID):
     	if user:
 			sms = db.session.query(SMS).order_by(desc(SMS.sms_creation_time)).all()
 			return render_template('sms.html', sms = sms)
+		else:
+			return """<html><body>
+			This user is not in the database
+			</body></html>"""
+
 
 @app.route('/viewUsers')
 def viewUsers():
