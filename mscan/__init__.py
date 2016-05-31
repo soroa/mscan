@@ -1,9 +1,10 @@
 from flask import Flask, render_template, redirect, url_for, request,  jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime
 from sqlalchemy import desc
 import requests
 import json
+from sqlalchemy import and_
 
 #create application object
 app = Flask(__name__)
@@ -29,11 +30,11 @@ def users_upload():
 			user = User()
 			print(d.get('birthdate'))
 			user.number=d.get('number')
-			user.birthdate =  datetime.strptime(d.get('birthdate'),'%Y-%m-%d %H:%M:%S')
+			user.birthdate =  datetime.datetime.strptime(d.get('birthdate'),'%Y-%m-%d %H:%M:%S')
 			user.contract =d.get('contract')
 			user.operator =d.get('operator')
-			user.contract_start_date =datetime.strptime(d.get('contract_start_date'), '%Y-%m-%d %H:%M:%S') 
-			user.contract_end_date = datetime.strptime(d.get('contract_end_date'), '%Y-%m-%d %H:%M:%S')
+			user.contract_start_date =datetime.datetime.strptime(d.get('contract_start_date'), '%Y-%m-%d %H:%M:%S') 
+			user.contract_end_date = datetime.datetime.strptime(d.get('contract_end_date'), '%Y-%m-%d %H:%M:%S')
 			user.sdk = d.get("sdk")
 			user.manufacturer = d.get("manufacturer")
 			user.build_device = d.get("build_device")
@@ -83,19 +84,20 @@ def viewCalls(userID):
 		This user is not in the database
 		</body></html>"""
 
+
 @app.route('/viewrecentMD/<userID>')
 def viewRecentCalls(userID):
 	user=User.query.filter_by(user_id=userID).first()
 	if user:
-		twodaysback = datetime.timedelta(hours=48)
-		since = datetime.datetime.now() - twodaysback
-		mds = db.session.query(MobileData).filter(and_(db.mobiledata.user_id==iserID,db.mobiledata.md_creation_time > since )).all()
+		daysback = datetime.timedelta(days=3)
+		since = datetime.datetime.now() - daysback
+		mds = MobileData.query.filter(and_(MobileData.md_creation_time > since, MobileData.md_user_id==userID) ).all()
+	
 		return render_template('recent_mds.html', mds = mds)
 	else:
 		return """<html><body>
 		This user is not in the database
 		</body></html>"""
-
 
 
 @app.route('/viewSMS/<userID>')
@@ -161,7 +163,7 @@ def uploadCallsSMS(user_ID):
 			for call in calls:
 				c= Call()
 				c.user_id = user.user_id
-				c.call_creation_time = datetime.strptime(call.get('creation_time'), '%Y-%m-%d %H:%M:%S')
+				c.call_creation_time = datetime.datetime.strptime(call.get('creation_time'), '%Y-%m-%d %H:%M:%S')
 				c.call_type=call.get('type')
 				print("number is " + call.get('number'))
 				c.call_number = call.get('number')
@@ -178,7 +180,7 @@ def uploadCallsSMS(user_ID):
 			for sms in smss:
 				s = SMS()
 				s.user_id = user.user_id
-				s.sms_creation_time =datetime.strptime(sms.get('creation_time'), '%Y-%m-%d %H:%M:%S')
+				s.sms_creation_time =datetime.datetime.strptime(sms.get('creation_time'), '%Y-%m-%d %H:%M:%S')
 				s.sms_type = sms.get('type')
 				s.sms_number = sms.get('number')
 				db.session.add(s)
@@ -206,7 +208,7 @@ def uploadMD(user_ID):
 				print(data_entry)			
 				md = MobileData()	
 				md.md_user_id = user.user_id
-				md.md_creation_time = datetime.strptime(data_entry.get('creation_time'), '%Y-%m-%d %H:%M:%S')
+				md.md_creation_time = datetime.datetime.strptime(data_entry.get('creation_time'), '%Y-%m-%d %H:%M:%S')
 				md.whatsappBytes =data_entry.get('whatsappBytes')
 				md.totalMB=data_entry.get('totalMB')
 				md.no_whatsappBytes=data_entry.get('no_whatsappBytes')
