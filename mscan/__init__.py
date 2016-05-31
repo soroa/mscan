@@ -83,6 +83,20 @@ def viewCalls(userID):
 		This user is not in the database
 		</body></html>"""
 
+@app.route('/viewrecentMD/<userID>')
+def viewRecentCalls(userID):
+	user=User.query.filter_by(user_id=userID).first()
+	if user:
+		twodaysback = datetime.timedelta(hours=48)
+		since = datetime.datetime.now() - twodaysback
+		mds = db.session.query(MobileData).filter(and_(db.mobiledata.user_id==iserID,db.mobiledata.md_creation_time > since )).all()
+		return render_template('recent_mds.html', mds = mds)
+	else:
+		return """<html><body>
+		This user is not in the database
+		</body></html>"""
+
+
 
 @app.route('/viewSMS/<userID>')
 def viewSMS(userID):

@@ -1,7 +1,8 @@
-from mscan import app
+	from mscan import app
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///mscan.db'
+
 
 #create the sqlalchemy object
 db =SQLAlchemy(app)
@@ -141,4 +142,8 @@ class SMS(db.Model):
 	
 
 
+def getWhatsappTotalData( parameters ):
+   "function_docstring"
+   function_suite
+   return [expression]
 
