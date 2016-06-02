@@ -64,7 +64,7 @@ def users_upload():
 def viewMD(userID):
 	user=User.query.filter_by(user_id=userID).first()
 	if user:
-		# mds = db.session.query(MobileData).order_by(desc(MobileData.md_creation_time)).all()
+		
 		mds = MobileData.query.filter(MobileData.md_user_id==userID).order_by(desc(MobileData.md_creation_time)).all()
 		return render_template('mds.html', mds = mds)
 	else:
@@ -78,7 +78,7 @@ def viewMD(userID):
 def viewCalls(userID):
 	user=User.query.filter_by(user_id=userID).first()
 	if user:
-		calls = db.session.query(Call).order_by(desc(Call.call_creation_time)).all()
+		calls = Call.query.filter(Call.user_id==userID).order_by(desc(Call.call_creation_time)).all()
 		return render_template('calls.html', calls = calls)
 	else:
 		return """<html><body>
@@ -105,7 +105,7 @@ def viewRecentCalls(userID):
 def viewSMS(userID):
 	user=User.query.filter_by(user_id=userID).first()
 	if user:
-		sms = db.session.query(SMS).order_by(desc(SMS.sms_creation_time)).all()
+		sms = SMS.query.filter(SMS.user_id==userID).order_by(desc(SMS.sms_creation_time)).all()
 		return render_template('sms.html', sms = sms)
 	else:
 		return """<html><body>
