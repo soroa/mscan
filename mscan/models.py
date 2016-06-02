@@ -1,4 +1,4 @@
-	from mscan import app
+from mscan import app
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///mscan.db'
