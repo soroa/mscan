@@ -65,7 +65,7 @@ def viewMD(userID):
 	user=User.query.filter_by(user_id=userID).first()
 	if user:
 		# mds = db.session.query(MobileData).order_by(desc(MobileData.md_creation_time)).all()
-		mds = MobileData.query.filter(MobileData.md_user_id==userID).all()
+		mds = MobileData.query.filter(MobileData.md_user_id==userID).order_by(desc(MobileData.md_creation_time)).all()
 		return render_template('mds.html', mds = mds)
 	else:
 		return """<html><body>
