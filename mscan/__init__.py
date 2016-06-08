@@ -31,10 +31,8 @@ def users_upload():
 			print(d.get('birthdate'))
 			user.number=d.get('number')
 			user.birthdate =  datetime.datetime.strptime(d.get('birthdate'),'%Y-%m-%d %H:%M:%S')
-			user.contract =d.get('contract')
-			user.operator =d.get('operator')
-			user.contract_start_date =datetime.datetime.strptime(d.get('contract_start_date'), '%Y-%m-%d %H:%M:%S') 
-			user.contract_end_date = datetime.datetime.strptime(d.get('contract_end_date'), '%Y-%m-%d %H:%M:%S')
+			user.contract_current_price =d.get('contract_current_price')
+			
 			user.sdk = d.get("sdk")
 			user.manufacturer = d.get("manufacturer")
 			user.build_device = d.get("build_device")
