@@ -232,22 +232,28 @@ def uploadMD(user_ID):
 		Something went horribly wrong
 		</body></html>"""
 
-@app.route('/getContracts/<user_ID>',methods=["POST"])
-def getContracts(user_ID):
+
+@app.route('/getContracts')
+def getContracts():
+		contractsDict = getContractsJSON()
+		return jsonify(contractsDict)
+
+# @app.route('/getContracts/<user_ID>')
+# def getContracts(user_ID):
 	
-	if request.method == "POST":
-		user=User.query.filter_by(user_id=user_ID).first()
-		if user:
-			contractsDict = getContractsJSON()
-			return jsonify(contractsDict)
-		else:
-			response=jsonify(error='user not registered', message="The provided phone number is not registed in the databse")
-			response.status_code=401
-			return response
-	else:
-		return """<html><body>
-		Something went horribly wrong
-		</body></html>"""
+# 	if request.method == "POST":
+# 		user=User.query.filter_by(user_id=user_ID).first()
+# 		if user:
+# 			contractsDict = getContractsJSON()
+# 			return jsonify(contractsDict)
+# 		else:
+# 			response=jsonify(error='user not registered', message="The provided phone number is not registed in the databse")
+# 			response.status_code=401
+# 			return response
+# 	else:
+# 		return """<html><body>
+# 		Something went horribly wrong
+# 		</body></html>"""
 
 
 
