@@ -5,6 +5,7 @@ from sqlalchemy import desc
 import requests
 import json
 from sqlalchemy import and_
+from scraper import *
 
 #create application object
 app = Flask(__name__)
@@ -230,6 +231,26 @@ def uploadMD(user_ID):
 		return """<html><body>
 		Something went horribly wrong
 		</body></html>"""
+
+@app.route('/getContracts/<user_ID>',methods=["POST"])
+def getContracts(user_ID):
+	
+	if request.method == "POST":
+		user=User.query.filter_by(user_id=user_ID).first()
+		if user:
+			contractsDict = getContractsJSON()
+			return jsonify(contractsDict)
+		else:
+			response=jsonify(error='user not registered', message="The provided phone number is not registed in the databse")
+			response.status_code=401
+			return response
+	else:
+		return """<html><body>
+		Something went horribly wrong
+		</body></html>"""
+
+
+
 
 
 # @app.route('/requestContractCandidates/<user_ID>')
