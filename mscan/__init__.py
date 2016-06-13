@@ -17,7 +17,7 @@ from models import *
 def hello():
     return "Hello, mscan is working"
 
-@app.route('/registeruser', methods = ['GET', 'POST'])
+@app.route('/registeruser', methods = [cursor.getString(cursor.getColumnIndexOrThrow("address"))])
 def users_upload():
 	 if request.method == 'POST':
 	 	user_phone_number = request.json.get('number')
@@ -233,9 +233,9 @@ def uploadMD(user_ID):
 		</body></html>"""
 
 
-@app.route('/getContracts', methods=["POST"])
+@app.route('/getContracts', methods=["POST", "GET"])
 def getContracts():
-	if request.method == "POST":
+	
 		contractsDictArray = getContractsDict()
 		contractsJSON =jsonify(message="contracts", contracts = jsonify(contractsDictArray))
 		return contractsJSON
