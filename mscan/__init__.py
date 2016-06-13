@@ -233,34 +233,13 @@ def uploadMD(user_ID):
 		</body></html>"""
 
 
-@app.route('/getContracts')
+@app.route('/getContracts', methods=["POST"])
 def getContracts():
-	contractsDictArray = getContractsJSON()
-	return render_template('contracts.html', contracts = contractsDictArray)
+	if request.method == "POST":
+		contractsDictArray = getContractsDict()
+		contractsJSON =jsonify(message="contracts", contracts = jsonify{contractsDictArray})
+		return contractsJSON
 
-# @app.route('/getContracts/<user_ID>')
-# def getContracts(user_ID):
-	
-# 	if request.method == "POST":
-# 		user=User.query.filter_by(user_id=user_ID).first()
-# 		if user:
-# 			contractsDict = getContractsJSON()
-# 			return jsonify(contractsDict)
-# 		else:
-# 			response=jsonify(error='user not registered', message="The provided phone number is not registed in the databse")
-# 			response.status_code=401
-# 			return response
-# 	else:
-# 		return """<html><body>
-# 		Something went horribly wrong
-# 		</body></html>"""
-
-
-
-
-
-# @app.route('/requestContractCandidates/<user_ID>')
-# def requestContractCandidates():
 	
 
 

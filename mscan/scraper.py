@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import urllib
 from operator import itemgetter
 
-def getContractsJSON(): 
+def getContractsDict(): 
 	s = requests.Session()
 
 	r= requests.get("http://www.dschungelkompass.ch/mobile/welcomeErweitertesprofil.xhtml")
@@ -191,9 +191,10 @@ def getContractsJSON():
 		contractsParsed.append(cParsed)
 			
 	contractsParsed = sorted(contractsParsed, key=itemgetter('Price'), reverse=True) 
+	contractsParsedDict  = {}
+	i = 0
 	for c in contractsParsed:
-		for f in c:
-			if f =="Price":
-				print(f + ": " + str(c[f]))
-		print("------------------ ......... -----------------------------")
-	return contractsParsed
+		contractsParsedDict[i]= c
+		i+=1
+	return contractsParsedDict
+
