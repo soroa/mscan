@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>Contracts</title>
+</head>
+<body>
+	<div class="container">
+		<h2>Contracts</h2>
+		{% for c in contracts %}
+		{% for k in c %}
+		<strong>{{k}}</strong> {{c.get(k)}} <br>
+		
+		{% endfor %}
+		<br>
+		{% endfor %}
+	</div>
+	<br>
+
+</body>
+</html>

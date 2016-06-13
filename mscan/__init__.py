@@ -235,8 +235,8 @@ def uploadMD(user_ID):
 
 @app.route('/getContracts')
 def getContracts():
-		contractsDict = getContractsJSON()
-		return jsonify(contractsDict)
+	contractsDictArray = getContractsJSON()
+	return render_template('contracts.html', contracts = contractsDictArray)
 
 # @app.route('/getContracts/<user_ID>')
 # def getContracts(user_ID):
