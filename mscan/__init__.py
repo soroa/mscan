@@ -235,7 +235,6 @@ def uploadMD(user_ID):
 
 @app.route('/getContracts', methods=['GET', 'POST'])
 def getContracts():
-	if request.method == "POST":
 		contractsDictArray = getContractsDict()
 		contractsJSON =jsonify(message="contracts", contracts = jsonify(contractsDictArray))
 		return contractsJSON
