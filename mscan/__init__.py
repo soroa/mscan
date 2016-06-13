@@ -30,9 +30,9 @@ def users_upload():
 			user = User()
 			print(d.get('birthdate'))
 			user.number=d.get('number')
-			user.birthdate =  datetime.datetime.strptime(d.get('birthdate'),'%Y-%m-%d %H:%M:%S')
+			user.age =  d.get('age')
 			user.contract_current_price =d.get('contract_current_price')
-			
+
 			user.sdk = d.get("sdk")
 			user.manufacturer = d.get("manufacturer")
 			user.build_device = d.get("build_device")
@@ -172,8 +172,8 @@ def uploadCallsSMS(user_ID):
 				# c.from_abroad=False 
 				# c.to_abroad= False
 				# c.to_CH_from_abroad=False
-				c.from_country =call.get('location_other_number')
-				c.to_country =call.get('location_this_number')
+				c.other_number_location =call.get('location_other_number')
+				c.user_location =call.get('location_this_number')
 				db.session.add(c)
 				db.session.commit()
 			for sms in smss:
@@ -197,6 +197,8 @@ def uploadCallsSMS(user_ID):
 		</body></html>"""
 
 
+
+
 @app.route('/uploadMD/<user_ID>', methods=["POST"])
 def uploadMD(user_ID):
 	if request.method == "POST":
@@ -214,6 +216,7 @@ def uploadMD(user_ID):
 				md.latitude=data_entry.get('latitude')
 				md.longitude=data_entry.get('longitude')
 				md.md_country = data_entry.get('country')
+				md.md_roaming = data_entry.get('roaming')
 				db.session.add(md)
 				db.session.commit()
 			response = jsonify(message="the mobile data record was added successfully")
@@ -227,6 +230,11 @@ def uploadMD(user_ID):
 		return """<html><body>
 		Something went horribly wrong
 		</body></html>"""
+
+
+# @app.route('/requestContractCandidates/<user_ID>')
+# def requestContractCandidates():
+	
 
 
 if __name__ == "__main__":

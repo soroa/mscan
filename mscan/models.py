@@ -70,7 +70,7 @@ class User(db.Model):
 	__tablename__= "users"
 	user_id=db.Column(db.Integer, primary_key=True)
 	number=db.Column(db.String, nullable=False)
-	birthdate =  db.Column(db.DateTime, nullable=False)
+	age =  db.Column(db.String, nullable=False)
 	contract_current_price = db.Column(db.String, nullable=False)
 	sdk = db.Column(db.Integer)
 	manufacturer = db.Column(db.String)
@@ -106,11 +106,8 @@ class Call(db.Model):
 	duration = db.Column(db.Integer, nullable=False)
 	contact_name = db.Column(db.String)
 	call_type=db.Column(db.String, nullable=False)
-	# from_abroad=db.Column(db.Boolean, nullable=False)
-	# to_abroad= db.Column(db.Boolean, nullable=False)
-	# to_CH_from_abroad=db.Column(db.Boolean, nullable=False)
-	from_country =db.Column(db.String, nullable=False)
-	to_country =db.Column(db.String, nullable=False)
+	other_number_location =db.Column(db.String, nullable=False)#other number
+	user_location =db.Column(db.String, nullable=False)#user location
 
 
 
@@ -125,6 +122,7 @@ class MobileData(db.Model):
 	latitude=db.Column(db.Float)
 	longitude=db.Column(db.Float)
 	md_country=db.Column(db.String)
+	md_roaming=db.Column(db.Boolean)
 
 
 
@@ -139,8 +137,5 @@ class SMS(db.Model):
 	
 
 
-def getWhatsappTotalData( parameters ):
-   "function_docstring"
-   function_suite
-   return [expression]
+
 
