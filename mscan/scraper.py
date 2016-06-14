@@ -194,7 +194,7 @@ def getContractsDict():
 	contractsParsedDict  = {}
 	i = 0
 	for c in contractsParsed:
-		contractsParsedDict[str(i)]= c
-		i+=1
+		contractsParsedDict[str(i)]= contractsParsed[i]
+		
 	return contractsParsedDict
 
