@@ -237,12 +237,14 @@ def uploadMD(user_ID):
 def getContracts():
 	if request.method == "POST":
 		contractsDictArray = getContractsDict()
-		contractsJSON =jsonify(message="contracts", contracts = jsonify(contractsDictArray))
-		return contractsJSON
+
+		contractsJSON =json.dumps(contractsDictArray)
+		print(contractsJSON)
+		return jsonify(message="contracts", contracts =  contractsJSON)
 	if request.method == "GET":
 		contractsDictArray = getContractsDict()
 
-		contractsJSON =dumps(contractsDictArray)
+		contractsJSON =json.dumps(contractsDictArray)
 		print(contractsJSON)
 		return jsonify(message="contracts", contracts =  contractsJSON)
 	
