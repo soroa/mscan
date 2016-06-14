@@ -241,8 +241,9 @@ def getContracts():
 		return contractsJSON
 	if request.method == "GET":
 		contractsDictArray = getContractsDict()
-		contractsJSON =jsonify(message="contracts", contracts = jsonify(contractsDictArray[0]))
-		return contractsJSON
+
+		contractsJSON =jsonify(contractsDictArray)
+		return jsonify(message="contracts", contracts =  contractsJSON)
 	
 
 
