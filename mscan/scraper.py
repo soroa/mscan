@@ -191,10 +191,10 @@ def getContractsDict():
 		contractsParsed.append(cParsed)
 			
 	contractsParsed = sorted(contractsParsed, key=itemgetter('Price'), reverse=True) 
-	# contractsParsedDict  = {}
-	# i = 0
-	# for c in contractsParsed:
-	# 	contractsParsedDict[i]= c
-	# 	i+=1
-	return contractsParsed
+	contractsParsedDict  = {}
+	i = 0
+	for c in contractsParsed:
+		contractsParsedDict[str(i)]= c
+		i+=1
+	return contractsParsedDict
 
