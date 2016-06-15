@@ -54,8 +54,8 @@ def callsFixedCH(user_ID,x):
 				# print ("Duration of call is "+ str(c.duration))
 				# print ("Total Duration  is "+ str(duration))
 				duration +=int(c.duration); 
-				print ("Total Duration after sum  is "+ str(duration))
-				print("*********************************************")
+				# print ("Total Duration after sum  is "+ str(duration))
+				# print("*********************************************")
 				
 		return {'number': counter, 'duration': duration}
 
@@ -94,9 +94,8 @@ def SMS_toCH(user_ID,x):
 	if user:
 		counter =0; 
 		sms =getLastXDaysSMS(user_ID,x)
-		print(type(sms))
 		for s in sms: 
-			if isSwissMobileNumber(s.sms_number):
+			if isSwissMobileNumber(s.sms_number) and  s.sms_type =="SENT":
 				counter +=1
 		return str(counter)
 
@@ -128,7 +127,7 @@ def SMS_toABROAD(user_ID, x):
 		counter =0; 
 		sms =getLastXDaysSMS(user_ID,x)
 		for s in sms: 
-			if isForeignNumber(s.sms_number):
+			if isForeignNumber(s.sms_number) and s.sms_type =="SENT":
 				print("Number is " + s.sms_number)
 				counter +=1
 		return str(counter)
