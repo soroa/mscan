@@ -36,8 +36,8 @@ def getContractsDict():
 	"inputfelderform:inputFelder:providerFilterSB":"Sunrise", #jetziger Anbieter
 	"inputfelderform:inputFelder:j_idt115_collapsed":"false",
 	"inputfelderform:inputFelder:j_idt137":"on",
-	"inputfelderform:inputFelder:aufFestnetzSwisscom":"0", #Verteilung: Swisscom Festnetz
-	"inputfelderform:inputFelder:aufFestnetzUPC":"0",#Verteilung: UPC
+	"inputfelderform:inputFelder:aufFestnetzSwisscom":"0", #Verteilung Fest: Swisscom Festnetz
+	"inputfelderform:inputFelder:aufFestnetzUPC":"0",#Verteilung Fest: UPC
 	"inputfelderform:inputFelder:j_idt149_collapsed":"false",
 	"inputfelderform:inputFelder:aufSwisscom":"40",#Verteilung: Swisscom
 	"inputfelderform:inputFelder:aufOrange":"30",#Verteilung: Orange
