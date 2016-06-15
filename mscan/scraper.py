@@ -4,7 +4,7 @@ import urllib
 from operator import itemgetter
 from DKPostRequestBuilder import* 
 
-def getContractsDict(): 
+def getContractsDict(user_ID, days): 
 	s = requests.Session()
 
 	r= requests.get("http://www.dschungelkompass.ch/mobile/welcomeErweitertesprofil.xhtml")
