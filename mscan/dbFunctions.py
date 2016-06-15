@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from models import * 
+
 import re
 import operator
 import resources
