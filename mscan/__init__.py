@@ -35,7 +35,7 @@ def users_upload():
 			user.number=d.get('number')
 			user.age =  d.get('age')
 			user.contract_current_price =d.get('contract_current_price')
-
+			user.registration_datetime= datetime.datetime.now()
 			user.sdk = d.get("sdk")
 			user.manufacturer = d.get("manufacturer")
 			user.build_device = d.get("build_device")
@@ -287,7 +287,7 @@ def getContracts(user_ID):
 			print(contractsJSON)
 			return jsonify(message="contracts", contracts =  contractsJSON)
 	if request.method == "GET":
-		contractsDictArray = getContractsDict("4", 10)
+		contractsDictArray = getContractsDict("4", 10)	
 		contractsJSON =json.dumps(contractsDictArray)
 		print(contractsJSON)
 		return jsonify(message="contracts", contracts =  contractsJSON)

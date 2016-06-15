@@ -4,7 +4,7 @@ import urllib
 from operator import itemgetter
 from DKPostRequestBuilder import* 
 
-def getContractsDict(user_ID, days): 
+def getContractsDict(user_ID): 
 	s = requests.Session()
 
 	r= requests.get("http://www.dschungelkompass.ch/mobile/welcomeErweitertesprofil.xhtml")
@@ -26,8 +26,8 @@ def getContractsDict(user_ID, days):
 
 	data = {
 	"inputfelderform":"inputfelderform",
-	"inputfelderform:inputFelder:anzMinEingabe":totalCallsMinutesCH(user_ID,days), #Minuten telefonieren CH pro Monat
-	"inputfelderform:inputFelder:anzAnrufeEingabe":totalCallsNumberCH(user_ID,days), # Anzalh Anrufe pro Monat
+	"inputfelderform:inputFelder:anzMinEingabe":totalCallsMinutesCH(user_ID), #Minuten telefonieren CH pro Monat
+	"inputfelderform:inputFelder:anzAnrufeEingabe":totalCallsNumberCH(user_ID), # Anzalh Anrufe pro Monat
 	"inputfelderform:inputFelder:anteil3NrEingabe":"0", #Anteil auf die gleiche 3 nummer
 	"inputfelderform:inputFelder:alterAuswahl":getUserAgeField(user_ID), #Alter: kann 15 (unter 18), 25 (unter 26), 26 (unter 27), 29 (unter 30), 65 (65 oder aelter), 30 (zwischen 30 und 65)
 	"inputfelderform:inputFelder:j_idt127":getUserCurrentContractPrice(user_ID),  #wie viel ich jetzt pro Monat bezahle
@@ -53,14 +53,14 @@ def getContractsDict(user_ID, days):
 	"inputfelderform:inputFelder:aufMobileUPC":"0",#Verteilung: 
 	"inputfelderform:inputFelder:aufAndere":"0",#Verteilung: 
 	"inputfelderform:inputFelder:j_idt182_collapsed":"true",
-	"inputfelderform:inputFelder:anzSMSEingabe":SMS_toCH(user_ID,days),#Sms pro Monat CH
+	"inputfelderform:inputFelder:anzSMSEingabe":SMS_toCH(user_ID),#Sms pro Monat CH
 	"inputfelderform:inputFelder:anzTageSMS":str(days), #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:j_idt227_collapsed":"false",
-	"inputfelderform:inputFelder:datenmengeMBEingabe":dataCH(user_ID, days),#Datenmenge pro Monat
+	"inputfelderform:inputFelder:datenmengeMBEingabe":dataCH(user_ID),#Datenmenge pro Monat
 	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":str(days), #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:speedAuswahl":"1.0", #Geschwindigkeit Minimum
 	"inputfelderform:inputFelder:j_idt238_collapsed":"false", #
-	"inputfelderform:inputFelder:SmsAusland":SMS_toABROAD(user_ID, days), #SMS ins Ausland
+	"inputfelderform:inputFelder:SmsAusland":SMS_toABROAD(user_ID), #SMS ins Ausland
 	"inputfelderform:inputFelder:j_idt270_input":"Deutschland", #Anrufe ins Ausland: Land1
 	"inputfelderform:inputFelder:Land1FixMin":"10", #Festnetz minuten anrufe ins ausland
 	"inputfelderform:inputFelder:Land1FixAnzAnr":"11", #Festnetz Anzahl Anrufe ins Ausland

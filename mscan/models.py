@@ -70,6 +70,7 @@ class User(db.Model):
 	__tablename__= "users"
 	user_id=db.Column(db.Integer, primary_key=True)
 	number=db.Column(db.String, nullable=False)
+	registration_datetime = db.Column(db.DateTime, nullable=False)
 	age =  db.Column(db.String, nullable=False)
 	contract_current_price = db.Column(db.String, nullable=False)
 	sdk = db.Column(db.Integer)

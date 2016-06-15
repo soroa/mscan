@@ -25,6 +25,18 @@ def getUserAgeField(user_ID):
 			return 65
 
 
+def getDaysSinceSignUp(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		registration = user.registration_datetime
+		now = datetime.datetime.now()
+		timeSinceSignup = int((now - registration).days)
+		if timeSinceSignup<30:
+			return timeSinceSignup
+		else:
+			return 30
+
+
 def getUserCurrentContractPrice(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
@@ -39,12 +51,12 @@ def getUserOperator(user_ID):
 ##Everthing within Switzerland
 # .......................................
 #tested: OK 
-def callsFixedCH(user_ID,x):
+def callsFixedCH(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter=0; 
 		duration = 0;  
-		calls = getLastXDaysCalls(user_ID, x)
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		for c in calls: 
 			if isSwissFixedNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				
@@ -63,12 +75,12 @@ def callsFixedCH(user_ID,x):
 
 
 #tested: ok 
-def CallsMobileCH(user_ID,x):
+def CallsMobileCH(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter=0; 
 		duration = 0; 
-		calls = getLastXDaysCalls(user_ID, x)
+		calls = getLastXDaysCalls(user_ID,getDaysSinceSignUp(user_ID) )
 		for c in calls: 
 			if isSwissMobileNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
@@ -81,31 +93,31 @@ def CallsMobileCH(user_ID,x):
 				# print("*********************************************")
 		return {'number': counter, 'duration': duration}
 
-def totalCallsMinutesCH(user_ID, x):
-	return str(CallsMobileCH(user_ID,x).get("duration") + callsFixedCH(user_ID,x).get("duration"))
+def totalCallsMinutesCH(user_ID):
+	return str(CallsMobileCH(user_ID).get("duration") + callsFixedCH(user_ID).get("duration"))
 
 
-def totalCallsNumberCH(user_ID,x):
-	return str(CallsMobileCH(user_ID,x).get("number") + callsFixedCH(user_ID,x).get("number"))
+def totalCallsNumberCH(user_ID):
+	return str(CallsMobileCH(user_ID).get("number") + callsFixedCH(user_ID).get("number"))
 
 # TODO 3 most frequent numbers
 
 
-def SMS_toCH(user_ID,x):
+def SMS_toCH(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
-		sms =getLastXDaysSMS(user_ID,x)
+		sms =getLastXDaysSMS(user_ID,getDaysSinceSignUp(user_ID))
 		for s in sms: 
 			if isSwissMobileNumber(s.sms_number) and  s.sms_type =="SENT":
 				counter +=1
 		return str(counter)
 
-def dataCH(user_ID, x):
+def dataCH(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
-		daysback = datetime.timedelta(days=x)
+		daysback = datetime.timedelta(days=getDaysSinceSignUp(user_ID))
 		since = datetime.datetime.now() - daysback
 		mds = MobileData.query.filter(and_(MobileData.md_creation_time > since, MobileData.md_user_id==user_ID, MobileData.md_roaming==False ) ).all()
 
@@ -120,11 +132,11 @@ def dataCH(user_ID, x):
 # .......................................
 
 
-def SMS_toABROAD(user_ID, x):
+def SMS_toABROAD(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
-		sms =getLastXDaysSMS(user_ID,x)
+		sms =getLastXDaysSMS(user_ID,getDaysSinceSignUp(user_ID))
 		for s in sms: 
 			if isForeignNumber(s.sms_number) and s.sms_type =="SENT":
 				print("Number is " + s.sms_number)
@@ -133,12 +145,12 @@ def SMS_toABROAD(user_ID, x):
 
 
 #tested, OK!
-def callsToAbroadLandX(user_ID, x,daysBack):
+def callsToAbroadLandX(user_ID, x):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter=0
 		duration = 0
-		calls = getLastXDaysCalls(user_ID, daysBack)
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		callsToAbroad = []
 		for c in calls: 
 			if isForeignNumber(c.call_number) and c.user_location=="CH" and c.call_type=="outgoing"and c.duration>0:
@@ -197,7 +209,7 @@ def dataRoaming(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
-		daysback = datetime.timedelta(days=30)
+		daysback = datetime.timedelta(days=getDaysSinceSignUp(user_ID))
 		since = datetime.datetime.now() - daysback
 		mds = MobileData.query.filter(and_(MobileData.md_creation_time > since, MobileData.md_user_id==user_ID, MobileData.md_roaming==True ) ).all()
 		countries = []
