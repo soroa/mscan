@@ -193,6 +193,7 @@ def uploadCallsSMS(user_ID):
 				c.call_creation_time = datetime.datetime.strptime(call.get('creation_time'), '%Y-%m-%d %H:%M:%S')
 				isDuplicate = Call.query.filter(and_(Call.call_creation_time==c.call_creation_time , Call.call_number ==c.call_number, Call.user_id == c.user_id)).first()
 				if isDuplicate:
+					print("Call is duplicate")
 					continue
 				c.call_type=call.get('type')
 				print("number is " + call.get('number'))
