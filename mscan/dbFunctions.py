@@ -235,12 +235,12 @@ def locationIsCH(location):
 def getLastXDaysSMS(user_ID,x):
 	daysback = datetime.timedelta(days=x)
 	since = datetime.datetime.now() - daysback
+	print("type of return value is "+ type(SMS.query.filter(and_(SMS.sms_creation_time > since, SMS.user_id==user_ID) ).all))
 	return SMS.query.filter(and_(SMS.sms_creation_time > since, SMS.user_id==user_ID) ).all
 
 def getLastXDaysCalls(user_ID, x):
 	daysback = datetime.timedelta(days=x)
 	since = datetime.datetime.now() - daysback
-	print("return " + Call.query.filter(and_(Call.call_creation_time > since, Call.user_id==user_ID) ).all())
 	return Call.query.filter(and_(Call.call_creation_time > since, Call.user_id==user_ID) ).all()
 
 
