@@ -4,7 +4,7 @@ def buildRequest(user_ID, days):
 	
 	data = {
 	"inputfelderform":"inputfelderform",
-	"inputfelderform:inputFelder:anzMinEingabe":totalCallsMinutesCH(user_ID,days) #Minuten telefonieren CH pro Monat
+	"inputfelderform:inputFelder:anzMinEingabe":totalCallsMinutesCH(user_ID,days), #Minuten telefonieren CH pro Monat
 	"inputfelderform:inputFelder:anzAnrufeEingabe":totalCallsNumberCH(user_ID,days), # Anzalh Anrufe pro Monat
 	"inputfelderform:inputFelder:anteil3NrEingabe":"0", #Anteil auf die gleiche 3 nummer
 	"inputfelderform:inputFelder:alterAuswahl":getUserAgeField(user_ID), #Alter: kann 15 (unter 18), 25 (unter 26), 26 (unter 27), 29 (unter 30), 65 (65 oder aelter), 30 (zwischen 30 und 65)
