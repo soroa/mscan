@@ -10,7 +10,7 @@ from scraper import *
 
 #create application object
 app = Flask(__name__)
-from models import *
+
 from dbFunctions import *
 
 

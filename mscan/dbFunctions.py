@@ -3,7 +3,7 @@
 import re
 import operator
 import resources
-
+from models import *
 
 def getUserAgeField(userID):
 	user=User.query.filter_by(user_id=user_ID).first()
