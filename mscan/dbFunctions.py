@@ -37,12 +37,13 @@ def getUserOperator(userID):
 ##Everthing within Switzerland
 # .......................................
 #tested: OK 
-def callsFixedCH(userID):
+		l["Calls to Fix in CH"] = 
+def callsFixedCH(userID,x):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter=0; 
 		duration = 0;  
-		calls = getLast30DaysCalls(userID)
+		calls = getLastXDaysCalls(userID, x)
 		for c in calls: 
 			if isSwissFixedNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
@@ -51,12 +52,12 @@ def callsFixedCH(userID):
 
 
 #tested: ok 
-def CallsMobileCH(userID):
+def CallsMobileCH(userID,x):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter=0; 
 		duration = 0; 
-		calls = getLast30DaysCalls(userID)
+		calls = getLastXDaysCalls(userID, x)
 		for c in calls: 
 			if isSwissMobileNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
@@ -73,21 +74,21 @@ def totalCallsNumberCH(userID):
 # TODO 3 most frequent numbers
 
 
-def SMS_toCH(userID):
+def SMS_toCH(userID,x):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
-		sms =getLast30DaysSMS(userID)
+		sms =getLastXDaysSMS(userID,x)
 		for s in sms: 
 			if isSwissMobileNumber(s.sms_number):
 				counter +=1
 		return str(counter)
 
-def dataCH(userID):
+def dataCH(userID, x):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
-		daysback = datetime.timedelta(days=30)
+		daysback = datetime.timedelta(days=x)
 		since = datetime.datetime.now() - daysback
 		mds = MobileData.query.filter(and_(MobileData.md_creation_time > since, MobileData.md_user_id==userID, MobileData.md_roaming==False ) ).all()
 
@@ -105,11 +106,11 @@ def dataCH(userID):
 # .......................................
 
 
-def SMS_toABROAD(userID):
+def SMS_toABROAD(userID, x):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
-		sms =getLast30DaysSMS(userID)
+		sms =getLastXDaysSMS(userID,x)
 		for s in sms: 
 			if isForeignNumber(s.sms_number):
 				counter +=1
@@ -117,12 +118,12 @@ def SMS_toABROAD(userID):
 
 
 #tested, OK!
-def callsToAbroadLandX(userID, x):
+def callsToAbroadLandX(userID, x,daysBack):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter=0
 		duration = 0
-		calls = getLast30DaysCalls(userID)
+		calls = getLastXDaysCalls(userID, daysBack)
 		callsToAbroad = []
 		for c in calls: 
 			if isForeignNumber(c.call_number) and c.user_location=="CH" and c.call_type=="outgoing"and c.duration>0:
@@ -229,21 +230,15 @@ def locationIsCH(location):
 	return location=="Schweiz" or location=="Switzerland" or location=="Suisse" or location=="Svizzera" or location=="Suíça" or location=="Suiza"
 
 
-def getLast30DaysSMS(userID):
-	daysback = datetime.timedelta(days=30)
+def getLastXDaysSMS(userID,x):
+	daysback = datetime.timedelta(days=x)
 	since = datetime.datetime.now() - daysback
 	return SMS.query.filter(and_(SMS.sms_creation_time > since, SMS.user_id==userID) ).all
 
-def getLast30DaysCalls(userID):
-	daysback = datetime.timedelta(days=30)
+def getLastXDaysCalls(userID, x):
+	daysback = datetime.timedelta(days=x)
 	since = datetime.datetime.now() - daysback
 	return Call.query.filter(and_(Call.call_creation_time > since, Call.user_id==userID) ).all()
-
-
-
-
-
-
 
 
 

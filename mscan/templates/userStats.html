@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>User Stats</title>
+</head>
+<body>
+	<div class="container">
+		<h2>SMS</h2>
+		{% for k in stats  %}
+		<strong>{{k}}</strong> {{stats.get(k)}} <br>
+
+		<br>
+		{% endfor %}
+	</div>
+	<br>
+
+</body>
+</html>

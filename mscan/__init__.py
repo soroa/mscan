@@ -6,6 +6,7 @@ import requests
 import json
 from sqlalchemy import and_
 from scraper import *
+from dbFunctions import *
 
 #create application object
 app = Flask(__name__)
@@ -106,6 +107,28 @@ def viewSMS(userID):
 	if user:
 		sms = SMS.query.filter(SMS.user_id==userID).order_by(desc(SMS.sms_creation_time)).all()
 		return render_template('sms.html', sms = sms)
+	else:
+		return """<html><body>
+		This user is not in the database
+		</body></html>"""
+
+
+@app.route('/testFF/<userID>')
+def testFF(userID):
+	user=User.query.filter_by(user_id=userID).first()
+	if user:
+		x=20
+		stats= {}
+		stats["Currenct Contrac tPrice"] = getUserCurrentContractPrice(userID)
+		stats["User Operator"] = getUserOperator(userID, x)
+		stats["Calls to Fix in CH"] = callsFixedCH(userID, x).get('number')
+		stats["Calls to Mobile in CH"] = CallsMobileCH(userID,x).get('number')
+		stats["Sms to CH"] = SMS_toCH(userID,x)
+		stats["Data in CH"] = dataCH(userID, x)
+		stats["Sms to abroad"] = SMS_toABROAD(userID, x)
+		return render_template('userStats.html', stats = stats)
+
+
 	else:
 		return """<html><body>
 		This user is not in the database
@@ -233,14 +256,25 @@ def uploadMD(user_ID):
 		</body></html>"""
 
 
-@app.route('/getContracts', methods=['GET', 'POST'])
-def getContracts():
+@app.route('/getContracts/<user_ID>', methods=['GET', 'POST'])
+def getContracts(user_ID):
 	if request.method == "POST":
-		contractsDictArray = getContractsDict()
+		user=User.query.filter_by(user_id=user_ID).first()
+		if user:
+			requestData = request.json
+			installationDatetimeStr = requestData.get('installationDatetime')
+			insallationDatetime = datetime.datetime.strptime(installationDatetimeStr, '%Y-%m-%d %H:%M:%S')
+			daysback = datetime.timedelta(days=1)
+			since = datetime.datetime.now() - daysback
+			if installationDatetime > since:
+				return jsonify(message="Installation too recent")
 
-		contractsJSON =json.dumps(contractsDictArray)
-		print(contractsJSON)
-		return jsonify(message="contracts", contracts =  contractsJSON)
+
+			contractsDictArray = getContractsDict()
+
+			contractsJSON =json.dumps(contractsDictArray)
+			print(contractsJSON)
+			return jsonify(message="contracts", contracts =  contractsJSON)
 	if request.method == "GET":
 		contractsDictArray = getContractsDict()
 
