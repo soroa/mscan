@@ -6,12 +6,12 @@ import requests
 import json
 from sqlalchemy import and_
 from scraper import *
-from dbFunctions import *
+
 
 #create application object
 app = Flask(__name__)
 from models import *
-
+from dbFunctions import *
 
 
 @app.route("/")
