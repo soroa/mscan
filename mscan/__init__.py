@@ -187,11 +187,15 @@ def uploadCallsSMS(user_ID):
 			smss= data_entries[1]
 			for call in calls:
 				c= Call()
+
 				c.user_id = user.user_id
+				c.call_number = call.get('number')
 				c.call_creation_time = datetime.datetime.strptime(call.get('creation_time'), '%Y-%m-%d %H:%M:%S')
+				isDuplicate = Call.query.filter_by(and_(Call.call_creation_time==c.call_creation_time , Call.call_number ==c.call_number)).first()
+				if isDuplicate:
+					continue
 				c.call_type=call.get('type')
 				print("number is " + call.get('number'))
-				c.call_number = call.get('number')
 				c.duration = call.get('duration')
 				c.contact_name = call.get('contact_name')
 				# todo from/to abroad do logic
@@ -208,6 +212,9 @@ def uploadCallsSMS(user_ID):
 				s.sms_creation_time =datetime.datetime.strptime(sms.get('creation_time'), '%Y-%m-%d %H:%M:%S')
 				s.sms_type = sms.get('type')
 				s.sms_number = sms.get('number')
+				isDuplicate = SMS.query.filter_by(and_(SMS.sms_creation_time==s.sms_creation_time , SMS.sms_number ==s.sms_number)).first()
+				if isDuplicate:
+					continue
 				db.session.add(s)
 				db.session.commit()
 			response = jsonify(message="the call and sms data record was added successfully")
