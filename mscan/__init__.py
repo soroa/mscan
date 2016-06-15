@@ -195,6 +195,8 @@ def uploadCallsSMS(user_ID):
 				if isDuplicate:
 					print("Call is duplicate")
 					continue
+				print("Call is NOT duplicate")
+
 				c.call_type=call.get('type')
 				print("number is " + call.get('number'))
 				c.duration = call.get('duration')
