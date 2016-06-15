@@ -4,6 +4,7 @@ import re
 import operator
 import resources
 import  datetime
+from sqlalchemy import and_
 from models import *
 
 def getUserAgeField(user_ID):
