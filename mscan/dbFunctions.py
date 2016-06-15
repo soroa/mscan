@@ -53,7 +53,9 @@ def callsFixedCH(user_ID,x):
 				# print ("Number is fix swiss: "+ c.call_number)
 				# print ("Duration of call is "+ str(c.duration))
 				# print ("Total Duration  is "+ str(duration))
+				
 				duration +=int(c.duration); 
+				
 				# print ("Total Duration after sum  is "+ str(duration))
 				# print("*********************************************")
 				
@@ -79,12 +81,12 @@ def CallsMobileCH(user_ID,x):
 				# print("*********************************************")
 		return {'number': counter, 'duration': duration}
 
-def totalCallsMinutesCH(user_ID):
-	return str(nationalCallsMobile(user_ID).get("duration") + nationalCallsFixed(user_ID).get("duration"))
+def totalCallsMinutesCH(user_ID, x):
+	return str(nationalCallsMobile(user_ID,x).get("duration") + nationalCallsFixed(user_ID,x).get("duration"))
 
 
-def totalCallsNumberCH(user_ID):
-	return str(nationalCallsMobile(user_ID).get("number") + nationalCallsFixed(user_ID).get("number"))
+def totalCallsNumberCH(user_ID,x):
+	return str(nationalCallsMobile(user_ID,x).get("number") + nationalCallsFixed(user_ID,x).get("number"))
 
 # TODO 3 most frequent numbers
 
@@ -111,9 +113,6 @@ def dataCH(user_ID, x):
 			counter +=int(m.totalMB)
 
 		return str(int(counter/1000000))
-
-
-
 
 
 # .......................................
