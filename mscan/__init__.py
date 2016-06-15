@@ -191,7 +191,7 @@ def uploadCallsSMS(user_ID):
 				c.user_id = user.user_id
 				c.call_number = call.get('number')
 				c.call_creation_time = datetime.datetime.strptime(call.get('creation_time'), '%Y-%m-%d %H:%M:%S')
-				isDuplicate = Call.query.filter_by(and_(Call.call_creation_time==c.call_creation_time , Call.call_number ==c.call_number)).first()
+				isDuplicate = Call.query.filter(and_(Call.call_creation_time==c.call_creation_time , Call.call_number ==c.call_number)).first()
 				if isDuplicate:
 					continue
 				c.call_type=call.get('type')
@@ -212,7 +212,7 @@ def uploadCallsSMS(user_ID):
 				s.sms_creation_time =datetime.datetime.strptime(sms.get('creation_time'), '%Y-%m-%d %H:%M:%S')
 				s.sms_type = sms.get('type')
 				s.sms_number = sms.get('number')
-				isDuplicate = SMS.query.filter_by(and_(SMS.sms_creation_time==s.sms_creation_time , SMS.sms_number ==s.sms_number)).first()
+				isDuplicate = SMS.query.filter(and_(SMS.sms_creation_time==s.sms_creation_time , SMS.sms_number ==s.sms_number)).first()
 				if isDuplicate:
 					continue
 				db.session.add(s)
