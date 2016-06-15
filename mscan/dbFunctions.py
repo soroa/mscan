@@ -37,7 +37,6 @@ def getUserOperator(userID):
 ##Everthing within Switzerland
 # .......................................
 #tested: OK 
-		l["Calls to Fix in CH"] = 
 def callsFixedCH(userID,x):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:

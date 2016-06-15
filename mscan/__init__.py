@@ -121,11 +121,11 @@ def testFF(userID):
 		stats= {}
 		stats["Currenct Contrac tPrice"] = getUserCurrentContractPrice(userID)
 		stats["User Operator"] = getUserOperator(userID, x)
-		# stats["Calls to Fix in CH"] = callsFixedCH(userID, x).get('number')
-		# stats["Calls to Mobile in CH"] = CallsMobileCH(userID,x).get('number')
-		# stats["Sms to CH"] = SMS_toCH(userID,x)
-		# stats["Data in CH"] = dataCH(userID, x)
-		# stats["Sms to abroad"] = SMS_toABROAD(userID, x)
+		stats["Calls to Fix in CH"] = callsFixedCH(userID, x).get('number')
+		stats["Calls to Mobile in CH"] = CallsMobileCH(userID,x).get('number')
+		stats["Sms to CH"] = SMS_toCH(userID,x)
+		stats["Data in CH"] = dataCH(userID, x)
+		stats["Sms to abroad"] = SMS_toABROAD(userID, x)
 		return render_template('userStats.html', stats = stats)
 
 
