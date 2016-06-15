@@ -80,6 +80,7 @@ def SMS_toCH(user_ID,x):
 	if user:
 		counter =0; 
 		sms =getLastXDaysSMS(user_ID,x)
+		print(type(sms))
 		for s in sms: 
 			if isSwissMobileNumber(s.sms_number):
 				counter +=1
