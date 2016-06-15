@@ -49,7 +49,14 @@ def callsFixedCH(user_ID,x):
 			if isSwissFixedNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				
 				counter +=1
+				print("*********************************************")
+				print ("Number is fix swiss: "+ c.call_number)
+				print ("Duration of call is "+ str(c.duration))
+				print ("Total Duration  is "+ str(duration))
 				duration +=int(c.duration); 
+				print ("Total Duration after sum  is "+ str(duration))
+				print("*********************************************")
+				
 		return {'number': counter, 'duration': duration}
 
 
@@ -64,7 +71,7 @@ def CallsMobileCH(user_ID,x):
 			if isSwissMobileNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
 				print("*********************************************")
-				print ("Number is swiss: "+ c.call_number)
+				print ("Number is mob swiss: "+ c.call_number)
 				print ("Duration of call is "+ str(c.duration))
 				print ("Total Duration  is "+ str(duration))
 				duration +=int(c.duration); 
