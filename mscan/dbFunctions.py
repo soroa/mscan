@@ -49,10 +49,10 @@ def callsFixedCH(user_ID,x):
 			if isSwissFixedNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				
 				counter +=1
-				print("*********************************************")
-				print ("Number is fix swiss: "+ c.call_number)
-				print ("Duration of call is "+ str(c.duration))
-				print ("Total Duration  is "+ str(duration))
+				# print("*********************************************")
+				# print ("Number is fix swiss: "+ c.call_number)
+				# print ("Duration of call is "+ str(c.duration))
+				# print ("Total Duration  is "+ str(duration))
 				duration +=int(c.duration); 
 				print ("Total Duration after sum  is "+ str(duration))
 				print("*********************************************")
@@ -70,13 +70,13 @@ def CallsMobileCH(user_ID,x):
 		for c in calls: 
 			if isSwissMobileNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
-				print("*********************************************")
-				print ("Number is mob swiss: "+ c.call_number)
-				print ("Duration of call is "+ str(c.duration))
-				print ("Total Duration  is "+ str(duration))
+				# print("*********************************************")
+				# print ("Number is mob swiss: "+ c.call_number)
+				# print ("Duration of call is "+ str(c.duration))
+				# print ("Total Duration  is "+ str(duration))
 				duration +=int(c.duration); 
-				print ("Total Duration after sum  is "+ str(duration))
-				print("*********************************************")
+				# print ("Total Duration after sum  is "+ str(duration))
+				# print("*********************************************")
 		return {'number': counter, 'duration': duration}
 
 def totalCallsMinutesCH(user_ID):
@@ -129,6 +129,7 @@ def SMS_toABROAD(user_ID, x):
 		sms =getLastXDaysSMS(user_ID,x)
 		for s in sms: 
 			if isForeignNumber(s.sms_number):
+				print("Number is " + s.sms_number)
 				counter +=1
 		return str(counter)
 
