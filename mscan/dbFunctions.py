@@ -47,7 +47,7 @@ def callsFixedCH(user_ID,x):
 		calls = getLastXDaysCalls(user_ID, x)
 		for c in calls: 
 			if isSwissFixedNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
-				print(c.call_number + " is swiss fixed number")
+				
 				counter +=1
 				duration +=int(c.duration); 
 		return {'number': counter, 'duration': duration}
@@ -63,7 +63,13 @@ def CallsMobileCH(user_ID,x):
 		for c in calls: 
 			if isSwissMobileNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
+				print("*********************************************")
+				print ("Number is swiss: "+ c.call_number)
+				print ("Duration of call is "+ c.duration)
+				print ("Total Duration  is "+ str(duration))
 				duration +=int(c.duration); 
+				print ("Total Duration after sum  is "+ str(duration))
+				print("*********************************************")
 		return {'number': counter, 'duration': duration}
 
 def totalCallsMinutesCH(user_ID):
@@ -211,7 +217,7 @@ def SMS_fromABROAD(user_ID):
 
 def isSwissMobileNumber(number):
 	if (number[:3]=="075" ) or  (number[:3]=="076" ) or  (number[:3]=="077" ) or (number[:3]=="078" ) or (number[:3]=="079" ) or (number[:5]=="+4175") or (number[:5]=="+4176") or (number[:5]=="+4177") or (number[:5]=="+4178") or (number[:5]=="+4179"):
-		print(number + " is swiss mobile number")
+		
 		return True
 	else: 
 		return False
