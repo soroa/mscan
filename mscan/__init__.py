@@ -122,7 +122,7 @@ def testFF(userID):
 		stats["Currenct Contract Price"] = getUserCurrentContractPrice(userID)
 		stats["User Operator"] = getUserOperator(userID)
 		stats["Number of Calls to Fix in CH"] = callsFixedCH(userID, x).get('number')
-		stats["Minutes of Calls to Fix in CH"] = callsFixedCH(userID, x).get('duration')
+		stats["Minutes of Calls to Fix in CH"] = str(int(callsFixedCH(userID, x).get('duration'))/60)
 		stats["Number of Calls to Mobile in CH"] = CallsMobileCH(userID,x).get('number')
 		stats["Minutes of Calls to Mobile in CH"] = str(int(CallsMobileCH(userID,x).get('duration'))/60)
 		stats["Sms to CH"] = SMS_toCH(userID,x)
