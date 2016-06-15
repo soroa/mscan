@@ -1,7 +1,7 @@
+from dbFunctions import *
+
 def buildRequest(user_ID, days):
 	
-
-
 	data = {
 	"inputfelderform":"inputfelderform",
 	"inputfelderform:inputFelder:anzMinEingabe":totalCallsMinutesCH(user_ID,days) #Minuten telefonieren CH pro Monat
@@ -98,3 +98,4 @@ def buildRequest(user_ID, days):
 	"inputfelderform:j_idt501":"",
 	"javax.faces.ViewState":value1 + ":"+value2
 	}
+	return data

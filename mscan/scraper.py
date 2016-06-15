@@ -2,8 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import urllib
 from operator import itemgetter
+from DKPostRequestBuilder import* 
 
-def getContractsDict(): 
+def getContractsDict(user_ID, days): 
 	s = requests.Session()
 
 	r= requests.get("http://www.dschungelkompass.ch/mobile/welcomeErweitertesprofil.xhtml")
@@ -23,10 +24,10 @@ def getContractsDict():
 
 	url2 ="http://www.dschungelkompass.ch/mobile/welcomeErweitertesprofil.xhtml"
 
+	data = buildRequest(user_ID, days)
 
 
-
-	data = {
+	data2 = {
 	"inputfelderform":"inputfelderform",
 	"inputfelderform:inputFelder:anzMinEingabe":"1", #Minuten telefonieren CH pro Monat
 	"inputfelderform:inputFelder:anzAnrufeEingabe":"2", # Anzalh Anrufe pro Monat

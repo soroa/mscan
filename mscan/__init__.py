@@ -5,13 +5,14 @@ from sqlalchemy import desc
 import requests
 import json
 from sqlalchemy import and_
-from scraper import *
+
 
 
 #create application object
 app = Flask(__name__)
 
-from dbFunctions import *
+from scraper import *
+# from dbFunctions import *
 
 
 @app.route("/")
