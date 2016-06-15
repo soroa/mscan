@@ -277,18 +277,17 @@ def getContracts(user_ID):
 			insallationDatetime = datetime.datetime.strptime(installationDatetimeStr, '%Y-%m-%d %H:%M:%S')
 			daysback = datetime.timedelta(days=1)
 			since = datetime.datetime.now() - daysback
-			if installationDatetime > since:
-				return jsonify(message="Installation too recent")
+			# if installationDatetime > since:
+			# 	return jsonify(message="Installation too recent")
+			daydifference = (datetime.datetime.now() - installationDatetime).days
 
-
-			contractsDictArray = getContractsDict()
+			contractsDictArray = getContractsDict(user_ID, daydifference)
 
 			contractsJSON =json.dumps(contractsDictArray)
 			print(contractsJSON)
 			return jsonify(message="contracts", contracts =  contractsJSON)
 	if request.method == "GET":
-		contractsDictArray = getContractsDict()
-
+		contractsDictArray = getContractsDict("4", 10)
 		contractsJSON =json.dumps(contractsDictArray)
 		print(contractsJSON)
 		return jsonify(message="contracts", contracts =  contractsJSON)
