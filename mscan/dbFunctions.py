@@ -65,7 +65,7 @@ def CallsMobileCH(user_ID,x):
 				counter +=1
 				print("*********************************************")
 				print ("Number is swiss: "+ c.call_number)
-				print ("Duration of call is "+ c.duration)
+				print ("Duration of call is "+ str(c.duration))
 				print ("Total Duration  is "+ str(duration))
 				duration +=int(c.duration); 
 				print ("Total Duration after sum  is "+ str(duration))
