@@ -125,9 +125,8 @@ def testFF(userID):
 		stats["Minutes of Calls to Fix in CH"] = callsFixedCH(userID, x).get('duration')
 		stats["Number of Calls to Mobile in CH"] = CallsMobileCH(userID,x).get('number')
 		stats["Minutes of Calls to Mobile in CH"] = str(int(CallsMobileCH(userID,x).get('duration'))/60)
-	
 		stats["Sms to CH"] = SMS_toCH(userID,x)
-		stats["Data in CH"] = dataCH(userID, x)
+		stats["Data in CH"] = dataCH(userID, x)  + " MBytes"
 		stats["Sms to abroad"] = SMS_toABROAD(userID, x)
 		return render_template('userStats.html', stats = stats)
 
