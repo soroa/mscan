@@ -9,7 +9,7 @@ def buildRequest(user_ID, days):
 	"inputfelderform:inputFelder:anteil3NrEingabe":"0", #Anteil auf die gleiche 3 nummer
 	"inputfelderform:inputFelder:alterAuswahl":getUserAgeField(user_ID), #Alter: kann 15 (unter 18), 25 (unter 26), 26 (unter 27), 29 (unter 30), 65 (65 oder aelter), 30 (zwischen 30 und 65)
 	"inputfelderform:inputFelder:j_idt127":getUserCurrentContractPrice(user_ID),  #wie viel ich jetzt pro Monat bezahle
-	"inputfelderform:inputFelder:providerFilterSB":"Sunrise", #jetziger Anbieter
+	"inputfelderform:inputFelder:providerFilterSB":getUserOperator(user_ID), #jetziger Anbieter
 	"inputfelderform:inputFelder:j_idt115_collapsed":"false",
 	"inputfelderform:inputFelder:j_idt137":"on",
 	"inputfelderform:inputFelder:aufFestnetzSwisscom":"0", #Verteilung Fest: Swisscom Festnetz
@@ -31,14 +31,14 @@ def buildRequest(user_ID, days):
 	"inputfelderform:inputFelder:aufMobileUPC":"0",#Verteilung: 
 	"inputfelderform:inputFelder:aufAndere":"0",#Verteilung: 
 	"inputfelderform:inputFelder:j_idt182_collapsed":"true",
-	"inputfelderform:inputFelder:anzSMSEingabe":"5",#Sms pro Monat CH
-	"inputfelderform:inputFelder:anzTageSMS":"6", #Innerhalb von x Tagen
+	"inputfelderform:inputFelder:anzSMSEingabe":SMS_toCH(user_ID,days),#Sms pro Monat CH
+	"inputfelderform:inputFelder:anzTageSMS":str(days), #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:j_idt227_collapsed":"false",
-	"inputfelderform:inputFelder:datenmengeMBEingabe":"7",#Datenmenge pro Monat
-	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":"8", #Innerhalb von x Tagen
+	"inputfelderform:inputFelder:datenmengeMBEingabe":dataCH(user_ID, days),#Datenmenge pro Monat
+	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":str(days), #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:speedAuswahl":"1.0", #Geschwindigkeit Minimum
 	"inputfelderform:inputFelder:j_idt238_collapsed":"false", #
-	"inputfelderform:inputFelder:SmsAusland":"9", #SMS ins Ausland
+	"inputfelderform:inputFelder:SmsAusland":SMS_toABROAD(user_ID, days), #SMS ins Ausland
 	"inputfelderform:inputFelder:j_idt270_input":"Deutschland", #Anrufe ins Ausland: Land1
 	"inputfelderform:inputFelder:Land1FixMin":"10", #Festnetz minuten anrufe ins ausland
 	"inputfelderform:inputFelder:Land1FixAnzAnr":"11", #Festnetz Anzahl Anrufe ins Ausland

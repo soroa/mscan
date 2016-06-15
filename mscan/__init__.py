@@ -128,8 +128,10 @@ def testFF(userID):
 		stats["Sms to CH"] = SMS_toCH(userID,x)
 		stats["Data in CH"] = dataCH(userID, x)  + " MBytes"
 		stats["Sms to abroad"] = SMS_toABROAD(userID, x)
+		stats["Abroad Country 1"]  = callsToAbroadLandX(userID, 0, x).get('country')
+		stats["Number Calls to Abroad 1"]  = callsToAbroadLandX(userID, 0, x).get('number')
+		stats["Seconds Calls to Abroad 1"]  = callsToAbroadLandX(userID, 0, x).get('duration')
 		return render_template('userStats.html', stats = stats)
-
 
 	else:
 		return """<html><body>
