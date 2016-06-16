@@ -283,6 +283,35 @@ def getContracts(user_ID):
 		contractsJSON =json.dumps(contractsDictArray)
 		print(contractsJSON)
 		return jsonify(message="contracts", contracts =  contractsJSON)
+
+
+@app.route('/getUsage/<user_ID>', methods=['POST'])
+def getContracts(user_ID):
+	if request.method == "POST":
+		user=User.query.filter_by(user_id=user_ID).first()
+		if user:
+			
+			usage= {}
+			usage["Number of outgoing calls to swiss landlines"] = callsFixedCH(userID).get('number')
+			usage["Calling time of outgoing calls to swiss landlines"] = callsFixedCH(userID).get('duration')
+			usage["Number of outgoing calls to swiss cellphones"] = CallsMobileCH(userID).get('number')
+			usage["Calling time of outgoing calls to swiss cellphones"] = CallsMobileCH(userID).get('duration')
+			usage["SMS sent within Switzerland"] = SMS_toCH(userID)
+			usage["Internet data in Switzerland"] = dataCH(userID)  + " MBytes"
+			usage["SMS to abroad"] = SMS_toABROAD(userID)
+			usage["#1 foreign country called"]  = callsToAbroadLandX(userID, 0).get('country')
+			usage["Number of outgoing calls to foreign country #1"]  = callsToAbroadLandX(userID, 0).get('number')
+			usage["Calling time of outgoing calls to foreign country #1"]  = callsToAbroadLandX(userID, 0).get('duration')
+			usage["#2 foreign country called"]  = callsToAbroadLandX(userID, 1).get('country')
+			usage["Number of outgoing calls to foreign country #2"]  = callsToAbroadLandX(userID, 1).get('number')
+			usage["Calling time of outgoing calls to foreign country #2"]  = callsToAbroadLandX(userID, 1).get('duration')
+			usage["#2 foreign country called"]  = callsToAbroadLandX(userID, 2).get('country')
+			usage["Number of outgoing calls to foreign country #3"]  = callsToAbroadLandX(userID, 2).get('number')
+			usage["Calling time of outgoing calls to foreign country #3"]  = callsToAbroadLandX(userID, 2).get('duration')
+
+			usageJSON =json.dumps(usage)
+			return jsonify(message="usage", usage = usageJSON)
+	
 	
 
 
