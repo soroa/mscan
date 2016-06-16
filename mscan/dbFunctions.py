@@ -80,7 +80,7 @@ def CallsMobileCH(user_ID):
 	if user:
 		counter=0; 
 		duration = 0; 
-		calls = getLastXDaysCalls(user_ID,getDaysSinceSignUp(user_ID) )
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		for c in calls: 
 			if isSwissMobileNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
@@ -117,7 +117,8 @@ def dataCH(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
-		daysback = datetime.timedelta(days=getDaysSinceSignUp(user_ID))
+		# daysback = datetime.timedelta(days=getDaysSinceSignUp(user_ID))
+		daysback = datetime.timedelta(days=30)
 		since = datetime.datetime.now() - daysback
 		mds = MobileData.query.filter(and_(MobileData.md_creation_time > since, MobileData.md_user_id==user_ID, MobileData.md_roaming==False ) ).all()
 
@@ -259,13 +260,13 @@ def locationIsCH(location):
 
 
 def getLastXDaysSMS(user_ID,x):
-	daysback = datetime.timedelta(days=x)
+	daysback = datetime.timedelta(days=30)
 	since = datetime.datetime.now() - daysback
 	print("type of return value is "+ str(type(SMS.query.filter(and_(SMS.sms_creation_time > since, SMS.user_id==user_ID) ).all())))
 	return SMS.query.filter(and_(SMS.sms_creation_time > since, SMS.user_id==user_ID) ).all()
 
 def getLastXDaysCalls(user_ID, x):
-	daysback = datetime.timedelta(days=x)
+	daysback = datetime.timedelta(days=30)
 	since = datetime.datetime.now() - daysback
 	return Call.query.filter(and_(Call.call_creation_time > since, Call.user_id==user_ID) ).all()
 
