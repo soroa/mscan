@@ -311,7 +311,33 @@ def getUsage(user_ID):
 
 			usageJSON =json.dumps(usage)
 			return jsonify(message="usage", usage = usageJSON)
-	
+
+@app.route('/uploadCountryISOLog/<user_ID>', methods=['POST'])
+def uploadCountryISOLog(user_ID):
+	if request.method == "POST":
+		user=User.query.filter_by(user_id=user_ID).first()
+		if user:
+			data_entries= request.json
+			for data_entry in data_entries:
+				print(data_entry)			
+				cISO = CountryISOLog()	
+				cISO.cISO_user_id = user.user_id
+				cISO.cISO_creation_time = datetime.datetime.strptime(data_entry.get('iso_entry_creation_time'), '%Y-%m-%d %H:%M:%S')
+				cISO.cISO_countryISO =data_entry.get('countryISO')
+				db.session.add(cISO)
+				db.session.commit()
+			response = jsonify(message="the countryISOLog was added successfully")
+			response.status_code=200
+			return response
+			
+		else:
+			response=jsonify(error='user not registered', message="The provided phone number is not registed in the databse")
+			response.status_code=401
+			return response
+	else:
+		return """<html><body>
+		Something went horribly wrong
+		</body></html>"""
 	
 
 

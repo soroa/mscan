@@ -10,60 +10,6 @@ db =SQLAlchemy(app)
 
 
 
-class Contract(db.Model):
-	__tablename__= "contracts"
-
-	contract_id=db.Column(db.Integer, primary_key=True)
-	contract_name =db.Column(db.String, nullable=False)
-	monthly_price =db.Column(db.Integer, nullable=False)
-	operator =db.Column(db.String, nullable=False)
-	age_limit =db.Column(db.Integer)
-	duration= db.Column(db.Integer, nullable=False)
-
-	#calls
-	# --national
-	limit_same_operator_calls_nat=db.Column(db.Integer, nullable=False) ##in minutes
-	limit_other_operator_calls_nat=db.Column(db.Integer, nullable=False) ##in minutes
-	limit_fixed_networks_calls_nat=db.Column(db.Integer) 
-	limit_national_calls= db.Column(db.Integer)
-	# --international
-	limit_outgoing_international_calls_fromCH=db.Column(db.Integer, nullable=False)
-	limit_calls_at_abroad = db.Column(db.Integer, nullable=False) #TODO does it include incoming calls as well? 
-	#standard rates
-	rate_call_in_ch = db.Column(db.Float, nullable=False)
-	rate_chargable_call_duration = db.Column(db.Integer, nullable=False)
-	rate_calls_to_abroad = db.Column(db.Float, nullable=False)
-	rate_incoming_call_at_abroad = db.Column(db.Float, nullable=False)
-	rate_call_from_abroad_to_abroad = db.Column(db.Float, nullable=False)
-	rate_call_from_abroad_to_CH = db.Column(db.Float, nullable=False)
-	#--------------------------------------------------------------------------
-	#--------------------------------------------------------------------------
-
-	#internet
-	#--national
-	unlimited_whatsapp = db.Column(db.Boolean, nullable=False)
-	limit_3g =db.Column(db.Integer, nullable=False)
-	limit_4g =db.Column(db.Integer, nullable=False)
-	#internet
-	#--international
-	limit_roaming =db.Column(db.Integer, nullable=False)
-	#starndard rates
-	roaming_rate = db.Column(db.Float, nullable=False)
-	surfing_daily_cost_unlimited = db.Column(db.Float, nullable=False)
-	#--------------------------------------------------------------------------
-	#--------------------------------------------------------------------------
-
-	#sms
-	#--national
-	limit_sms_CH =db.Column(db.Integer, nullable=False)
-	#--international
-	limit_sms_at_abroad = db.Column(db.Integer, nullable=False)
-	#standard rates
-	sms_at_abroad_stdRate = db.Column(db.Float, nullable=False)
-	sms_CH_stdRate = db.Column(db.Float, nullable=False)
-
-	#def __init__(self, params):
-		#todo
 
 
 class User(db.Model):
@@ -135,6 +81,16 @@ class SMS(db.Model):
 	sms_creation_time = db.Column(db.DateTime, nullable=False)
 	sms_type = db.Column(db.String, nullable=False)
 	sms_number = db.Column(db.String, nullable=False)
+
+
+class CountryISOLog(db.Model):
+	__tablename__= "countryISOLog"
+	cISO_id=db.Column(db.Integer, primary_key=True)
+	cISO_user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+	cISO_creation_time = db.Column(db.DateTime, nullable=False)
+	cISO_countryISO = db.Column(db.String)
+	
+	
 	
 
 
