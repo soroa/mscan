@@ -128,7 +128,7 @@ def testFF(userID):
 		stats["Seconds of Calls to Mobile in CH"] = CallsMobileCH(userID).get('duration')
 		stats["Sms to CH"] = SMS_toCH(userID)
 		stats["Data in CH"] = dataCH(userID)  + " MBytes"
-		stats["Sms to abroad"] = SMS_toABROAD(userID, x)
+		stats["Sms to abroad"] = SMS_toABROAD(userID)
 		stats["Abroad Country 1"]  = callsToAbroadLandX(userID, 0).get('country')
 		stats["Number Calls to Abroad 1"]  = callsToAbroadLandX(userID, 0).get('number')
 		stats["Seconds Calls to Abroad 1"]  = callsToAbroadLandX(userID, 0).get('duration')
