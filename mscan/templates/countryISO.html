@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>CountryISO</title>
+</head>
+<body>
+	<div class="container">
+		<h2>CountryISO</h2>
+		{% for s in countryISOs  %}
+		<strong>Creation time:</strong> {{s.cISO_creation_time}} <br>
+		<strong>Country ISO:</strong> {{s.cISO_countryISO}} <br>
+		<strong>User ID:</strong> {{s.cISO_user_id}} <br>
+
+		<br>
+		{% endfor %}
+	</div>
+	<br>
+
+</body>
+</html>

@@ -114,6 +114,19 @@ def viewSMS(userID):
 		</body></html>"""
 
 
+@app.route('/viewCountryISO/<userID>')
+def viewCountryISO(userID):
+	user=User.query.filter_by(user_id=userID).first()
+	if user:
+		countryISOs = CountryISOLog.query.filter(CountryISOLog.cISO_user_id==userID).order_by(desc(CountryISOLog.cISO_creation_time)).all()
+		return render_template('countryISO.html', countryISOs = countryISOs)
+	else:
+		return """<html><body>
+		This user is not in the database
+		</body></html>"""
+
+
+
 @app.route('/testFF/<userID>')
 def testFF(userID):
 	user=User.query.filter_by(user_id=userID).first()
@@ -144,6 +157,8 @@ def testFF(userID):
 def viewUsers():
 	users=db.session.query(User).all()
 	return render_template('view_users.html', users = users)
+
+
 
 @app.route('/deleteMDDB')
 def deleteMD():
