@@ -54,38 +54,38 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:aufAndere":"0",#Verteilung: 
 	"inputfelderform:inputFelder:j_idt182_collapsed":"true",
 	"inputfelderform:inputFelder:anzSMSEingabe":SMS_toCH(user_ID),#Sms pro Monat CH
-	"inputfelderform:inputFelder:anzTageSMS":str(days), #Innerhalb von x Tagen
+	"inputfelderform:inputFelder:anzTageSMS":str(getDaysSinceSignUp(user_ID)), #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:j_idt227_collapsed":"false",
 	"inputfelderform:inputFelder:datenmengeMBEingabe":dataCH(user_ID),#Datenmenge pro Monat
-	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":str(days), #Innerhalb von x Tagen
+	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":str(getDaysSinceSignUp(user_ID)), #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:speedAuswahl":"1.0", #Geschwindigkeit Minimum
 	"inputfelderform:inputFelder:j_idt238_collapsed":"false", #
 	"inputfelderform:inputFelder:SmsAusland":SMS_toABROAD(user_ID), #SMS ins Ausland
-	"inputfelderform:inputFelder:j_idt270_input":"Deutschland", #Anrufe ins Ausland: Land1
-	"inputfelderform:inputFelder:Land1FixMin":"10", #Festnetz minuten anrufe ins ausland
-	"inputfelderform:inputFelder:Land1FixAnzAnr":"11", #Festnetz Anzahl Anrufe ins Ausland
+	"inputfelderform:inputFelder:j_idt270_input":callsToAbroadLandX(user_ID, 0).get('country'), #Anrufe ins Ausland: Land1
+	"inputfelderform:inputFelder:Land1FixMin":callsToAbroadLandX(user_ID, 0).get('duration'), #Festnetz minuten anrufe ins ausland
+	"inputfelderform:inputFelder:Land1FixAnzAnr":callsToAbroadLandX(user_ID, 0).get('number'), #Festnetz Anzahl Anrufe ins Ausland
 	"inputfelderform:inputFelder:Land1MobMin":"12", #Mobilnetx Anzahl Minuten Anrufe
 	"inputfelderform:inputFelder:Land1MobAnzAnr":"13", #Mobilnetz Anzah Anrufe
 	"inputfelderform:inputFelder:j_idt267_collapsed":"false", 
-	"inputfelderform:inputFelder:j_idt294_input":"Frankreich", #Anrufe ins Auland: Land2
+	"inputfelderform:inputFelder:j_idt294_input":callsToAbroadLandX(user_ID, 1).get('country'), #Anrufe ins Auland: Land2
 	"inputfelderform:inputFelder:Land2FixMin":"14", #same as above
 	"inputfelderform:inputFelder:Land2FixAnzAnr":"15", 
 	"inputfelderform:inputFelder:Land2MobMin":"16",
 	"inputfelderform:inputFelder:Land2MobAnzAnr":"17",
 	"inputfelderform:inputFelder:j_idt291_collapsed":"false",
-	"inputfelderform:inputFelder:j_idt318_input":"Spanien",
+	"inputfelderform:inputFelder:j_idt318_input":callsToAbroadLandX(user_ID, 2).get('country'),
 	"inputfelderform:inputFelder:Land3FixMin":"18",
 	"inputfelderform:inputFelder:Land3FixAnzAnr":"19",
 	"inputfelderform:inputFelder:Land3MobMin":"20",
 	"inputfelderform:inputFelder:Land3MobAnzAnr":"21",
 	"inputfelderform:inputFelder:j_idt315_collapsed":"false",
-	"inputfelderform:inputFelder:j_idt342_input":"Italien",
+	"inputfelderform:inputFelder:j_idt342_input":callsToAbroadLandX(user_ID, 3).get('country'),
 	"inputfelderform:inputFelder:Land4FixMin":"22",
 	"inputfelderform:inputFelder:Land4FixAnzAnr":"23",
 	"inputfelderform:inputFelder:Land4MobMin":"24",
 	"inputfelderform:inputFelder:Land4MobAnzAnr":"25",
 	"inputfelderform:inputFelder:j_idt339_collapsed":"false",
-	"inputfelderform:inputFelder:j_idt366_input":"Russland",
+	"inputfelderform:inputFelder:j_idt366_input":callsToAbroadLandX(user_ID, 4).get('country'),
 	"inputfelderform:inputFelder:Land5FixMin":"26",
 	"inputfelderform:inputFelder:Land5FixAnzAnr":"27",
 	"inputfelderform:inputFelder:Land5MobMin":"28",
