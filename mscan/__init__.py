@@ -286,7 +286,7 @@ def getContracts(user_ID):
 
 
 @app.route('/getUsage/<user_ID>', methods=['POST'])
-def getContracts(user_ID):
+def getUsage(user_ID):
 	if request.method == "POST":
 		user=User.query.filter_by(user_id=user_ID).first()
 		if user:
