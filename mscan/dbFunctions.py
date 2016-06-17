@@ -126,7 +126,7 @@ def get3MostFrequentlyCalledNumbers(user_ID):
 		top3[i] = current_first
 		frequent_numbers.pop(current_first, None)
 
-		return {'number1': number1, 'number2': number2, 'number3':number3}
+		return {'number1': top3[0], 'number2': top3[1], 'number3':top3[2]}
 
 
 
