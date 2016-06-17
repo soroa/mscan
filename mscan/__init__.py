@@ -145,6 +145,12 @@ def testFF(userID):
 		stats["Abroad Country 1"]  = callsToAbroadLandX(userID, 0).get('country')
 		stats["Number Calls to Abroad 1"]  = callsToAbroadLandX(userID, 0).get('number')
 		stats["Seconds Calls to Abroad 1"]  = callsToAbroadLandX(userID, 0).get('duration')
+		stats["Most visited Foreign Country"] =getMostVisitedForeignCountry(userID)
+		stats["Seconds of Calls incoming at abroad"] = incomingCallsAbroad(userID).get('duration')
+		stats["Number of Calls incoming at abroad"] = incomingCallsAbroad(userID).get('number')
+		stats["Days in most visited country"] = getDaysInMostVisitedCountry(userID)
+		stats["Calls from abroad to CH"] = callsToCHfromAbroad(userID)
+
 		return render_template('userStats.html', stats = stats)
 
 	else:

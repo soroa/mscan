@@ -232,8 +232,9 @@ def getMostVisitedForeignCountry(user_ID):
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		countries = []
 		for c in calls:
-			if(c.user_location!="Schweiz"):
-				countries.append(c.user_location)
+			# if(c.user_location!="Schweiz"):
+			# 	countries.append(c.user_location)
+			countries.append(c.user_location)
 		most_frequent_country = max(set(countries), key=countries.count)
 		if most_frequent_country==None:
 			return ""
