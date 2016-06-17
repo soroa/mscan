@@ -273,7 +273,7 @@ def callsToCHfromAbroad(user_ID):
 		duration = 0; 
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		for c in calls: 
-			if isSwissMobileNumber(c.call_number) and c.user_location==getMostVisitedForeignCountry(user_ID) and int(c.duration)>0 and c.call_type=="outgoing":
+			if (isSwissMobileNumber(c.call_number) or isSwissFixedNumber(c.call_number)) and c.user_location==getMostVisitedForeignCountry(user_ID) and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
 				duration +=int(c.duration); 
 		return {'number': counter, 'duration': duration}
