@@ -59,6 +59,7 @@ def callsFixedCH(user_ID):
 		duration = 0;  
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		for c in calls: 
+			print ("Number is: "+ c.call_number)
 			if isSwissFixedNumber(c.call_number) and c.user_location=="Schweiz" and int(c.duration)>0 and c.call_type=="outgoing":
 				
 				counter +=1
