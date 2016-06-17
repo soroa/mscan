@@ -238,7 +238,7 @@ def getContractsDict(user_ID):
 	'Upgrade-Insecure-Requests':'1',
 	'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 	}
-	req = requests.post(url2, data = data, headers = headers)
+	req = requests.post(url2, data = data2, headers = headers)
 
 	resultsSouped = BeautifulSoup(req.content)
 	contracts = resultsSouped.find_all("div", {"class": "ausgabeTabelleRow"})
