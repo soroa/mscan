@@ -220,7 +220,8 @@ def uploadCallsSMS(user_ID):
 				c.duration = call.get('duration')
 				c.contact_name = call.get('contact_name')
 				c.other_number_location =call.get('location_other_number')
-				c.user_location =call.get('location_this_number')
+				gs = goslate.Goslate()
+				c.user_location =gs.translate(call.get('location_this_number'), 'de')
 				db.session.add(c)
 				db.session.commit()
 			for sms in smss:
