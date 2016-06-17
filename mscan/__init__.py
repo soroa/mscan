@@ -338,7 +338,9 @@ def uploadCountryISOLog(user_ID):
 				cISO.cISO_creation_time = datetime.datetime.strptime(data_entry.get('iso_entry_creation_time'), '%Y-%m-%d %H:%M:%S')
 				iso = data_entry.get('countryISO')
 				countryNameEN =pycountry.countries.get(alpha2=iso).name
-				print("iso is " + iso + " and country from pycountry is " + countryNameEN + " translated to "+ resources.translation_table.get(countryNameEN))
+				isDuplicate = CountryISOLog.query.filter(and_(CountryISOLog.cISO_creation_time==cISO.cISO_creation_time ,CountryISOLog.cISO_user_id == cISO.cISO_user_id)).first()
+				if isDuplicate:
+					continue
 				cISO.cISO_countryISO =resources.translation_table.get(countryNameEN)
 				db.session.add(cISO)
 				db.session.commit()
