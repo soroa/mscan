@@ -242,7 +242,7 @@ def getContractsDict(user_ID):
 
 	resultsSouped = BeautifulSoup(req.content)
 	contracts = resultsSouped.find_all("div", {"class": "ausgabeTabelleRow"})
-
+	print(contracts)
 
 
 	i = 0;
