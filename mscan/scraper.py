@@ -123,12 +123,12 @@ def getContractsDict(user_ID):
 
 	data4 = {
 	"inputfelderform":"inputfelderform",
-	"inputfelderform:inputFelder:anzMinEingabe":"1",
-	"inputfelderform:inputFelder:anzAnrufeEingabe":"2",
+	"inputfelderform:inputFelder:anzMinEingabe":totalCallsMinutesCH(user_ID), #Minuten telefonieren CH pro Monat
+	"inputfelderform:inputFelder:anzAnrufeEingabe":totalCallsNumberCH(user_ID), # Anzalh Anrufe pro Monat
 	"inputfelderform:inputFelder:anteil3NrEingabe":"3",
-	"inputfelderform:inputFelder:alterAuswahl":"29",
-	"inputfelderform:inputFelder:j_idt132":"21",
-	"inputfelderform:inputFelder:providerFilterSB":"Sunrise",
+	"inputfelderform:inputFelder:alterAuswahl":getUserAgeField(user_ID), #Alter: kann 15 (unter 18), 25 (unter 26), 26 (unter 27), 29 (unter 30), 65 (65 oder aelter), 30 (zwischen 30 und 65)
+	"inputfelderform:inputFelder:j_idt132":getUserCurrentContractPrice(user_ID),  #wie viel ich jetzt pro Monat bezahle
+	"inputfelderform:inputFelder:providerFilterSB":getUserOperator(user_ID), #jetziger Anbieter
 	"inputfelderform:inputFelder:j_idt120_collapsed":"false",
 	"inputfelderform:inputFelder:j_idt142":"on",
 	"inputfelderform:inputFelder:aufFestnetzSwisscom":"20",
@@ -150,17 +150,17 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:aufMobileUPC":"0",
 	"inputfelderform:inputFelder:aufAndere":"0",
 	"inputfelderform:inputFelder:j_idt187_collapsed":"true",
-	"inputfelderform:inputFelder:anzSMSEingabe":"12",
-	"inputfelderform:inputFelder:anzTageSMS":"12",
+	"inputfelderform:inputFelder:anzSMSEingabe":SMS_toCH(user_ID),#Sms pro Monat CH
+	"inputfelderform:inputFelder:anzTageSMS":str(getDaysSinceSignUp(user_ID)), #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:j_idt232_collapsed":"false",
 	"inputfelderform:inputFelder:datenmengeMBEingabe":"122",
 	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":"12",
 	"inputfelderform:inputFelder:speedAuswahl":"1.0",
 	"inputfelderform:inputFelder:j_idt243_collapsed":"false",
 	"inputfelderform:inputFelder:SmsAusland":"12",
-	"inputfelderform:inputFelder:j_idt275_input":"Deutschland",
-	"inputfelderform:inputFelder:Land1FixMin":"12",
-	"inputfelderform:inputFelder:Land1FixAnzAnr":"12",
+	"inputfelderform:inputFelder:j_idt275_input":callsToAbroadLandX(user_ID, 0).get('country'), #Anrufe ins Ausland: Land1
+	"inputfelderform:inputFelder:Land1FixMin":callsToAbroadLandX(user_ID, 0).get('duration'), #Festnetz minuten anrufe ins ausland
+	"inputfelderform:inputFelder:Land1FixAnzAnr":callsToAbroadLandX(user_ID, 0).get('number'), #Festnetz Anzahl Anrufe ins Ausland
 	"inputfelderform:inputFelder:Land1MobMin":"12",
 	"inputfelderform:inputFelder:Land1MobAnzAnr":"12",
 	"inputfelderform:inputFelder:j_idt272_collapsed":"false",
