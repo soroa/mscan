@@ -6,7 +6,7 @@ import requests
 import json
 from sqlalchemy import and_
 import resources
-
+import pycountry
 
 #create application object
 app = Flask(__name__)
@@ -337,7 +337,9 @@ def uploadCountryISOLog(user_ID):
 				cISO = CountryISOLog()	
 				cISO.cISO_user_id = user.user_id
 				cISO.cISO_creation_time = datetime.datetime.strptime(data_entry.get('iso_entry_creation_time'), '%Y-%m-%d %H:%M:%S')
-				cISO.cISO_countryISO =resources.translation_table.get(data_entry.get('countryISO'))
+				iso = data_entry.get('countryISO')
+				countryNameEN =pycountry.countries.get(alpha2=iso)
+				cISO.cISO_countryISO =resources.translation_table.get(countryNameEN)
 				db.session.add(cISO)
 				db.session.commit()
 			response = jsonify(message="the countryISOLog was added successfully")

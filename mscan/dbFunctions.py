@@ -59,7 +59,7 @@ def callsFixedCH(user_ID):
 		duration = 0;  
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		for c in calls: 
-			if isSwissFixedNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
+			if isSwissFixedNumber(c.call_number) and c.user_location=="Schweiz" and int(c.duration)>0 and c.call_type=="outgoing":
 				
 				counter +=1
 				# print("*********************************************")
@@ -83,7 +83,7 @@ def CallsMobileCH(user_ID):
 		duration = 0; 
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		for c in calls: 
-			if isSwissMobileNumber(c.call_number) and c.user_location=="CH" and int(c.duration)>0 and c.call_type=="outgoing":
+			if isSwissMobileNumber(c.call_number) and c.user_location=="Schweiz" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
 				# print("*********************************************")
 				# print ("Number is mob swiss: "+ c.call_number)
@@ -155,7 +155,7 @@ def callsToAbroadLandX(user_ID, x):
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		callsToAbroad = []
 		for c in calls: 
-			if isForeignNumber(c.call_number) and c.user_location=="CH" and c.call_type=="outgoing"and c.duration>0:
+			if isForeignNumber(c.call_number) and c.user_location=="Schweiz" and c.call_type=="outgoing"and c.duration>0:
 				callsToAbroad.append(c)
 		if len(callsToAbroad)>0:
 			xMostfrequentCountry  = getXMostFrequentForeignCountryCalled(x, callsToAbroad)
@@ -229,14 +229,95 @@ def getMostVisitedForeignCountry(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		countries = []
+		for c in calls:
+			if(c.user_location!="Schweiz"):
+				countries.append(c.user_location)
+		most_frequent_country = max(set(countries), key=countries.count)
+		if most_frequent_country==None:
+			return ""
+		else:
+			return most_frequent_country
+
 		
+def incomingCallsAbroad(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter=0; 
+		duration = 0; 
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		for c in calls: 
+			if c.user_location==getMostVisitedForeignCountry(user_ID) and int(c.duration)>0 and c.call_type=="incoming":
+				counter +=1
+				duration +=int(c.duration); 
+		return {'number': counter, 'duration': duration}
+
+def getDaysInMostVisitedCountry(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		days= []
+		for c in calls:
+			if(c.user_location==getMostVisitedForeignCountry(user_ID):
+				if c.call_creation_time.date() not in days:
+					days.append(c.call_creation_time.date())
+		return len(days)
 
 
-def SMS_fromABROADtoCH(user_ID):
-	return
+def callsToCHfromAbroad(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter=0; 
+		duration = 0; 
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		for c in calls: 
+			if isSwissMobileNumber(c.call_number) and c.user_location==getMostVisitedForeignCountry(user_ID) and int(c.duration)>0 and c.call_type=="outgoing":
+				counter +=1
+				duration +=int(c.duration); 
+		return {'number': counter, 'duration': duration}
 
-def SMS_fromABROAD(user_ID):
-	return
+def callsWithinVisitedForeignCountry(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter=0; 
+		duration = 0; 
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		for c in calls: 
+			if isNumberFromCountry(c.call_number,getMostVisitedForeignCountry) and c.user_location==getMostVisitedForeignCountry(user_ID) and int(c.duration)>0 and c.call_type=="outgoing":
+				counter +=1
+				duration +=int(c.duration); 
+		return {'number': counter, 'duration': duration}
+
+def isNumberFromCountry(number,country):
+	prefix_3digits = number[:4]
+	prefix_2digits = number[:3]
+	prefix_1digits = number[:2]
+	countryName = resources.country_prefixes.get(prefix_3digits,  None)
+	if(not countryName):
+		countryName = resources.country_prefixes.get(prefix_2digits,  None)
+		if(not countryName):
+			countryName = resources.country_prefixes.get(prefix_1digits,  None)
+			if(not countryName):
+				return False
+	if countryName == country:
+		return True
+
+def getSMSWhileRoaming(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter =0; 
+		sms =getLastXDaysSMS(user_ID,getDaysSinceSignUp(user_ID))
+		for s in sms: 
+			a = s.sms_creation_time-  datetime.timedelta(hour=1)
+			b = s.sms_creation_time+  datetime.timedelta(hour=1)
+			hour = s.sms_creation_time.hour()
+			countriesISOLog = CountryISOLog.query.filter(and_(CountryISOLog.cISO_creation_time > a,CountryISOLog.cISO_creation_time < b, CountryISOLog.cISO_user_id==user_ID) ).all())
+			for c in countriesISOLog:
+				if c.cISO_creation_time.hour()==hour and c.cISO_countryISO==getMostVisitedForeignCountry(user_ID):
+					counter+=1
+		return str(counter)
+
+
 
 # Helper Functions
 
