@@ -219,7 +219,7 @@ def uploadCallsSMS(user_ID):
 				c.duration = call.get('duration')
 				c.contact_name = call.get('contact_name')
 				c.other_number_location =call.get('location_other_number')
-				c.user_location =translation_table.get(call.get('location_this_number'))
+				c.user_location =resources.translation_table.get(call.get('location_this_number'))
 				db.session.add(c)
 				db.session.commit()
 			for sms in smss:
@@ -337,7 +337,7 @@ def uploadCountryISOLog(user_ID):
 				cISO = CountryISOLog()	
 				cISO.cISO_user_id = user.user_id
 				cISO.cISO_creation_time = datetime.datetime.strptime(data_entry.get('iso_entry_creation_time'), '%Y-%m-%d %H:%M:%S')
-				cISO.cISO_countryISO =translation_table.get(data_entry.get('countryISO'))
+				cISO.cISO_countryISO =resources.translation_table.get(data_entry.get('countryISO'))
 				db.session.add(cISO)
 				db.session.commit()
 			response = jsonify(message="the countryISOLog was added successfully")
