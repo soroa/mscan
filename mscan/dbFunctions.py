@@ -122,9 +122,9 @@ def get3MostFrequentlyCalledNumbers(user_ID):
 		for i in range(0, 3): 
 			if len(frequent_numbers)==0:
 				break
-		current_first = max(frequent_numbers, key=frequent_numbers.get)		
-		top3[i] = current_first
-		frequent_numbers.pop(current_first, None)
+			current_first = max(frequent_numbers, key=frequent_numbers.get)		
+			top3[i] = current_first
+			frequent_numbers.pop(current_first, None)
 
 		return {'number1': top3[0], 'number2': top3[1], 'number3':top3[2]}
 
