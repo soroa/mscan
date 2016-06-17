@@ -339,7 +339,7 @@ def uploadCountryISOLog(user_ID):
 				cISO.cISO_user_id = user.user_id
 				cISO.cISO_creation_time = datetime.datetime.strptime(data_entry.get('iso_entry_creation_time'), '%Y-%m-%d %H:%M:%S')
 				gs = goslate.Goslate()
-				print("country received is " + cISO_countryISO)
+				print("country received is " + data_entry.get('countryISO'))
 				print("translated is " +gs.translate(data_entry.get('countryISO'), 'de') )
 				cISO.cISO_countryISO =gs.translate(data_entry.get('countryISO'), 'de')
 				db.session.add(cISO)
