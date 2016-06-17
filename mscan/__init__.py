@@ -332,13 +332,13 @@ def uploadCountryISOLog(user_ID):
 		user=User.query.filter_by(user_id=user_ID).first()
 		if user:
 			data_entries= request.json
-			for data_entry in data_entries:
-				print(data_entry)			
+			for data_entry in data_entries:			
 				cISO = CountryISOLog()	
 				cISO.cISO_user_id = user.user_id
 				cISO.cISO_creation_time = datetime.datetime.strptime(data_entry.get('iso_entry_creation_time'), '%Y-%m-%d %H:%M:%S')
 				iso = data_entry.get('countryISO')
 				countryNameEN =pycountry.countries.get(alpha2=iso)
+				print("iso is " + iso + " and country from pycountry is " + countryNameEN + " translated to "+ resources.translation_table.get(countryNameEN))
 				cISO.cISO_countryISO =resources.translation_table.get(countryNameEN)
 				db.session.add(cISO)
 				db.session.commit()
