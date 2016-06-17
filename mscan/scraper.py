@@ -121,6 +121,102 @@ def getContractsDict(user_ID):
 	"javax.faces.ViewState":value1 + ":"+value2
 	}
 
+data4 = {
+"inputfelderform":"inputfelderform",
+"inputfelderform:inputFelder:anzMinEingabe":"1",
+"inputfelderform:inputFelder:anzAnrufeEingabe":"2",
+"inputfelderform:inputFelder:anteil3NrEingabe":"3",
+"inputfelderform:inputFelder:alterAuswahl":"29",
+"inputfelderform:inputFelder:j_idt132":"21",
+"inputfelderform:inputFelder:providerFilterSB":"Sunrise",
+"inputfelderform:inputFelder:j_idt120_collapsed":"false",
+"inputfelderform:inputFelder:j_idt142":"on",
+"inputfelderform:inputFelder:aufFestnetzSwisscom":"20",
+"inputfelderform:inputFelder:aufFestnetzUPC":"0",
+"inputfelderform:inputFelder:j_idt154_collapsed":"false",
+"inputfelderform:inputFelder:aufSwisscom":"40",
+"inputfelderform:inputFelder:aufOrange":"20",
+"inputfelderform:inputFelder:aufSunrise":"18",
+"inputfelderform:inputFelder:aufMbudget":"1",
+"inputfelderform:inputFelder:aufCoopMobile":"1",
+"inputfelderform:inputFelder:j_idt165_collapsed":"false",
+"inputfelderform:inputFelder:aufAldi":"0",
+"inputfelderform:inputFelder:aufOk":"0",
+"inputfelderform:inputFelder:aufLebara":"0",
+"inputfelderform:inputFelder:aufTalkTalk":"0",
+"inputfelderform:inputFelder:aufYallo":"0",
+"inputfelderform:inputFelder:aufLyca":"0",
+"inputfelderform:inputFelder:aufOrtel":"0",
+"inputfelderform:inputFelder:aufMobileUPC":"0",
+"inputfelderform:inputFelder:aufAndere":"0",
+"inputfelderform:inputFelder:j_idt187_collapsed":"true",
+"inputfelderform:inputFelder:anzSMSEingabe":"12",
+"inputfelderform:inputFelder:anzTageSMS":"12",
+"inputfelderform:inputFelder:j_idt232_collapsed":"false",
+"inputfelderform:inputFelder:datenmengeMBEingabe":"122",
+"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":"12",
+"inputfelderform:inputFelder:speedAuswahl":"1.0",
+"inputfelderform:inputFelder:j_idt243_collapsed":"false",
+"inputfelderform:inputFelder:SmsAusland":"12",
+"inputfelderform:inputFelder:j_idt275_input":"Deutschland",
+"inputfelderform:inputFelder:Land1FixMin":"12",
+"inputfelderform:inputFelder:Land1FixAnzAnr":"12",
+"inputfelderform:inputFelder:Land1MobMin":"12",
+"inputfelderform:inputFelder:Land1MobAnzAnr":"12",
+"inputfelderform:inputFelder:j_idt272_collapsed":"false",
+"inputfelderform:inputFelder:j_idt299_input":"Italien",
+"inputfelderform:inputFelder:Land2FixMin":"12",
+"inputfelderform:inputFelder:Land2FixAnzAnr":"2",
+"inputfelderform:inputFelder:Land2MobMin":"12",
+"inputfelderform:inputFelder:Land2MobAnzAnr":"12",
+"inputfelderform:inputFelder:j_idt296_collapsed":"false",
+"inputfelderform:inputFelder:j_idt323_input":"Frankreich",
+"inputfelderform:inputFelder:Land3FixMin":"12",
+"inputfelderform:inputFelder:Land3FixAnzAnr":"2",
+"inputfelderform:inputFelder:Land3MobMin":"12",
+"inputfelderform:inputFelder:Land3MobAnzAnr":"12",
+"inputfelderform:inputFelder:j_idt320_collapsed":"false",
+"inputfelderform:inputFelder:j_idt347_input":"Schweden",
+"inputfelderform:inputFelder:Land4FixMin":"12",
+"inputfelderform:inputFelder:Land4FixAnzAnr":"12",
+"inputfelderform:inputFelder:Land4MobMin":"12",
+"inputfelderform:inputFelder:Land4MobAnzAnr":"12",
+"inputfelderform:inputFelder:j_idt344_collapsed":"false",
+"inputfelderform:inputFelder:j_idt371_input":"Spanien",
+"inputfelderform:inputFelder:Land5FixMin":"12",
+"inputfelderform:inputFelder:Land5FixAnzAnr":"12",
+"inputfelderform:inputFelder:Land5MobMin":"21",
+"inputfelderform:inputFelder:Land5MobAnzAnr":"12",
+"inputfelderform:inputFelder:j_idt368_collapsed":"false",
+"inputfelderform:inputFelder:j_idt398_input":"Deutschland",
+"inputfelderform:inputFelder:Roaming1AnzTage":"12",
+"inputfelderform:inputFelder:RoamingSMS":"12",
+"inputfelderform:inputFelder:RoamingDatenMB":"21",
+"inputfelderform:inputFelder:RoamingIncomingMin":"12",
+"inputfelderform:inputFelder:RoamingIncomingAnr":"12",
+"inputfelderform:inputFelder:j_idt412_collapsed":"false",
+"inputfelderform:inputFelder:RoamingToCHMin":"12",
+"inputfelderform:inputFelder:RoamingToCHAnr":"12",
+"inputfelderform:inputFelder:j_idt421_collapsed":"false",
+"inputfelderform:inputFelder:RoamingToLocalMin":"12",
+"inputfelderform:inputFelder:RoamingToLocalAnr":"12",
+"inputfelderform:inputFelder:j_idt430_collapsed":"false",
+"inputfelderform:inputFelder:LandlisteDB_R_Land1":"Italien",
+"inputfelderform:inputFelder:RoamingToLand1Min":"12",
+"inputfelderform:inputFelder:RoamingToLand1Anr":"12",
+"inputfelderform:inputFelder:j_idt439_collapsed":"false",
+"inputfelderform:inputFelder:LandlisteDB_R_Land2":"Frankreich",
+"inputfelderform:inputFelder:RoamingToLand2Min":"12",
+"inputfelderform:inputFelder:RoamingToLand2Anr":"212",
+"inputfelderform:inputFelder:j_idt452_collapsed":"false",
+"inputfelderform:inputFelder:LandlisteDB_R_Land3":"Portugal",
+"inputfelderform:inputFelder:RoamingToLand3Min":"12",
+"inputfelderform:inputFelder:RoamingToLand3Anr":"2",
+"inputfelderform:inputFelder:j_idt465_collapsed":"false",
+"inputfelderform:inputFelder_activeIndex":"4",
+"inputfelderform:j_idt506":"",
+"javax.faces.ViewState":value1 + ":"+value2
+}
 
 	data2 = {
 	"inputfelderform":"inputfelderform",
@@ -224,6 +320,7 @@ def getContractsDict(user_ID):
 
 
 	data = urllib.urlencode(data)
+	data4 = urllib.urlencode(data4)
 
 	formDataExt2 = "inputfelderform=inputfelderform&inputfelderform%3AinputFelder%3AanzMinEingabe=1&inputfelderform%3AinputFelder%3AanzAnrufeEingabe=2&inputfelderform%3AinputFelder%3Aanteil3NrEingabe=3&inputfelderform%3AinputFelder%3AalterAuswahl=26&inputfelderform%3AinputFelder%3Aj_idt127=4&inputfelderform%3AinputFelder%3AproviderFilterSB=Sunrise&inputfelderform%3AinputFelder%3Aj_idt115_collapsed=false&inputfelderform%3AinputFelder%3Aj_idt137=on&inputfelderform%3AinputFelder%3AaufFestnetzSwisscom=0&inputfelderform%3AinputFelder%3AaufFestnetzUPC=0&inputfelderform%3AinputFelder%3Aj_idt149_collapsed=false&inputfelderform%3AinputFelder%3AaufSwisscom=40&inputfelderform%3AinputFelder%3AaufOrange=30&inputfelderform%3AinputFelder%3AaufSunrise=30&inputfelderform%3AinputFelder%3AaufMbudget=0&inputfelderform%3AinputFelder%3AaufCoopMobile=0&inputfelderform%3AinputFelder%3Aj_idt160_collapsed=false&inputfelderform%3AinputFelder%3AaufAldi=0&inputfelderform%3AinputFelder%3AaufOk=0&inputfelderform%3AinputFelder%3AaufLebara=0&inputfelderform%3AinputFelder%3AaufTalkTalk=0&inputfelderform%3AinputFelder%3AaufYallo=0&inputfelderform%3AinputFelder%3AaufLyca=0&inputfelderform%3AinputFelder%3AaufOrtel=0&inputfelderform%3AinputFelder%3AaufMobileUPC=0&inputfelderform%3AinputFelder%3AaufAndere=0&inputfelderform%3AinputFelder%3Aj_idt182_collapsed=true&inputfelderform%3AinputFelder%3AanzSMSEingabe=5&inputfelderform%3AinputFelder%3AanzTageSMS=6&inputfelderform%3AinputFelder%3Aj_idt227_collapsed=false&inputfelderform%3AinputFelder%3AdatenmengeMBEingabe=7&inputfelderform%3AinputFelder%3AintVerwendungAnzTageEingabe=8&inputfelderform%3AinputFelder%3AspeedAuswahl=1.0&inputfelderform%3AinputFelder%3Aj_idt238_collapsed=false&inputfelderform%3AinputFelder%3ASmsAusland=9&inputfelderform%3AinputFelder%3Aj_idt270_input=Deutschland&inputfelderform%3AinputFelder%3ALand1FixMin=10&inputfelderform%3AinputFelder%3ALand1FixAnzAnr=11&inputfelderform%3AinputFelder%3ALand1MobMin=12&inputfelderform%3AinputFelder%3ALand1MobAnzAnr=13&inputfelderform%3AinputFelder%3Aj_idt267_collapsed=false&inputfelderform%3AinputFelder%3Aj_idt294_input=Frankreich&inputfelderform%3AinputFelder%3ALand2FixMin=14&inputfelderform%3AinputFelder%3ALand2FixAnzAnr=15&inputfelderform%3AinputFelder%3ALand2MobMin=16&inputfelderform%3AinputFelder%3ALand2MobAnzAnr=17&inputfelderform%3AinputFelder%3Aj_idt291_collapsed=false&inputfelderform%3AinputFelder%3Aj_idt318_input=Spanien&inputfelderform%3AinputFelder%3ALand3FixMin=18&inputfelderform%3AinputFelder%3ALand3FixAnzAnr=19&inputfelderform%3AinputFelder%3ALand3MobMin=20&inputfelderform%3AinputFelder%3ALand3MobAnzAnr=21&inputfelderform%3AinputFelder%3Aj_idt315_collapsed=false&inputfelderform%3AinputFelder%3Aj_idt342_input=Italien&inputfelderform%3AinputFelder%3ALand4FixMin=22&inputfelderform%3AinputFelder%3ALand4FixAnzAnr=23&inputfelderform%3AinputFelder%3ALand4MobMin=24&inputfelderform%3AinputFelder%3ALand4MobAnzAnr=25&inputfelderform%3AinputFelder%3Aj_idt339_collapsed=false&inputfelderform%3AinputFelder%3Aj_idt366_input=Russland&inputfelderform%3AinputFelder%3ALand5FixMin=26&inputfelderform%3AinputFelder%3ALand5FixAnzAnr=27&inputfelderform%3AinputFelder%3ALand5MobMin=28&inputfelderform%3AinputFelder%3ALand5MobAnzAnr=29&inputfelderform%3AinputFelder%3Aj_idt363_collapsed=false&inputfelderform%3AinputFelder%3Aj_idt393_input=Deutschland&inputfelderform%3AinputFelder%3ARoaming1AnzTage=30&inputfelderform%3AinputFelder%3ARoamingSMS=31&inputfelderform%3AinputFelder%3ARoamingDatenMB=32&inputfelderform%3AinputFelder%3ARoamingIncomingMin=33&inputfelderform%3AinputFelder%3ARoamingIncomingAnr=34&inputfelderform%3AinputFelder%3Aj_idt407_collapsed=false&inputfelderform%3AinputFelder%3ARoamingToCHMin=35&inputfelderform%3AinputFelder%3ARoamingToCHAnr=36&inputfelderform%3AinputFelder%3Aj_idt416_collapsed=false&inputfelderform%3AinputFelder%3ARoamingToLocalMin=37&inputfelderform%3AinputFelder%3ARoamingToLocalAnr=38&inputfelderform%3AinputFelder%3Aj_idt425_collapsed=false&inputfelderform%3AinputFelder%3ALandlisteDB_R_Land1=Frankreich&inputfelderform%3AinputFelder%3ARoamingToLand1Min=39&inputfelderform%3AinputFelder%3ARoamingToLand1Anr=40&inputfelderform%3AinputFelder%3Aj_idt434_collapsed=false&inputfelderform%3AinputFelder%3ALandlisteDB_R_Land2=&inputfelderform%3AinputFelder%3ARoamingToLand2Min=0&inputfelderform%3AinputFelder%3ARoamingToLand2Anr=0&inputfelderform%3AinputFelder%3Aj_idt447_collapsed=true&inputfelderform%3AinputFelder%3ALandlisteDB_R_Land3=&inputfelderform%3AinputFelder%3ARoamingToLand3Min=0&inputfelderform%3AinputFelder%3ARoamingToLand3Anr=0&inputfelderform%3AinputFelder%3Aj_idt460_collapsed=true&inputfelderform%3AinputFelder_activeIndex=4&inputfelderform%3Aj_idt501=&javax.faces.ViewState="+value1 + "%3A"+value2
 	# print(formDataExt)
@@ -241,7 +338,7 @@ def getContractsDict(user_ID):
 	'Upgrade-Insecure-Requests':'1',
 	'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 	}
-	req = requests.post(url2, data = data3, headers = headers)
+	req = requests.post(url2, data = data4, headers = headers)
 
 	resultsSouped = BeautifulSoup(req.content)
 
