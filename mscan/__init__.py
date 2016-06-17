@@ -211,9 +211,8 @@ def uploadCallsSMS(user_ID):
 				c.call_creation_time = datetime.datetime.strptime(call.get('creation_time'), '%Y-%m-%d %H:%M:%S')
 				isDuplicate = Call.query.filter(and_(Call.call_creation_time==c.call_creation_time , Call.call_number ==c.call_number, Call.user_id == c.user_id)).first()
 				if isDuplicate:
-					print("Call is duplicate")
 					continue
-				print("Call is NOT duplicate")
+				
 
 				c.call_type=call.get('type')
 				print("number is " + call.get('number'))
@@ -340,6 +339,8 @@ def uploadCountryISOLog(user_ID):
 				cISO.cISO_user_id = user.user_id
 				cISO.cISO_creation_time = datetime.datetime.strptime(data_entry.get('iso_entry_creation_time'), '%Y-%m-%d %H:%M:%S')
 				gs = goslate.Goslate()
+				print("country received is " + cISO_countryISO)
+				print("translated is " +gs.translate(data_entry.get('countryISO'), 'de') )
 				cISO.cISO_countryISO =gs.translate(data_entry.get('countryISO'), 'de')
 				db.session.add(cISO)
 				db.session.commit()
