@@ -223,7 +223,7 @@ def uploadCallsSMS(user_ID):
 
 				countryNameEN =pycountry.countries.get(alpha2=iso).name
 				print("iso is "+ iso + " country name is "+ countryNameEN)
-				print("translation is " + resources.translation_table.get(call.get('countryNameEN')))
+				print("translation is " + resources.translation_table.get('countryNameEN'))
 				c.user_location =resources.translation_table.get(countryNameEN)
 				db.session.add(c)
 				db.session.commit()
