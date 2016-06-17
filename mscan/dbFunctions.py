@@ -258,7 +258,7 @@ def getDaysInMostVisitedCountry(user_ID):
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		days= []
 		for c in calls:
-			if(c.user_location==getMostVisitedForeignCountry(user_ID):
+			if c.user_location==getMostVisitedForeignCountry(user_ID):
 				if c.call_creation_time.date() not in days:
 					days.append(c.call_creation_time.date())
 		return len(days)
