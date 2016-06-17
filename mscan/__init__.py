@@ -59,7 +59,7 @@ def users_upload():
 			response = jsonify(message=message)
 			response.status_code=200
 			return response
-#todo: do the same as above for calls, mbdata and sms
+
 
 @app.route('/viewMD/<userID>')
 def viewMD(userID):
@@ -150,6 +150,8 @@ def testFF(userID):
 		stats["Number of Calls incoming at abroad"] = incomingCallsAbroad(userID).get('number')
 		stats["Days in most visited country"] = getDaysInMostVisitedCountry(userID)
 		stats["Calls from abroad to CH"] = callsToCHfromAbroad(userID)
+		stats["3 Most frequent numbers "] = get3MostFrequentlyCalledNumbers(userID)
+
 
 		return render_template('userStats.html', stats = stats)
 

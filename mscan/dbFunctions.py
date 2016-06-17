@@ -86,13 +86,13 @@ def CallsMobileCH(user_ID):
 		for c in calls: 
 			if isSwissMobileNumber(c.call_number) and c.user_location=="Schweiz" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
-				print("*********************************************")
-				print ("Number is mob swiss: "+ c.call_number)
-				print ("Duration of call is "+ str(c.duration))
-				print ("Total Duration  is "+ str(duration))
+				# print("*********************************************")
+				# print ("Number is mob swiss: "+ c.call_number)
+				# print ("Duration of call is "+ str(c.duration))
+				# print ("Total Duration  is "+ str(duration))
 				duration +=int(c.duration); 
-				print ("Total Duration after sum  is "+ str(duration))
-				print("*********************************************")
+				# print ("Total Duration after sum  is "+ str(duration))
+				# print("*********************************************")
 		return {'number': counter, 'duration': duration}
 
 def totalCallsMinutesCH(user_ID):
@@ -103,6 +103,31 @@ def totalCallsNumberCH(user_ID):
 	return str(CallsMobileCH(user_ID).get("number") + callsFixedCH(user_ID).get("number"))
 
 # TODO 3 most frequent numbers
+
+def get3MostFrequentlyCalledNumbers(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter=0; 
+		duration = 0; 
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		frequent_numbers = {}
+		for c in calls: 
+			if c.call_type=="outgoing":
+				if c.call_number not in frequent_numbers:
+					frequent_numbers[c.call_number] = 1
+				else:
+					frequent_numbers[c.call_number] = frequent_numbers.get(c.call_number) + 1
+		
+		top3 = ["", "", ""]
+		for i in range(0, 3): 
+			if len(frequent_numbers)==0:
+			break
+		current_first = max(frequent_numbers, key=frequent_numbers.get)		
+		top3[i] = current_first
+		frequent_numbers.pop(current_first, None)
+
+		return {'number1': number1, 'number2': number2, 'number3':number3}
+
 
 
 def SMS_toCH(user_ID):
