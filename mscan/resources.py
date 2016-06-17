@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 
 country_prefixes = {
 "+1": "USA",

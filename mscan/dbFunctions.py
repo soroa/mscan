@@ -6,6 +6,7 @@ import resources
 import  datetime
 from sqlalchemy import and_
 from models import *
+import goslate
 
 def getUserAgeField(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
@@ -223,6 +224,12 @@ def dataRoaming(user_ID):
 		return str(int(counter/1000000))
 
 
+
+def getMostVisitedForeignCountry(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		
 
 
 def SMS_fromABROADtoCH(user_ID):
