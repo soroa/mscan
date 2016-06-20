@@ -129,7 +129,22 @@ def get3MostFrequentlyCalledNumbers(user_ID):
 		return {'number1': top3[0], 'number2': top3[1], 'number3':top3[2]}
 
 
-
+def getTrafficPercentageTop3Numbers(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter=0; 
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		n1 = get3MostFrequentlyCalledNumbers(user_ID).get('number1')
+		n1 = get3MostFrequentlyCalledNumbers(user_ID).get('number2')
+		n1 = get3MostFrequentlyCalledNumbers(user_ID).get('number3')
+		out_calls  = []
+		for c in calls: 
+			if c.call_type=="outgoing":
+				out_calls.append(c)
+				if c.call_number==n1 or c.call_number==n2 or c.call_number==n3:
+					counter +=1
+		p = int((float(counter) / float(len(out_calls)))*100)
+		return p
 
 
 def SMS_toCH(user_ID):
