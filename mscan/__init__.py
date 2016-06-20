@@ -155,7 +155,7 @@ def testFF(userID):
 		stats["3 Most frequent numbers "] = get3MostFrequentlyCalledNumbers(userID)
 		stats["SMS while roaming "] = getSMSWhileRoaming(userID)
 		stats["Is +3934234234234 from Italy? "] = isNumberFromCountry("+3934234234234", "Italien")
-
+		stats["Traffic Percentage of top 3 number "] = getTrafficPercentageTop3Numbers(userID)
 
 		return render_template('userStats.html', stats = stats)
 
