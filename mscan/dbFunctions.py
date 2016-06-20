@@ -200,7 +200,7 @@ def callsToAbroadLandX(user_ID, x):
 			if c.call_number[:len(prefix)] == prefix:
 				counter+= 1
 				duration += int(c.duration)
-	return {'number': str(counter), 'duration': str(duration), 'country': xMostfrequentCountry}
+	return {'number': str(int(counter/2)), 'duration': str(int(duration/2)), 'country': xMostfrequentCountry}
 
 
 #TODO return empty strings in case there's less than 5 countires
