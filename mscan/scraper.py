@@ -190,7 +190,7 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:j_idt368_collapsed":"false",
 	"inputfelderform:inputFelder:j_idt398_input":getMostVisitedForeignCountry(user_ID),
 	"inputfelderform:inputFelder:Roaming1AnzTage":getDaysInMostVisitedCountry(user_ID),
-	"inputfelderform:inputFelder:RoamingSMS":getSMSWhileRoaming(,
+	"inputfelderform:inputFelder:RoamingSMS":getSMSWhileRoaming(user_ID),
 	"inputfelderform:inputFelder:RoamingDatenMB":dataRoaming(user_ID),
 	"inputfelderform:inputFelder:RoamingIncomingMin":incomingCallsAbroad(user_ID).get('duration'),
 	"inputfelderform:inputFelder:RoamingIncomingAnr":incomingCallsAbroad(user_ID).get('number'),,
