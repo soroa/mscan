@@ -345,7 +345,7 @@ def getUsage(user_ID):
 			usage["Days in most Visited Country"]  = getDaysInMostVisitedCountry(user_ID)
 			usage["Calling Time to CH from Abroad"]  = callsToCHfromAbroad(user_ID).get('duration')
 			usage["Calling Time of incoming calls at abroad"]  = incomingCallsAbroad(user_ID).get('duration')
-			usage["SMS while roaming"]  = getSMSWhileRoaming(user_ID).get('duration')
+			usage["SMS while roaming"]  = getSMSWhileRoaming(user_ID)
 			usageJSON =json.dumps(usage)
 			return jsonify(message="usage", usage = usageJSON)
 
