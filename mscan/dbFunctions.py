@@ -135,8 +135,8 @@ def getTrafficPercentageTop3Numbers(user_ID):
 		counter=0; 
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		n1 = get3MostFrequentlyCalledNumbers(user_ID).get('number1')
-		n1 = get3MostFrequentlyCalledNumbers(user_ID).get('number2')
-		n1 = get3MostFrequentlyCalledNumbers(user_ID).get('number3')
+		n2 = get3MostFrequentlyCalledNumbers(user_ID).get('number2')
+		n3 = get3MostFrequentlyCalledNumbers(user_ID).get('number3')
 		out_calls  = []
 		for c in calls: 
 			if c.call_type=="outgoing":
