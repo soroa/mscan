@@ -225,7 +225,6 @@ def uploadCallsSMS(user_ID):
 				if isDuplicate:
 					continue
 				
-
 				c.call_type=call.get('type')
 				print("number is " + call.get('number'))
 				c.duration = call.get('duration')
@@ -272,10 +271,16 @@ def uploadMD(user_ID):
 		if user:
 			data_entries= request.json
 			for data_entry in data_entries:
-				print(data_entry)			
+				print(data_entry)		
+
 				md = MobileData()	
 				md.md_user_id = user.user_id
 				md.md_creation_time = datetime.datetime.strptime(data_entry.get('creation_time'), '%Y-%m-%d %H:%M:%S')
+
+				isDuplicate = MobileData.query.filter(and_(MobileData.md_creation_time==md.md_creation_time , MobileData.md_user_id == md.md_user_id)).first()
+				if isDuplicate:
+					break
+					
 				md.whatsappBytes =data_entry.get('whatsappBytes')
 				md.totalMB=data_entry.get('totalMB')
 				md.no_whatsappBytes=data_entry.get('no_whatsappBytes')
