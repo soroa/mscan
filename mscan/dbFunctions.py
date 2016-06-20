@@ -337,8 +337,8 @@ def getSMSWhileRoaming(user_ID):
 		counter =0; 
 		sms =getLastXDaysSMS(user_ID,getDaysSinceSignUp(user_ID))
 		for s in sms: 
-			a = s.sms_creation_time-  datetime.timedelta(hour=1)
-			b = s.sms_creation_time+  datetime.timedelta(hour=1)
+			a = s.sms_creation_time-  datetime.timedelta(hours=1)
+			b = s.sms_creation_time+  datetime.timedelta(hours=1)
 			hour = s.sms_creation_time.hour()
 			countriesISOLog = CountryISOLog.query.filter(and_(CountryISOLog.cISO_creation_time > a,CountryISOLog.cISO_creation_time < b, CountryISOLog.cISO_user_id==user_ID) ).all()
 			for c in countriesISOLog:
