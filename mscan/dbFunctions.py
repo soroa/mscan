@@ -271,7 +271,7 @@ def getMostVisitedForeignCountry(user_ID):
 		for c in calls:
 			if(c.user_location!="Schweiz"):
 				countries.append(c.user_location)
-		if len(countries)>0
+		if len(countries)>0:
 			most_frequent_country = max(set(countries), key=countries.count)
 			return most_frequent_country
 		else
