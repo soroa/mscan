@@ -357,7 +357,7 @@ def getSMSWhileRoaming(user_ID):
 			hour = s.sms_creation_time.hour
 			countriesISOLog = CountryISOLog.query.filter(and_(CountryISOLog.cISO_creation_time > a,CountryISOLog.cISO_creation_time < b, CountryISOLog.cISO_user_id==user_ID) ).all()
 			for c in countriesISOLog:
-				if c.cISO_creation_time.hour()==hour and c.cISO_countryISO==getMostVisitedForeignCountry(user_ID):
+				if c.cISO_creation_time.hour==hour and c.cISO_countryISO==getMostVisitedForeignCountry(user_ID):
 					counter+=1
 		return str(counter)
 
