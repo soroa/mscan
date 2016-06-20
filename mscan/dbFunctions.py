@@ -271,12 +271,12 @@ def getMostVisitedForeignCountry(user_ID):
 		for c in calls:
 			if(c.user_location!="Schweiz"):
 				countries.append(c.user_location)
-			countries.append(c.user_location)
-		most_frequent_country = max(set(countries), key=countries.count)
-		if most_frequent_country==None:
-			return ""
-		else:
+		if len(countries)>0
+			most_frequent_country = max(set(countries), key=countries.count)
 			return most_frequent_country
+		else
+			return ""
+
 
 		
 def incomingCallsAbroad(user_ID):
