@@ -218,6 +218,34 @@ def callsToAbroadLandX(user_ID, x):
 	return {'number': str(int(counter/2)), 'duration': str(int(duration/2)), 'country': xMostfrequentCountry}
 
 
+
+def callsToAbroadFromAbroadLandX(user_ID, x):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter=0
+		duration = 0
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		callsToAbroad = []
+		for c in calls: 
+			if isForeignNumber(c.call_number) and  (not isNumberFromCountry(c.call_number, getMostVisitedForeignCountry(user_ID))) and c.call_type=="outgoing"and c.duration>0:
+				callsToAbroad.append(c)
+		if len(callsToAbroad)>0:
+			xMostfrequentCountry  = getXMostFrequentForeignCountryCalled(x, callsToAbroad)
+		else:	
+			xMostfrequentCountry = ""
+		if xMostfrequentCountry =="":
+			return {'number': "0", 'duration': "0", 'country': xMostfrequentCountry}
+		prefix = None
+		for pref in resources.country_prefixes:
+			if resources.country_prefixes.get(pref) == xMostfrequentCountry: 
+				prefix = pref 
+				continue
+		for c in callsToAbroad: 
+			if c.call_number[:len(prefix)] == prefix:
+				counter+= 1
+				duration += int(c.duration)
+	return {'number': str(int(counter)), 'duration': str(int(duration)), 'country': xMostfrequentCountry}
+
 #TODO return empty strings in case there's less than 5 countires
 
 def getXMostFrequentForeignCountryCalled(x, callstoAbroad):
@@ -380,6 +408,9 @@ def isForeignNumber(number):
 
 def isSwissFixedNumber(number):
 	return (not isForeignNumber(number)) and (not isSwissMobileNumber(number))
+
+
+
 
 
 def locationIsCH(location):
