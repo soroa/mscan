@@ -169,7 +169,7 @@ def dataCH(user_ID):
 		for m in mds: 
 			counter +=int(m.totalMB)
 
-		return str(int(counter/1000000))
+		return str(long(counter/1000000))
 
 
 # .......................................
