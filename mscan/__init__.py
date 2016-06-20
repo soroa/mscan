@@ -329,7 +329,7 @@ def getUsage(user_ID):
 			stats["Seconds of Calls to Fix in CH"] = callsFixedCH(userID).get('duration')
 			stats["Number of Calls to Mobile in CH"] = CallsMobileCH(userID).get('number')
 			stats["Seconds of Calls to Mobile in CH"] = CallsMobileCH(userID).get('duration')
-			stats["Sms to CH"] = SMS_toCH(userID)
+			stats["Sms from CH and to CH"] = SMS_toCH(userID)
 			stats["Data in CH"] = dataCH(userID)  + " MBytes"
 			stats["Sms to abroad"] = SMS_toABROAD(userID)
 			stats["Abroad Country 1"]  = callsToAbroadLandX(userID, 0).get('country')
