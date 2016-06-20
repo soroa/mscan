@@ -348,8 +348,8 @@ def getUsage(user_ID):
 			stats["SMS while roaming "] = getSMSWhileRoaming(userID)
 			stats["Traffic Percentage of top 3 numbers "] = getTrafficPercentageTop3Numbers(userID)
 			
-			usageJSON =json.dumps(usage)
-			return jsonify(message="usage", usage = usageJSON)
+			statsJSON =json.dumps(stats)
+			return jsonify(message="usage", usage = statsJSON)
 
 @app.route('/uploadCountryISOLog/<user_ID>', methods=['POST'])
 def uploadCountryISOLog(user_ID):
