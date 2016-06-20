@@ -148,9 +148,13 @@ def testFF(userID):
 		stats["Most visited Foreign Country"] =getMostVisitedForeignCountry(userID)
 		stats["Seconds of Calls incoming at abroad"] = incomingCallsAbroad(userID).get('duration')
 		stats["Number of Calls incoming at abroad"] = incomingCallsAbroad(userID).get('number')
+		stats["Seconds of Calls within visited country"] = callsWithinVisitedForeignCountry(userID).get('duration')
+		stats["Number of Calls within visited country"] = callsWithinVisitedForeignCountry(userID).get('number')
 		stats["Days in most visited country"] = getDaysInMostVisitedCountry(userID)
 		stats["Calls from abroad to CH"] = callsToCHfromAbroad(userID)
 		stats["3 Most frequent numbers "] = get3MostFrequentlyCalledNumbers(userID)
+		stats["SMS while roaming "] = getSMSWhileRoaming(userID)
+		stats["Is +3934234234234 from Italy? "] = isNumberFromCountry("+3934234234234", "Italien")
 
 
 		return render_template('userStats.html', stats = stats)
@@ -299,7 +303,8 @@ def getContracts(user_ID):
 	if request.method == "POST":
 		user=User.query.filter_by(user_id=user_ID).first()
 		if user:
-			
+			reg_date = user.registration_datetime
+			#todo	don't send contracts if the user just registered
 			contractsDictArray = getContractsDict(user_ID)
 
 			contractsJSON =json.dumps(contractsDictArray)
@@ -335,7 +340,12 @@ def getUsage(user_ID):
 			usage["#2 foreign country called"]  = callsToAbroadLandX(user_ID, 2).get('country')
 			usage["Number of outgoing calls to foreign country #3"]  = callsToAbroadLandX(user_ID, 2).get('number')
 			usage["Calling time of outgoing calls to foreign country #3"]  = callsToAbroadLandX(user_ID, 2).get('duration')
-
+			usage["Data Roaming"]  = dataRoaming(user_ID)
+			usage["Most Visited Country"]  = getMostVisitedForeignCountry(user_ID)
+			usage["Days in most Visited Country"]  = getDaysInMostVisitedCountry(user_ID)
+			usage["Calling Time to CH from Abroad"]  = callsToCHfromAbroad(user_ID).get('duration')
+			usage["Calling Time of incoming calls at abroad"]  = incomingCallsAbroad(user_ID).get('duration')
+			usage["SMS while roaming"]  = getSMSWhileRoaming(user_ID).get('duration')
 			usageJSON =json.dumps(usage)
 			return jsonify(message="usage", usage = usageJSON)
 
