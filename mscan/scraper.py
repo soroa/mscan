@@ -193,7 +193,7 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:RoamingSMS":getSMSWhileRoaming(user_ID),
 	"inputfelderform:inputFelder:RoamingDatenMB":dataRoaming(user_ID),
 	"inputfelderform:inputFelder:RoamingIncomingMin":incomingCallsAbroad(user_ID).get('duration'),
-	"inputfelderform:inputFelder:RoamingIncomingAnr":incomingCallsAbroad(user_ID).get('number'),,
+	"inputfelderform:inputFelder:RoamingIncomingAnr":incomingCallsAbroad(user_ID).get('number'),
 	"inputfelderform:inputFelder:j_idt412_collapsed":"false",
 	"inputfelderform:inputFelder:RoamingToCHMin":callsToCHfromAbroad(user_ID).get('duration'),
 	"inputfelderform:inputFelder:RoamingToCHAnr":callsToCHfromAbroad(user_ID).get('number'),
