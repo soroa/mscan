@@ -274,7 +274,7 @@ def getMostVisitedForeignCountry(user_ID):
 		if len(countries)>0:
 			most_frequent_country = max(set(countries), key=countries.count)
 			return most_frequent_country
-		else
+		else:
 			return ""
 
 
