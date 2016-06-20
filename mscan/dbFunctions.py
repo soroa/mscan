@@ -257,13 +257,8 @@ def dataRoaming(user_ID):
 		daysback = datetime.timedelta(days=getDaysSinceSignUp(user_ID))
 		since = datetime.datetime.now() - daysback
 		mds = MobileData.query.filter(and_(MobileData.md_creation_time > since, MobileData.md_user_id==user_ID, MobileData.md_roaming==True ) ).all()
-		countries = []
-		for m in mds: 
-			countries.append(md_country)
-		country_with_most_roaming = max(set(countries), key=countries.count)
 		for m in mds: 
 			counter +=int(m.totalMB)
-
 		return str(int(counter/1000000))
 
 
