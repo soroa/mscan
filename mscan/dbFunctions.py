@@ -143,7 +143,10 @@ def getTrafficPercentageTop3Numbers(user_ID):
 				out_calls.append(c)
 				if c.call_number==n1 or c.call_number==n2 or c.call_number==n3:
 					counter +=1
-		p = int((float(counter) / float(len(out_calls)))*100)
+		if len(out_calls)>0:
+			p = int((float(counter) / float(len(out_calls)))*100)
+		else:
+			return 0
 		return p
 
 
