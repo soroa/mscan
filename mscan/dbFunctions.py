@@ -11,7 +11,8 @@ import goslate
 def getUserAgeField(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
-		age = user.age
+		age = int(user.age)
+		print("age is  " + age)
 		if age<18:
 			return 15
 		elif age<26:
