@@ -74,7 +74,7 @@ def callsFixedCH(user_ID):
 				print ("Total Duration after sum  is "+ str(duration))
 				print("*********************************************")
 				
-		return {'number': counter, 'duration': duration}
+		return {'number': counter, 'duration': str(int(duration/60))}
 
 
 #tested: ok 
@@ -94,7 +94,7 @@ def CallsMobileCH(user_ID):
 				duration +=int(c.duration); 
 				# print ("Total Duration after sum  is "+ str(duration))
 				# print("*********************************************")
-		return {'number': counter, 'duration': duration}
+		return {'number': counter, 'duration': str(int(duration/60))}
 
 def totalCallsMinutesCH(user_ID):
 	return str(CallsMobileCH(user_ID).get("duration") + callsFixedCH(user_ID).get("duration"))
@@ -219,7 +219,7 @@ def callsToAbroadLandX(user_ID, x):
 			if c.call_number[:len(prefix)] == prefix:
 				counter+= 1
 				duration += int(c.duration)
-	return {'number': str(int(counter/2)), 'duration': str(int(duration/2)), 'country': xMostfrequentCountry}
+	return {'number': str(int(counter/2)), 'duration': str(int(duration/120)), 'country': xMostfrequentCountry}
 
 
 
@@ -248,7 +248,7 @@ def callsToAbroadFromAbroadLandX(user_ID, x):
 			if c.call_number[:len(prefix)] == prefix:
 				counter+= 1
 				duration += int(c.duration)
-	return {'number': str(int(counter)), 'duration': str(int(duration)), 'country': xMostfrequentCountry}
+	return {'number': str(int(counter)), 'duration': str(int(duration/60)), 'country': xMostfrequentCountry}
 
 #TODO return empty strings in case there's less than 5 countires
 
@@ -321,7 +321,7 @@ def incomingCallsAbroad(user_ID):
 			if c.user_location==getMostVisitedForeignCountry(user_ID) and int(c.duration)>0 and c.call_type=="incoming":
 				counter +=1
 				duration +=int(c.duration); 
-		return {'number': str(counter), 'duration': str(duration)}
+		return {'number': str(counter), 'duration': str(int(duration/60))}
 
 def getDaysInMostVisitedCountry(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
@@ -345,7 +345,7 @@ def callsToCHfromAbroad(user_ID):
 			if (isSwissMobileNumber(c.call_number) or isSwissFixedNumber(c.call_number)) and c.user_location==getMostVisitedForeignCountry(user_ID) and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
 				duration +=int(c.duration); 
-		return {'number': str(counter), 'duration': str(duration)}
+		return {'number': str(counter), 'duration': str(int(duration/60))}
 
 def callsWithinVisitedForeignCountry(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
@@ -357,7 +357,7 @@ def callsWithinVisitedForeignCountry(user_ID):
 			if isNumberFromCountry(c.call_number,getMostVisitedForeignCountry) and c.user_location==getMostVisitedForeignCountry(user_ID) and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
 				duration +=int(c.duration); 
-		return {'number': str(counter), 'duration': str(duration)}
+		return {'number': str(counter), 'duration': str(int(duration/60))}
 
 def isNumberFromCountry(number,country):
 	prefix_3digits = number[:4]
