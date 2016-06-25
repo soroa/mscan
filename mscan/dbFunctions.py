@@ -97,11 +97,11 @@ def CallsMobileCH(user_ID):
 		return {'number': counter, 'duration': str(int(duration/60))}
 
 def totalCallsMinutesCH(user_ID):
-	return str(CallsMobileCH(user_ID).get("duration") + callsFixedCH(user_ID).get("duration"))
+	return str(int(CallsMobileCH(user_ID).get("duration")) +int( callsFixedCH(user_ID).get("duration")))
 
 
 def totalCallsNumberCH(user_ID):
-	return str(CallsMobileCH(user_ID).get("number") + callsFixedCH(user_ID).get("number"))
+	return str(int(CallsMobileCH(user_ID).get("number")) + int(callsFixedCH(user_ID).get("number")))
 
 # TODO 3 most frequent numbers
 
