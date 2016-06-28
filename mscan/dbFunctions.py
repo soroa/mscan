@@ -130,6 +130,55 @@ def get3MostFrequentlyCalledNumbers(user_ID):
 		return {'number1': top3[0], 'number2': top3[1], 'number3':top3[2]}
 
 
+def getTrafficPercentageForNumber(user_ID, number):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter=0; 
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		out_calls  = []
+		for c in calls: 
+			if c.call_type=="outgoing":
+				out_calls.append(c)
+				if c.call_number==number:
+					counter +=1
+		if len(out_calls)>0:
+			p = int((float(counter) / float(len(out_calls)))*100)
+		else:
+			return 0
+		return p
+
+# def getTrafficPercentageTop3Numbers(user_ID):
+# 	user=User.query.filter_by(user_id=user_ID).first()
+# 	if user:
+# 		n1 = get3MostFrequentlyCalledNumbers(user_ID).get('number1')
+# 		n2 = get3MostFrequentlyCalledNumbers(user_ID).get('number2')
+# 		n3 = get3MostFrequentlyCalledNumbers(user_ID).get('number3')
+# 		return getTrafficPercentageForNumber(user_ID, n1) + getTrafficPercentageForNumber(user_ID, n2) +getTrafficPercentageForNumber(user_ID, n3) 
+
+
+def getNetworkDistribution(user_ID, op1, op1Percentage,op2,  op2Percentage,op3, op3Percentage):
+	
+	n1 = get3MostFrequentlyCalledNumbers(user_ID).get('number1')
+	op1Percentage = getTrafficPercentageForNumber(n1)
+	n2 = get3MostFrequentlyCalledNumbers(user_ID).get('number2')
+	op2Percentage= getTrafficPercentageForNumber(n1)
+	n3 = get3MostFrequentlyCalledNumbers(user_ID).get('number3')
+	op3Percentage = getTrafficPercentageForNumber(n1)
+	results = {}
+	top3TotalPercentage =getTrafficPercentageTop3Numbers(user_ID)
+	results[op1] = op1Percentage + (100-top3TotalPercentage)*resources.network_distribution.get(op1)
+	results[op2] = op2Percentage + (100-top3TotalPercentage)*resources.network_distribution.get(op2)
+	results[op3] = op3Percentage + (100-top3TotalPercentage)*resources.network_distribution.get(op3)
+	for o in resources.network_distribution:
+		if o==op1 or o==op2 or o==op3:
+			continue
+		results[o] = resources.get(o)
+	return results
+	
+
+
+
+
 def getTrafficPercentageTop3Numbers(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:

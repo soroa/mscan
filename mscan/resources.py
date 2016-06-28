@@ -1,6 +1,27 @@
 # -*- coding: utf-8 -*-
 
 
+
+network_distribution = {
+	"Swisscom": 55, 
+	"Sunrise": 27, 
+	"Salt": 18,
+	"Swisscom Mobile":0,
+	"Salt":0,
+	"Sunrise Mobile":0,
+	"M-Budget":0,
+	"Coop Mobile":0,
+	"Aldi":0,
+	"ok.-":0,
+	"Lebara":0,
+	"TalkTalk Mobile / Fix":0,
+	"Yallo":0,
+	"Lycamobile":0,
+	"Ortel":0,
+	"upc Mobile":0
+}
+
+
 country_prefixes = {
 "+1": "USA",
 "+20" : "Ägypten",
