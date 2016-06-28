@@ -156,7 +156,7 @@ def getContractsDict(user_ID):
 
 	contracts = resultsSouped.find_all("div", {"class": "ausgabeTabelleRow"})
 	
-	print("contracts are " + contracts)
+	print("contracts are " + str(contracts))
 
 	i = 0;
 	contractsParsed =[]
