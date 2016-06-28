@@ -47,6 +47,8 @@ def getUserCurrentContractPrice(user_ID):
 def getUserOperator(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
+		if user.sim_operator_name.title() =="Salt":
+			return "Salt."
 		return (user.sim_operator_name).title()#title() makes the first letter of every word uppercase 
 
 # .......................................
