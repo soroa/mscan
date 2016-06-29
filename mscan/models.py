@@ -110,7 +110,7 @@ class MLSCellRecord(db.Model):
     area = db.Column(db.Integer)
     cell = db.Column(db.BigInteger)
     unit = db.Column(db.SmallInteger)
-    position = db.Column(geoalchemy2.types.Geography(geometry_type='POINT', srid=4326, spatial_index=True))
+    position = db.Column(Geography(geometry_type='POINT', srid=4326, spatial_index=True))
     range = db.Column(db.Integer)
     samples = db.Column(db.Integer)
     created = db.Column(db.DateTime)
