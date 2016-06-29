@@ -76,8 +76,7 @@ class MobileData(db.Model):
 	longitude=db.Column(db.Float)
 	md_country=db.Column(db.String)
 	md_roaming=db.Column(db.Boolean)
-    position = db.Column(Geography(geometry_type='POINT', srid=4326, spatial_index=True))
-
+    
 
 
 
