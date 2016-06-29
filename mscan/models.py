@@ -1,11 +1,12 @@
 from mscan import app
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.migrate import Migrate
 from datetime import datetime
 from flask.ext.sqlalchemy import SQLAlchemy
 from geoalchemy2 import Geometry, Geography
 from geoalchemy2.shape import to_shape
 from sqlalchemy import func, cast
-from utils import distance
+from mobilescan.utils import distance
 
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///mscan.db'
 
@@ -76,7 +77,6 @@ class MobileData(db.Model):
 	longitude=db.Column(db.Float)
 	md_country=db.Column(db.String)
 	md_roaming=db.Column(db.Boolean)
-    
 
 
 
@@ -282,7 +282,63 @@ class Measurement(db.Model):
         return j
 
 
+class MLSCellRecord(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    radio = db.Column(db.String(length=4))
+    mcc = db.Column(db.SmallInteger)
+    net = db.Column(db.SmallInteger)
+    area = db.Column(db.Integer)
+    cell = db.Column(db.BigInteger)
+    unit = db.Column(db.SmallInteger)
+    position = db.Column(Geography(geometry_type='POINT', srid=4326, spatial_index=True))
+    range = db.Column(db.Integer)
+    samples = db.Column(db.Integer)
+    created = db.Column(db.DateTime)
+    updated = db.Column(db.DateTime)
 
+    def __init__(self, data=None):
+        def lame_int(obj):
+            try:
+                return int(obj)
+            except (ValueError, TypeError):
+                return None
+
+        def lame_float(obj):
+            try:
+                return float(obj)
+            except (ValueError, TypeError):
+                return None
+
+        if data:
+            self.radio = lame_int(data.get('radio'))
+            self.mcc = lame_int(data.get('mcc'))
+            self.net = lame_int(data.get('net'))
+            self.area = lame_int(data.get('area'))
+            self.cell = lame_int(data.get('cell'))
+            self.unit = lame_int(data.get('unit'))
+            self.position = func.ST_SetSRID(
+                func.ST_Point(lame_float(data.get('lon')), lame_float(data.get('lat'))), 4326
+            )
+            self.range = lame_int(data.get('range'))
+            self.samples = lame_int(data.get('samples'))
+            self.created = datetime.fromtimestamp(int(data.get('created', 0)))
+            self.updated = datetime.fromtimestamp(int(data.get('updated', 0)))
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'radio': self.radio,
+            'mcc': self.mcc,
+            'net': self.net,
+            'area': self.area,
+            'cell': self.cell,
+            'unit': self.unit,
+            'position': {'lng': to_shape(self.position).x, 'lat': to_shape(self.position).y},
+            'range': self.range,
+            'samples': self.samples,
+            'created': self.created,
+            'updated': self.updated
+        }
 
 
 

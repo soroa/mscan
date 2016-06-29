@@ -1,7 +1,6 @@
 
 from mscan  import db
-from mscan  import User, Call, SMS, MobileData,CountryISOLog,Phone, PhoneInformation, Measurement, MLSCellRecord
-
+from mscan  import User, Call, SMS, MobileData,CountryISOLog
 
 # !!!!!!!
 # N.B. Before when starting the server for the first time you gotta execute this pythong
