@@ -1,6 +1,4 @@
 from mscan import app
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.migrate import Migrate
 from datetime import datetime
 from flask.ext.sqlalchemy import SQLAlchemy
 
