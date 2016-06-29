@@ -8,11 +8,22 @@ from sqlalchemy import and_
 import resources
 import pycountry
 
+##marcs import 
+import gzip
+import csv
+import os
+import uuid
+from flask.ext.migrate import MigrateCommand
+from flask.ext.script import Manager, Server
+from werkzeug.utils import secure_filename
+
+
 #create application object
 app = Flask(__name__)
 
 from scraper import *
 # from dbFunctions import *
+
 
 
 @app.route("/")
@@ -386,6 +397,167 @@ def uploadCountryISOLog(user_ID):
 		return """<html><body>
 		Something went horribly wrong
 		</body></html>"""
+
+
+
+
+
+########################### Marc's view ###########
+
+
+
+
+@app.route('/map')
+def index():
+    return render_template('map.html')
+
+@app.route('/phones', methods=['GET', 'PUT'])
+def phones():
+    if request.method == 'GET':
+        return jsonify(phones=[d.to_json() for d in Phone.query.all()])
+    phone_uuid = str(uuid.uuid4())
+    phone = Phone(phone_uuid)
+    db.session.add(phone)
+    db.session.commit()
+    return jsonify(phone=phone.to_json())
+
+
+@app.route('/phones/<phone_uuid>', methods=['GET', 'POST'])
+def phone_information(phone_uuid):
+    phone = Phone.query.filter_by(uuid=phone_uuid).first()
+    if not phone:
+        response = jsonify(error='invalid_uuid', message="The provided UUID was not found in the database")
+        response.status_code = 401
+        return response
+    pi = None
+    if request.method == 'POST':
+        d = request.json
+        pi = PhoneInformation()
+        pi.phone = phone
+        pi.android_version = d.get('android_version')
+        pi.build_manufacturer = d.get('build_manufacturer')
+        pi.build_device = d.get('build_device')
+        pi.build_model = d.get('build_model')
+        pi.device_software_version = d.get('device_software_version')
+        pi.device_id = d.get('device_id')
+        pi.phone_type = d.get('phone_type')
+        pi.network_operator = d.get('network_operator')
+        pi.network_operator_name = d.get('network_operator_name')
+        pi.network_roaming = d.get('network_roaming') == 'true'
+        pi.network_type = d.get('network_type')
+        pi.sim_state = d.get('sim_state')
+        pi.sim_operator = d.get('sim_operator')
+        pi.sim_operator_name = d.get('sim_operator_name')
+        pi.sim_country_iso = d.get('sim_country_iso')
+        pi.sim_serial_number = d.get('sim_serial_number')
+        pi.subscriber_id = d.get('subscriber_id')
+        db.session.add(pi)
+        db.session.commit()
+        return jsonify(phone=phone.to_json(), phone_information=pi.to_json() if pi else None)
+    return jsonify(
+        phone=phone.to_json(),
+        phone_informations=[pi.to_json() for pi in
+                            phone.phone_information.order_by(PhoneInformation.creation_time.desc()).all()],
+        measurements=[m.to_json() for m in phone.measurements.order_by(Measurement.creation_time.desc()).all()]
+    )
+
+
+@app.route('/measurements', methods=['GET', 'PUT'])
+def measurements():
+    if request.method == 'GET':
+        return jsonify(measurements=[m.to_json() for m in Measurement.query.all()])
+    d = request.json
+    phone = Phone.query.filter_by(uuid=request.json.get('uuid')).first()
+    if not phone:
+        response = jsonify(error='invalid_uuid', message="The provided UUID was not found in the database")
+        response.status_code = 401
+        return response
+    m = Measurement(phone)
+    m.phone = phone
+    m.cid = d.get('cid')
+    m.lac = d.get('lac')
+    m.psc = d.get('psc')
+    m.base_station_id = d.get('bs_id')
+    m.base_station_latitude = d.get('bs_lat')
+    m.base_station_longitude = d.get('bs_lon')
+    m.system_id = d.get('sys_id')
+    m.network_id = d.get('ntw_id')
+    m.gsm = d.get('gsm')
+    m.lte = d.get('lte')
+    m.latitude = d.get('lat')
+    m.longitude = d.get('lon')
+    m.accuracy = d.get('acc')
+    m.altitude = d.get('alt')
+    m.speed = d.get('speed')
+    db.session.add(m)
+    db.session.commit()
+    return jsonify(phone=phone.to_json(), measurement=m.to_json())
+
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    file = request.files.get('database')
+    device_uuid = request.form.get('uuid')
+    if device_uuid and file:
+        filename = secure_filename('db_{}_{}'.format(device_uuid, datetime.now().strftime('%Y-%m-%d_%H-%M-%S')))
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return jsonify(status='success', message='Upload was successful')
+    return jsonify(status='error', message='Upload was not successful')
+
+
+@app.route('/cell_records', methods=['POST'])
+def list_cell_records():
+    data = request.get_json(force=True)
+    bounds = data.get('bounds')
+    ne = bounds.get('ne', {})
+    sw = bounds.get('sw', {})
+    center = data.get('center')
+    cells = MLSCellRecord.get_visible_cell_records(ne.get('lng'), ne.get('lat'), sw.get('lng'), sw.get('lat'), center.get('lng'), center.get('lat')).all()
+    return jsonify(cells=[cell.to_json() for cell in cells])
+
+
+@app.route('/_____update_mls')
+def update_mls():
+    if request.args.get('force_remote', False):
+        latest_mls_download_request = requests.get('https://location.services.mozilla.com/downloads')
+        soup = BeautifulSoup(latest_mls_download_request.content, 'html.parser')
+        exports = soup.find_all(lambda el: el.name == 'li' and el.a and 'MLS-full' in el.a.get('href', ''))
+        if not exports:
+            # TODO: Return error message or something
+            return 'Could not get MLS download link'
+        export_url = exports[0].a.get('href')
+    else:
+        """
+        Serve the file on localhost:1234 for example with this snippet:
+        >>> import http.server
+        >>> http.server.test(HandlerClass=http.server.SimpleHTTPRequestHandler, port=1234)
+        """
+        export_url = 'http://localhost:1234/MLS-full-cell-export-2015-09-10T000000.csv.gz'
+    # Send HTTP request for the export file
+    r_export_latest = requests.request('GET', export_url, stream=True)
+    # Wrap it with an un-zipper
+    export_gzipped = gzip.GzipFile(fileobj=r_export_latest.raw)
+    # Convert to text
+    export_text_wrapped = io.TextIOWrapper(export_gzipped)
+    export_csv_reader = csv.DictReader(export_text_wrapped)
+    for row_dict in export_csv_reader:
+        db.session.add(MLSCellRecord(row_dict))
+        if export_csv_reader.line_num % 100 == 0:
+            print('Status: {:d} / 10000'.format(export_csv_reader.line_num))
+            db.session.commit()
+            print('committed')
+            if export_csv_reader.line_num > 10000:
+                break
+    db.session.commit()
+    return jsonify(a=export_csv_reader.fieldnames, rows=export_csv_reader.line_num)
+
+
+
+
+
+
+
+########################### Marc's view  - End ###########
 
 
 
