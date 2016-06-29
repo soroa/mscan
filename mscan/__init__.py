@@ -391,67 +391,6 @@ def uploadCountryISOLog(user_ID):
 
 
 
-########################### Marc's view ###########
 
-
-@app.route('/phones', methods=['GET', 'PUT'])
-def phones():
-    if request.method == 'GET':
-        return jsonify(phones=[d.to_json() for d in Phone.query.all()])
-    phone_uuid = str(uuid.uuid4())
-    phone = Phone(phone_uuid)
-    db.session.add(phone)
-    db.session.commit()
-    return jsonify(phone=phone.to_json())
-
-
-@app.route('/phones/<phone_uuid>', methods=['GET', 'POST'])
-def phone_information(phone_uuid):
-    phone = Phone.query.filter_by(uuid=phone_uuid).first()
-    if not phone:
-        response = jsonify(error='invalid_uuid', message="The provided UUID was not found in the database")
-        response.status_code = 401
-        return response
-    pi = None
-    if request.method == 'POST':
-        d = request.json
-        pi = PhoneInformation()
-        pi.phone = phone
-        pi.android_version = d.get('android_version')
-        pi.build_manufacturer = d.get('build_manufacturer')
-        pi.build_device = d.get('build_device')
-        pi.build_model = d.get('build_model')
-        pi.device_software_version = d.get('device_software_version')
-        pi.device_id = d.get('device_id')
-        pi.phone_type = d.get('phone_type')
-        pi.network_operator = d.get('network_operator')
-        pi.network_operator_name = d.get('network_operator_name')
-        pi.network_roaming = d.get('network_roaming') == 'true'
-        pi.network_type = d.get('network_type')
-        pi.sim_state = d.get('sim_state')
-        pi.sim_operator = d.get('sim_operator')
-        pi.sim_operator_name = d.get('sim_operator_name')
-        pi.sim_country_iso = d.get('sim_country_iso')
-        pi.sim_serial_number = d.get('sim_serial_number')
-        pi.subscriber_id = d.get('subscriber_id')
-        db.session.add(pi)
-        db.session.commit()
-        return jsonify(phone=phone.to_json(), phone_information=pi.to_json() if pi else None)
-    return jsonify(
-        phone=phone.to_json(),
-        phone_informations=[pi.to_json() for pi in
-                            phone.phone_information.order_by(PhoneInformation.creation_time.desc()).all()],
-        measurements=[m.to_json() for m in phone.measurements.order_by(Measurement.creation_time.desc()).all()]
-    )
-
-
-
-
-
-
-
-
-
-########################### Marc's view  - End ###########
 if __name__ == "__main__":
 	app.run(host='0.0.0.0',debug=True)
