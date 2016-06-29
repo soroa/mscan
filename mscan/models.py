@@ -1,5 +1,4 @@
 from mscan import app
-from datetime
 from flask.ext.sqlalchemy import SQLAlchemy
 
 
