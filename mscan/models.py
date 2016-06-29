@@ -76,6 +76,8 @@ class MobileData(db.Model):
 	longitude=db.Column(db.Float)
 	md_country=db.Column(db.String)
 	md_roaming=db.Column(db.Boolean)
+    position = db.Column(Geography(geometry_type='POINT', srid=4326, spatial_index=True))
+
 
 
 
@@ -110,7 +112,7 @@ class MLSCellRecord(db.Model):
     area = db.Column(db.Integer)
     cell = db.Column(db.BigInteger)
     unit = db.Column(db.SmallInteger)
-    position = db.Column(Geometry(geometry_type='POINT', srid=4326, spatial_index=True))
+    position = db.Column(Geography(geometry_type='POINT', srid=4326, spatial_index=True))
     range = db.Column(db.Integer)
     samples = db.Column(db.Integer)
     created = db.Column(db.DateTime)
