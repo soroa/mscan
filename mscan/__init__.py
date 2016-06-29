@@ -13,8 +13,6 @@ import gzip
 import csv
 import os
 import uuid
-from flask.ext.migrate import MigrateCommand
-from flask.ext.script import Manager, Server
 from werkzeug.utils import secure_filename
 
 
