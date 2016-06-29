@@ -5,7 +5,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from geoalchemy2 import Geometry, Geography
 from geoalchemy2.shape import to_shape
 from sqlalchemy import func, cast
-from mobilescan.utils import distance
+from utils import distance
 
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///mscan.db'
 
