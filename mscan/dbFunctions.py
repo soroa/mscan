@@ -62,19 +62,14 @@ def callsFixedCH(user_ID):
 		duration = 0;  
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		for c in calls: 
-			print ("Number is: "+ c.call_number)
+			
 			if isSwissFixedNumber(c.call_number) and c.user_location=="Schweiz" and int(c.duration)>0 and c.call_type=="outgoing":
 				
 				counter +=1
-				print("*********************************************")
-				print ("Number is fix swiss: "+ c.call_number)
-				print ("Duration of call is "+ str(c.duration))
-				print ("Total Duration  is "+ str(duration))
+
 				
 				duration +=int(c.duration); 
-				
-				print ("Total Duration after sum  is "+ str(duration))
-				print("*********************************************")
+
 				
 		return {'number': counter, 'duration': str(int(duration/60))}
 
@@ -89,13 +84,8 @@ def CallsMobileCH(user_ID):
 		for c in calls: 
 			if isSwissMobileNumber(c.call_number) and c.user_location=="Schweiz" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
-				# print("*********************************************")
-				# print ("Number is mob swiss: "+ c.call_number)
-				# print ("Duration of call is "+ str(c.duration))
-				# print ("Total Duration  is "+ str(duration))
+
 				duration +=int(c.duration); 
-				# print ("Total Duration after sum  is "+ str(duration))
-				# print("*********************************************")
 		return {'number': counter, 'duration': str(int(duration/60))}
 
 def totalCallsMinutesCH(user_ID):
