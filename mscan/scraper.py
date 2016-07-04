@@ -119,7 +119,7 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:RoamingToLand3Anr":callsToAbroadFromAbroadLandX(user_ID, 2).get('number'),
 	"inputfelderform:inputFelder:j_idt454_collapsed":"false",
 	"inputfelderform:inputFelder_activeIndex":"4",
-	"inputfelderform:j_idt493":"",
+	"inputfelderform:j_idt495":"",
 	"javax.faces.ViewState":value1 + ":"+value2
 	}
 
