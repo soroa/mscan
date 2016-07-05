@@ -51,6 +51,46 @@ def getUserOperator(user_ID):
 			return "Salt."
 		return (user.sim_operator_name).title()#title() makes the first letter of every word uppercase 
 
+def callsOutgoing(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter=0; 
+		duration = 0;  
+		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
+		for c in calls: 
+			
+			if int(c.duration)>0 and c.call_type=="outgoing":
+				
+				counter +=1
+				duration +=int(c.duration); 
+
+				
+		return {'number': counter, 'duration': str(int(duration/60))}
+
+def SMSSentAndReceived(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter =0; 
+		sms =getLastXDaysSMS(user_ID,getDaysSinceSignUp(user_ID))
+		for s in sms: 
+				counter +=1
+		return str(counter)
+
+
+def totalData(user_ID):
+	user=User.query.filter_by(user_id=user_ID).first()
+	if user:
+		counter =0; 
+		# daysback = datetime.timedelta(days=getDaysSinceSignUp(user_ID))
+		daysback = datetime.timedelta(days=30)
+		since = datetime.datetime.now() - daysback
+		mds = MobileData.query.filter(and_(MobileData.md_creation_time > since, MobileData.md_user_id==user_ID ) ).all()
+
+		for m in mds: 
+			counter +=int(m.totalMB)
+
+		return str(long(counter/1000000))
+
 # .......................................
 ##Everthing within Switzerland
 # .......................................
