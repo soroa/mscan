@@ -56,10 +56,10 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:aufAndere":"0",
 	"inputfelderform:inputFelder:j_idt182_collapsed":"true",
 	"inputfelderform:inputFelder:anzSMSEingabe":SMS_toCH(user_ID),#Sms pro Monat CH
-	"inputfelderform:inputFelder:anzTageSMS":str(getDaysSinceSignUp(user_ID)), #Innerhalb von x Tagen
+	"inputfelderform:inputFelder:anzTageSMS":"30", #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:j_idt225_collapsed":"false",
 	"inputfelderform:inputFelder:datenmengeMBEingabe":dataCH(user_ID),#Datenmenge pro Monat
-	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":str(getDaysSinceSignUp(user_ID)), #Innerhalb von x Tagen
+	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":"30", #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:speedAuswahl":"1.0",
 	"inputfelderform:inputFelder:j_idt236_collapsed":"false",
 	"inputfelderform:inputFelder:SmsAusland":SMS_toABROAD(user_ID), #SMS ins Ausland
@@ -191,7 +191,6 @@ def getContractsDict(user_ID):
 			valueHTML = fieldHTML.next_sibling
 			cParsed[fieldHTML.string] = valueHTML.string
 		
-
 		bemerkungenSection = c.find("div",{"class": "ausgabeTabelleBemerkungen"})
 		minDurationValue = bemerkungenSection.find("span",{"class": "greenText"})
 		cParsed["Minium Duration"] = minDurationValue.string + " Months"
