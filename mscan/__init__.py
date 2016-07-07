@@ -328,13 +328,13 @@ def getUsage(user_ID):
 		user=User.query.filter_by(user_id=user_ID).first()
 		if user:
 			stats= {}
-			stats["Currenct Contract Price"] = getUserCurrentContractPrice(user_ID)
+			#stats["Currenct Contract Price"] = getUserCurrentContractPrice(user_ID)
 			# stats["User Operator"] = getUserOperator(user_ID)
 			stats["Outgoing calling time"] = callsOutgoing(user_ID).get('duration')
 			stats["Text messages sent and received"] = SMSSentAndReceived(user_ID)
 			stats["Mobile data consumed"] = totalData(user_ID)  + " MB"
 			stats["Sms to abroad"] = SMS_toABROAD(user_ID)
-			stats["Most visited Foreign Country"] =getMostVisitedForeignCountry(user_ID)
+			#stats["Most visited Foreign Country"] =getMostVisitedForeignCountry(user_ID)
 			# stats["Seconds of calls incoming at abroad"] = incomingCallsAbroad(user_ID).get('duration')
 			# stats["Number of Calls incoming at abroad"] = incomingCallsAbroad(user_ID).get('number')
 			# stats["Seconds of Calls within visited country"] = callsWithinVisitedForeignCountry(user_ID).get('duration')
