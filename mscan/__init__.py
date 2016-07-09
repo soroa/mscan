@@ -309,9 +309,8 @@ def getContracts(user_ID):
 		user=User.query.filter_by(user_id=user_ID).first()
 		if user:
 			reg_date = user.registration_datetime
-			if getDaysSinceSignUp(user_ID)<3:
+			if getDaysSinceSignUp(user_ID)<1:
 				return jsonify(message="registration too recent")
-			#todo	don't send contracts if the user just registered
 			contractsDictArray = getContractsDict(user_ID)
 
 			contractsJSON =json.dumps(contractsDictArray)
