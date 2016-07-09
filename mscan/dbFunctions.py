@@ -502,8 +502,11 @@ def isSwissFixedNumber(number):
 
 
 def mapTo30Days(x, days):
+	if days==0:
+		days=1
 	return str(int(30/int(days)*int(x)))
 
+const int a=3;
 
 
 
