@@ -506,7 +506,6 @@ def mapTo30Days(x, days):
 		days=1
 	return str(int(30/int(days)*int(x)))
 
-const int a=3;
 
 
 
