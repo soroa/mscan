@@ -12,7 +12,6 @@ def getUserAgeField(user_ID):
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		age = int(user.age)
-		print("age is  " +str(age))
 		if age<18:
 			return 15
 		elif age<26:
@@ -277,7 +276,6 @@ def SMS_toABROAD(user_ID):
 		sms =getLastXDaysSMS(user_ID,getDaysSinceSignUp(user_ID))
 		for s in sms: 
 			if isForeignNumber(s.sms_number) and s.sms_type =="SENT":
-				print("Number is " + s.sms_number)
 				counter +=1
 		return str(mapTo30Days(counter,getDaysSinceSignUp(user_ID)))
 
@@ -514,6 +512,7 @@ def locationIsCH(location):
 
 
 def getLastXDaysSMS(user_ID,x):
+	print("registered since "+ str(x)+ " days")
 	daysback = datetime.timedelta(days=x)
 	since = datetime.datetime.now() - daysback
 	return SMS.query.filter(and_(SMS.sms_creation_time > since, SMS.user_id==user_ID) ).all()
