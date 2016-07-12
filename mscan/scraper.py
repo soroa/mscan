@@ -32,19 +32,19 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:anzAnrufeEingabe":totalCallsNumberCH(user_ID), # Anzalh Anrufe pro Monat
 	"inputfelderform:inputFelder:anteil3NrEingabe":getTrafficPercentageTop3Numbers(user_ID),
 	"inputfelderform:inputFelder:alterAuswahl":getUserAgeField(user_ID), #Alter: kann 15 (unter 18), 25 (unter 26), 26 (unter 27), 29 (unter 30), 65 (65 oder aelter), 30 (zwischen 30 und 65)
-	"inputfelderform:inputFelder:j_idt130":getUserCurrentContractPrice(user_ID),  #wie viel ich jetzt pro Monat bezahle
+	"inputfelderform:inputFelder:j_idt117":getUserCurrentContractPrice(user_ID),  #wie viel ich jetzt pro Monat bezahle
 	"inputfelderform:inputFelder:providerFilterSB":getUserOperator(user_ID), #jetziger Anbieter
-	"inputfelderform:inputFelder:j_idt118_collapsed":"false",
-	"inputfelderform:inputFelder:j_idt140":"on",
+	"inputfelderform:inputFelder:j_idt106_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt127":"on",
 	"inputfelderform:inputFelder:aufFestnetzSwisscom":"20",
 	"inputfelderform:inputFelder:aufFestnetzUPC":"0",
-	"inputfelderform:inputFelder:j_idt149_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt136_collapsed":"false",
 	"inputfelderform:inputFelder:aufSwisscom":"40",#Verteilung: Swisscom
 	"inputfelderform:inputFelder:aufOrange":"30",#Verteilung: Orange
 	"inputfelderform:inputFelder:aufSunrise":"30",#Verteilung: Sunrise
 	"inputfelderform:inputFelder:aufMbudget":"0",
 	"inputfelderform:inputFelder:aufCoopMobile":"0",
-	"inputfelderform:inputFelder:j_idt160_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt147_collapsed":"false",
 	"inputfelderform:inputFelder:aufAldi":"0",
 	"inputfelderform:inputFelder:aufOk":"0",
 	"inputfelderform:inputFelder:aufLebara":"0",
@@ -54,72 +54,72 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:aufOrtel":"0",
 	"inputfelderform:inputFelder:aufMobileUPC":"0",
 	"inputfelderform:inputFelder:aufAndere":"0",
-	"inputfelderform:inputFelder:j_idt182_collapsed":"true",
+	"inputfelderform:inputFelder:j_idt169_collapsed":"true",
 	"inputfelderform:inputFelder:anzSMSEingabe":SMS_toCH(user_ID),#Sms pro Monat CH
 	"inputfelderform:inputFelder:anzTageSMS":"30", #Innerhalb von x Tagen
-	"inputfelderform:inputFelder:j_idt225_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt212_collapsed":"false",
 	"inputfelderform:inputFelder:datenmengeMBEingabe":dataCH(user_ID),#Datenmenge pro Monat
 	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":"30", #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:speedAuswahl":"1.0",
-	"inputfelderform:inputFelder:j_idt236_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt223_collapsed":"false",
 	"inputfelderform:inputFelder:SmsAusland":SMS_toABROAD(user_ID), #SMS ins Ausland
-	"inputfelderform:inputFelder:j_idt266_input":callsToAbroadLandX(user_ID, 0).get('country'), #Anrufe ins Ausland: Land1
+	"inputfelderform:inputFelder:j_idt253_input":callsToAbroadLandX(user_ID, 0).get('country'), #Anrufe ins Ausland: Land1
 	"inputfelderform:inputFelder:Land1FixMin":callsToAbroadLandX(user_ID, 0).get('duration'), #Festnetz minuten anrufe ins ausland
 	"inputfelderform:inputFelder:Land1FixAnzAnr":callsToAbroadLandX(user_ID, 0).get('number'), #Festnetz Anzahl Anrufe ins Ausland
 	"inputfelderform:inputFelder:Land1MobMin":callsToAbroadLandX(user_ID, 0).get('duration'),
 	"inputfelderform:inputFelder:Land1MobAnzAnr":callsToAbroadLandX(user_ID, 0).get('number'),
-	"inputfelderform:inputFelder:j_idt263_collapsed":"false",
-	"inputfelderform:inputFelder:j_idt290_input":callsToAbroadLandX(user_ID, 1).get('country'), #Anrufe ins Auland: Land2
+	"inputfelderform:inputFelder:j_idt250_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt227_input":callsToAbroadLandX(user_ID, 1).get('country'), #Anrufe ins Auland: Land2
 	"inputfelderform:inputFelder:Land2FixMin":callsToAbroadLandX(user_ID, 1).get('duration'),
 	"inputfelderform:inputFelder:Land2FixAnzAnr":callsToAbroadLandX(user_ID, 0).get('number'),
 	"inputfelderform:inputFelder:Land2MobMin":callsToAbroadLandX(user_ID, 1).get('duration'),
 	"inputfelderform:inputFelder:Land2MobAnzAnr":callsToAbroadLandX(user_ID, 0).get('number'),
-	"inputfelderform:inputFelder:j_idt287_collapsed":"false",
-	"inputfelderform:inputFelder:j_idt314_input":callsToAbroadLandX(user_ID, 2).get('country'),
+	"inputfelderform:inputFelder:j_idt274_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt301_input":callsToAbroadLandX(user_ID, 2).get('country'),
 	"inputfelderform:inputFelder:Land3FixMin":callsToAbroadLandX(user_ID, 2).get('duration'),
 	"inputfelderform:inputFelder:Land3FixAnzAnr":callsToAbroadLandX(user_ID, 2).get('number'),
 	"inputfelderform:inputFelder:Land3MobMin":callsToAbroadLandX(user_ID, 2).get('duration'),
 	"inputfelderform:inputFelder:Land3MobAnzAnr":callsToAbroadLandX(user_ID, 2).get('number'),
-	"inputfelderform:inputFelder:j_idt311_collapsed":"false",
-	"inputfelderform:inputFelder:j_idt338_input":callsToAbroadLandX(user_ID, 3).get('country'),
+	"inputfelderform:inputFelder:j_idt298_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt325_input":callsToAbroadLandX(user_ID, 3).get('country'),
 	"inputfelderform:inputFelder:Land4FixMin":callsToAbroadLandX(user_ID, 3).get('duration'),
 	"inputfelderform:inputFelder:Land4FixAnzAnr":callsToAbroadLandX(user_ID, 3).get('number'),
 	"inputfelderform:inputFelder:Land4MobMin":callsToAbroadLandX(user_ID, 3).get('duration'),
 	"inputfelderform:inputFelder:Land4MobAnzAnr":callsToAbroadLandX(user_ID, 2).get('number'),
-	"inputfelderform:inputFelder:j_idt335_collapsed":"false",
-	"inputfelderform:inputFelder:j_idt362_input":callsToAbroadLandX(user_ID, 4).get('country'),
+	"inputfelderform:inputFelder:j_idt322_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt349_input":callsToAbroadLandX(user_ID, 4).get('country'),
 	"inputfelderform:inputFelder:Land5FixMin":callsToAbroadLandX(user_ID, 4).get('duration'),
 	"inputfelderform:inputFelder:Land5FixAnzAnr":callsToAbroadLandX(user_ID, 4).get('number'),
 	"inputfelderform:inputFelder:Land5MobMin":callsToAbroadLandX(user_ID, 4).get('duration'),
 	"inputfelderform:inputFelder:Land5MobAnzAnr":callsToAbroadLandX(user_ID, 4).get('number'),
-	"inputfelderform:inputFelder:j_idt359_collapsed":"false",
-	"inputfelderform:inputFelder:j_idt387_input":getMostVisitedForeignCountry(user_ID),
+	"inputfelderform:inputFelder:j_idt346_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt374_input":getMostVisitedForeignCountry(user_ID),
 	"inputfelderform:inputFelder:Roaming1AnzTage":getDaysInMostVisitedCountry(user_ID),
 	"inputfelderform:inputFelder:RoamingSMS":getSMSWhileRoaming(user_ID),
 	"inputfelderform:inputFelder:RoamingDatenMB":dataRoaming(user_ID),
 	"inputfelderform:inputFelder:RoamingIncomingMin":incomingCallsAbroad(user_ID).get('duration'),
 	"inputfelderform:inputFelder:RoamingIncomingAnr":incomingCallsAbroad(user_ID).get('number'),
-	"inputfelderform:inputFelder:j_idt401_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt438_collapsed":"false",
 	"inputfelderform:inputFelder:RoamingToCHMin":callsToCHfromAbroad(user_ID).get('duration'),
 	"inputfelderform:inputFelder:RoamingToCHAnr":callsToCHfromAbroad(user_ID).get('number'),
-	"inputfelderform:inputFelder:j_idt410_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt397_collapsed":"false",
 	"inputfelderform:inputFelder:RoamingToLocalMin":callsWithinVisitedForeignCountry(user_ID).get('duration'),
 	"inputfelderform:inputFelder:RoamingToLocalAnr":callsWithinVisitedForeignCountry(user_ID).get('number'),
-	"inputfelderform:inputFelder:j_idt419_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt406_collapsed":"false",
 	"inputfelderform:inputFelder:LandlisteDB_R_Land1":callsToAbroadFromAbroadLandX(user_ID, 0).get('country'),
 	"inputfelderform:inputFelder:RoamingToLand1Min":callsToAbroadFromAbroadLandX(user_ID, 0).get('duration'),
 	"inputfelderform:inputFelder:RoamingToLand1Anr":callsToAbroadFromAbroadLandX(user_ID, 0).get('number'),
-	"inputfelderform:inputFelder:j_idt428_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt415_collapsed":"false",
 	"inputfelderform:inputFelder:LandlisteDB_R_Land2":callsToAbroadFromAbroadLandX(user_ID, 1).get('country'),
 	"inputfelderform:inputFelder:RoamingToLand2Min":callsToAbroadFromAbroadLandX(user_ID, 1).get('duration'),
 	"inputfelderform:inputFelder:RoamingToLand2Anr":callsToAbroadFromAbroadLandX(user_ID, 1).get('number'),
-	"inputfelderform:inputFelder:j_idt441_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt428_collapsed":"false",
 	"inputfelderform:inputFelder:LandlisteDB_R_Land3":callsToAbroadFromAbroadLandX(user_ID, 2).get('country'),
 	"inputfelderform:inputFelder:RoamingToLand3Min":callsToAbroadFromAbroadLandX(user_ID, 2).get('duration'),
 	"inputfelderform:inputFelder:RoamingToLand3Anr":callsToAbroadFromAbroadLandX(user_ID, 2).get('number'),
-	"inputfelderform:inputFelder:j_idt454_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt441_collapsed":"false",
 	"inputfelderform:inputFelder_activeIndex":"4",
-	"inputfelderform:j_idt495":"",
+	"inputfelderform:j_idt482":"",
 	"javax.faces.ViewState":value1 + ":"+value2
 	}
 
