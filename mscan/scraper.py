@@ -30,7 +30,7 @@ def getContractsDict(user_ID):
 	"inputfelderform":"inputfelderform",
 	"inputfelderform:inputFelder:anzMinEingabe":totalCallsMinutesCH(user_ID), #Minuten telefonieren CH pro Monat
 	"inputfelderform:inputFelder:anzAnrufeEingabe":totalCallsNumberCH(user_ID), # Anzalh Anrufe pro Monat
-	"inputfelderform:inputFelder:anteil3NrEingabe":getTrafficPercentageTop3Numbers(user_ID),
+	"inputfelderform:inputFelder:anteil3NrEingabe":"80", #getTrafficPercentageTop3Numbers(user_ID),
 	"inputfelderform:inputFelder:alterAuswahl":getUserAgeField(user_ID), #Alter: kann 15 (unter 18), 25 (unter 26), 26 (unter 27), 29 (unter 30), 65 (65 oder aelter), 30 (zwischen 30 und 65)
 	"inputfelderform:inputFelder:j_idt117":getUserCurrentContractPrice(user_ID),  #wie viel ich jetzt pro Monat bezahle
 	"inputfelderform:inputFelder:providerFilterSB":getUserOperator(user_ID), #jetziger Anbieter
