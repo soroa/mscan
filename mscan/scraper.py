@@ -99,7 +99,7 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:RoamingDatenMB":dataRoaming(user_ID),
 	"inputfelderform:inputFelder:RoamingIncomingMin":incomingCallsAbroad(user_ID).get('duration'),
 	"inputfelderform:inputFelder:RoamingIncomingAnr":incomingCallsAbroad(user_ID).get('number'),
-	"inputfelderform:inputFelder:j_idt438_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt338_collapsed":"false",
 	"inputfelderform:inputFelder:RoamingToCHMin":callsToCHfromAbroad(user_ID).get('duration'),
 	"inputfelderform:inputFelder:RoamingToCHAnr":callsToCHfromAbroad(user_ID).get('number'),
 	"inputfelderform:inputFelder:j_idt397_collapsed":"false",
