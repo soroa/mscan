@@ -143,11 +143,11 @@ def getContractsDict(user_ID):
 	'Cookie':sessionID,
 	'Host':'www.dschungelkompass.ch',
 	'Origin':'http://www.dschungelkompass.ch',
-	'Referer':'http://www.dschungelkompass.ch/mobile/welcomeSchnellprofil.xhtm',
+	'Referer':'http://www.dschungelkompass.ch/mobile/welcomeSchnellprofil.xhtml',
 	'Upgrade-Insecure-Requests':'1',
 	'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 	}
-	req = requests.post(url2, data = testdata, headers = headers)
+	req = requests.post(url2, data = data4, headers = headers)
 
 	resultsSouped = BeautifulSoup(req.content)
 
