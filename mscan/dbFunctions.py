@@ -136,7 +136,7 @@ def CallsMobileCH(user_ID):
 				counter +=1
 
 				duration +=int(c.duration); 
-		return {'number': mapTo30Days(counter,getDaysSinceSignUp(user_ID)), 'duration': str(mapTo30Days(int(duration/60),getDaysSinceSignUp(user_ID)))}
+		return {'number': mapTo30Days(counter,getDaysSinceSignUp(user_ID)), 'duration': str(mapTo30Days(float(duration/60),getDaysSinceSignUp(user_ID)))}
 
 def totalCallsMinutesCH(user_ID):
 
