@@ -317,7 +317,7 @@ def getContracts(user_ID):
 			contractsJSON =json.dumps(contractsDictArray)
 			for c in contractsDictArray:
 				for k in c:
-				print(str(k) + " " +str( c.get(k)))
+					print(str(k) + " " +str( c.get(k)))
 			print(contractsJSON)
 			return jsonify(message="contracts", contracts =  contractsJSON)
 	if request.method == "GET":
