@@ -368,13 +368,12 @@ def getXMostFrequentForeignCountryCalled(x, callstoAbroad):
 			frequency_chart[countryName] = frequency_chart.get(countryName, None) + 1
 		else:
 			frequency_chart[countryName] = 1
-	frequent_countries_top5 = []
+	frequent_countries_top5 = ["", "", "", "", ""]
 	for i in range(0, 5):
 		if len(frequency_chart)==0:
-			frequent_countries_top5.append("")
-			break
+			continue
 		current_first = max(frequency_chart, key=frequency_chart.get)		
-		frequent_countries_top5.append(current_first)
+		frequent_countries_top5[i] = current_first
 		frequency_chart.pop(current_first, None) #always erase the first one because fi there's two with the same count, the library will only take one of them and ignore the other, this it will take the second one in the next round
 	return frequent_countries_top5[x]
 	
