@@ -330,7 +330,7 @@ def callsToAbroadFromAbroadLandX(user_ID, x):
 		calls = getLastXDaysCalls(user_ID, getDaysSinceSignUp(user_ID))
 		callsToAbroad = []
 		for c in calls: 
-			if isForeignNumber(c.call_number) and  (not isNumberFromCountry(c.call_number, getMostVisitedForeignCountry(user_ID))) and c.call_type=="outgoing"and c.duration>0:
+			if isForeignNumber(c.call_number) and c.user_location!="Schweiz" and  (not isNumberFromCountry(c.call_number, getMostVisitedForeignCountry(user_ID))) and c.call_type=="outgoing"and c.duration>0:
 				callsToAbroad.append(c)
 		if len(callsToAbroad)>0:
 			xMostfrequentCountry  = getXMostFrequentForeignCountryCalled(x, callsToAbroad)
