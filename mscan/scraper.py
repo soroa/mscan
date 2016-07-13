@@ -155,6 +155,7 @@ def getContractsDict(user_ID):
 	resultsSouped = BeautifulSoup(req.content)
 
 	daten = resultsSouped.find_all("input", {"id": "inputfelderform2:Daten"})
+	print("size of daten is " + len(daten))
 	for d in daten:
 		print(d)
 
