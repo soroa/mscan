@@ -195,7 +195,8 @@ def getContractsDict(user_ID):
 		
 
 		contractsParsed.append(cParsed)
-	for c in contracts:
+	
+	for c in contractsParsed:
 		for k in c:
 			print(k + " " + c.get(k))
 			
