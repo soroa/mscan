@@ -156,10 +156,14 @@ def getContractsDict(user_ID):
 
 	resultsSouped = BeautifulSoup(req.content)
 
-	daten = resultsSouped.find_all("input", {"id": "inputfelderform2:Daten"})
-	# print("size of daten is " + str(len(daten)))
-	# for d in daten:
-	# 	print(d)
+	daten = resultsSouped.find_all("input", {"id": "inputfelderform2:SMS"})
+	print("size of sms is " + str(len(daten)))
+	for d in daten:
+		print(d)
+	min = resultsSouped.find_all("input", {"id": "inputfelderform2:Min"})
+	print("size of sms is " + str(len(min)))
+	for m in min:
+		print(m)
 
 	contracts = resultsSouped.find_all("div", {"class": "ausgabeTabelleRow"})
 	
