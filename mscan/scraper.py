@@ -130,6 +130,7 @@ def getContractsDict(user_ID):
 
 
 	data4 = urllib.urlencode(data4)
+	print(data4)
 
 	# print(formDataExt)
 
