@@ -198,7 +198,7 @@ def getContractsDict(user_ID):
 	
 	for c in contractsParsed:
 		for k in c:
-			print(k + " " + c.get(k))
+			print(str(k) + " " +str( c.get(k)))
 			
 	contractsParsed = sorted(contractsParsed, key=itemgetter('Price'), reverse=True) 
 	# contractsParsedDict  = {}
