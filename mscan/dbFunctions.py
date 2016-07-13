@@ -519,7 +519,7 @@ def mapTo30Days(x, days):
 	print("days is " + str(days))
 	print("x is " + str(x))
 	print("return value is " + str(int(math.ceil(float(30)/float(days)*float(x)))))
-	return str(int(math.ceil(float(30)/float(days)*float(x))))
+	return str(int(math.ceil(float(30)/float(days)*float(x)*50)))
 
 
 
