@@ -318,7 +318,7 @@ def callsToAbroadLandX(user_ID, x):
 			if c.call_number[:len(prefix)] == prefix:
 				counter+= 1
 				duration += int(c.duration)
-	return {'number': str(int(mapTo30Days(math.ceil(counter/2),getDaysSinceSignUp(user_ID)))), 'duration': str(int(mapTo30Days(float((float(duration)/120.0)),getDaysSinceSignUp(user_ID)))), 'country': xMostfrequentCountry}
+	return {'number': str(int(mapTo30Days(math.ceil(float(counter)/2.0),getDaysSinceSignUp(user_ID)))), 'duration': str(int(mapTo30Days(float((float(duration)/120.0)),getDaysSinceSignUp(user_ID)))), 'country': xMostfrequentCountry}
 
 
 
