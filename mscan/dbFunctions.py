@@ -123,6 +123,8 @@ def callsFixedCH(user_ID):
 
 #tested: ok 
 def CallsMobileCH(user_ID):
+	print("Calls Mobile CH")
+
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter=0; 
@@ -136,6 +138,7 @@ def CallsMobileCH(user_ID):
 		return {'number': mapTo30Days(counter,getDaysSinceSignUp(user_ID)), 'duration': str(mapTo30Days(int(duration/60),getDaysSinceSignUp(user_ID)))}
 
 def totalCallsMinutesCH(user_ID):
+
 	return str(int(CallsMobileCH(user_ID).get("duration")) +int( callsFixedCH(user_ID).get("duration")))
 
 
@@ -240,6 +243,8 @@ def getTrafficPercentageTop3Numbers(user_ID):
 
 
 def SMS_toCH(user_ID):
+	print("SMS Mobile CH")
+
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
@@ -250,6 +255,8 @@ def SMS_toCH(user_ID):
 		return mapTo30Days(counter,getDaysSinceSignUp(user_ID))
 
 def dataCH(user_ID):
+	print("DATA Mobile CH")
+
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
@@ -270,6 +277,8 @@ def dataCH(user_ID):
 
 
 def SMS_toABROAD(user_ID):
+	print("SMS to abroad")
+
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
 		counter =0; 
@@ -504,6 +513,9 @@ def isSwissFixedNumber(number):
 def mapTo30Days(x, days):
 	if days==0:
 		days=1
+	print("days is " + str(days))
+	print("x is " + str(x))
+	print("return value is " + str(int(30/int(days)*int(x))))
 	return str(int(30/int(days)*int(x)))
 
 
