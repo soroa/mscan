@@ -134,8 +134,10 @@ def CallsMobileCH(user_ID):
 		for c in calls: 
 			if isSwissMobileNumber(c.call_number) and c.user_location=="Schweiz" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
-
-				duration +=int(c.duration); 
+				print("number is " + c.call_number)
+				print("duration is " + c.duration)
+				duration +=int(c.duration);
+				print("tot duration is " + str(duration)) 
 		return {'number': mapTo30Days(counter,getDaysSinceSignUp(user_ID)), 'duration': str(mapTo30Days(float(duration/60),getDaysSinceSignUp(user_ID)))}
 
 def totalCallsMinutesCH(user_ID):
