@@ -58,7 +58,7 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:anzSMSEingabe":SMS_toCH(user_ID),#Sms pro Monat CH
 	"inputfelderform:inputFelder:anzTageSMS":"30", #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:j_idt212_collapsed":"false",
-	"inputfelderform:inputFelder:datenmengeMBEingabe":dataCH(user_ID),#Datenmenge pro Monat
+	"inputfelderform:inputFelder:datenmengeMBEingabe":str(dataCH(user_ID)),#Datenmenge pro Monat
 	"inputfelderform:inputFelder:intVerwendungAnzTageEingabe":"30", #Innerhalb von x Tagen
 	"inputfelderform:inputFelder:speedAuswahl":"1.0",
 	"inputfelderform:inputFelder:j_idt223_collapsed":"false",
