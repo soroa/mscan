@@ -85,7 +85,7 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:Land4FixMin":callsToAbroadLandX(user_ID, 3).get('duration'),
 	"inputfelderform:inputFelder:Land4FixAnzAnr":callsToAbroadLandX(user_ID, 3).get('number'),
 	"inputfelderform:inputFelder:Land4MobMin":callsToAbroadLandX(user_ID, 3).get('duration'),
-	"inputfelderform:inputFelder:Land4MobAnzAnr":callsToAbroadLandX(user_ID, 2).get('number'),
+	"inputfelderform:inputFelder:Land4MobAnzAnr":callsToAbroadLandX(user_ID, 3).get('number'),
 	"inputfelderform:inputFelder:j_idt322_collapsed":"false",
 	"inputfelderform:inputFelder:j_idt349_input":callsToAbroadLandX(user_ID, 4).get('country'),
 	"inputfelderform:inputFelder:Land5FixMin":callsToAbroadLandX(user_ID, 4).get('duration'),
