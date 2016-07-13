@@ -235,8 +235,8 @@ def getTrafficPercentageTop3Numbers(user_ID):
 		if len(out_calls)>0:
 			p = int((float(counter) / float(len(out_calls)))*100)
 		else:
-			return 0
-		return p
+			return str(0)
+		return str(p)
 
 
 def SMS_toCH(user_ID):
