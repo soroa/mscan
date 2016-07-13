@@ -151,10 +151,6 @@ def getContractsDict(user_ID):
 	'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'
 	}
 	req = requests.post(url2, data = data4, headers = headers)
-	
-	h= "Host: www.dschungelkompass.ch' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0' -H 'Accept: application/xml, text/xml, */*; q=0.01' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Faces-Request: partial/ajax' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: http://www.dschungelkompass.ch/mobile/welcomeSchnellprofil.xhtml' -H 'Cookie:" + sessionID +"' -H 'Connection: keep-alive'"
-	req = requests.post("http://www.dschungelkompass.ch/mobile/welcomeErweitertesprofil.xhtml", data = data6, headers = h)
-
 
 	resultsSouped = BeautifulSoup(req.content)
 
