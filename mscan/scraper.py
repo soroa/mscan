@@ -154,7 +154,9 @@ def getContractsDict(user_ID):
 
 	resultsSouped = BeautifulSoup(req.content)
 
-
+	daten = resultsSouped.find_all("input", {"id": "inputfelderform2:Daten"})
+	for d in daten:
+		print(d)
 
 	contracts = resultsSouped.find_all("div", {"class": "ausgabeTabelleRow"})
 	
