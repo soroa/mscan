@@ -124,7 +124,7 @@ def callsFixedCH(user_ID):
 
 #tested: ok 
 def CallsMobileCH(user_ID):
-	print("Calls Mobile CH")
+
 
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
@@ -134,10 +134,8 @@ def CallsMobileCH(user_ID):
 		for c in calls: 
 			if isSwissMobileNumber(c.call_number) and c.user_location=="Schweiz" and int(c.duration)>0 and c.call_type=="outgoing":
 				counter +=1
-				print("number is " + c.call_number)
-				print("duration is " + str(c.duration))
+
 				duration +=int(c.duration);
-				print("tot duration is " + str(duration)) 
 		return {'number': mapTo30Days(counter,getDaysSinceSignUp(user_ID)), 'duration': str(mapTo30Days(float((float(duration)/60.0)),getDaysSinceSignUp(user_ID)))}
 
 def totalCallsMinutesCH(user_ID):
@@ -246,7 +244,6 @@ def getTrafficPercentageTop3Numbers(user_ID):
 
 
 def SMS_toCH(user_ID):
-	print("SMS Mobile CH")
 
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
@@ -258,7 +255,6 @@ def SMS_toCH(user_ID):
 		return mapTo30Days(counter,getDaysSinceSignUp(user_ID))
 
 def dataCH(user_ID):
-	print("DATA Mobile CH")
 
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
@@ -280,7 +276,6 @@ def dataCH(user_ID):
 
 
 def SMS_toABROAD(user_ID):
-	print("SMS to abroad")
 
 	user=User.query.filter_by(user_id=user_ID).first()
 	if user:
@@ -516,9 +511,7 @@ def isSwissFixedNumber(number):
 def mapTo30Days(x, days):
 	if days==0:
 		days=1
-	print("days is " + str(days))
-	print("x is " + str(x))
-	print("return value is " + str(int(math.ceil(float(30)/float(days)*float(x)))))
+
 	return str(int(math.ceil(float(30)/float(days)*float(x))))
 
 
@@ -529,7 +522,6 @@ def locationIsCH(location):
 
 
 def getLastXDaysSMS(user_ID,x):
-	print("registered since "+ str(x)+ " days")
 	daysback = datetime.timedelta(days=x)
 	since = datetime.datetime.now() - daysback
 	return SMS.query.filter(and_(SMS.sms_creation_time > since, SMS.user_id==user_ID) ).all()
