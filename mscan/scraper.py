@@ -155,7 +155,6 @@ def getContractsDict(user_ID):
 
 	contracts = resultsSouped.find_all("div", {"class": "ausgabeTabelleRow"})
 	
-	print("contracts are " + str(contracts))
 
 	i = 0;
 	contractsParsed =[]
@@ -196,6 +195,9 @@ def getContractsDict(user_ID):
 		
 
 		contractsParsed.append(cParsed)
+	for c in contracts:
+		for k in c:
+			print(k + " " + c.get(k))
 			
 	contractsParsed = sorted(contractsParsed, key=itemgetter('Price'), reverse=True) 
 	# contractsParsedDict  = {}
