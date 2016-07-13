@@ -30,6 +30,7 @@ def getContractsDict(user_ID):
 	"inputfelderform":"inputfelderform",
 	"inputfelderform:inputFelder:anzMinEingabe":totalCallsMinutesCH(user_ID), #Minuten telefonieren CH pro Monat
 	"inputfelderform:inputFelder:anzAnrufeEingabe":totalCallsNumberCH(user_ID), # Anzalh Anrufe pro Monat
+	"inputfelderform:inputFelder:datenmengeMBEingabe":str(dataCH(user_ID)),#Datenmenge pro Monat
 	"inputfelderform:inputFelder:anteil3NrEingabe":getTrafficPercentageTop3Numbers(user_ID),
 	"inputfelderform:inputFelder:alterAuswahl":getUserAgeField(user_ID), #Alter: kann 15 (unter 18), 25 (unter 26), 26 (unter 27), 29 (unter 30), 65 (65 oder aelter), 30 (zwischen 30 und 65)
 	"inputfelderform:inputFelder:j_idt117":getUserCurrentContractPrice(user_ID),  #wie viel ich jetzt pro Monat bezahle
@@ -42,6 +43,7 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:aufSwisscom":"40",#Verteilung: Swisscom
 	"inputfelderform:inputFelder:aufOrange":"30",#Verteilung: Orange
 	"inputfelderform:inputFelder:aufSunrise":"30",#Verteilung: Sunrise
+	"inputfelderform:inputFelder:datenmengeMBEingabe":str(dataCH(user_ID)),#Datenmenge pro Monat
 	"inputfelderform:inputFelder:aufMbudget":"0",
 	"inputfelderform:inputFelder:aufCoopMobile":"0",
 	"inputfelderform:inputFelder:j_idt147_collapsed":"false",
@@ -155,9 +157,9 @@ def getContractsDict(user_ID):
 	resultsSouped = BeautifulSoup(req.content)
 
 	daten = resultsSouped.find_all("input", {"id": "inputfelderform2:Daten"})
-	print("size of daten is " + str(len(daten)))
-	for d in daten:
-		print(d)
+	# print("size of daten is " + str(len(daten)))
+	# for d in daten:
+	# 	print(d)
 
 	contracts = resultsSouped.find_all("div", {"class": "ausgabeTabelleRow"})
 	
