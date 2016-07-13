@@ -99,7 +99,7 @@ def getContractsDict(user_ID):
 	"inputfelderform:inputFelder:RoamingDatenMB":dataRoaming(user_ID),
 	"inputfelderform:inputFelder:RoamingIncomingMin":incomingCallsAbroad(user_ID).get('duration'),
 	"inputfelderform:inputFelder:RoamingIncomingAnr":incomingCallsAbroad(user_ID).get('number'),
-	"inputfelderform:inputFelder:j_idt338_collapsed":"false",
+	"inputfelderform:inputFelder:j_idt388_collapsed":"false",
 	"inputfelderform:inputFelder:RoamingToCHMin":callsToCHfromAbroad(user_ID).get('duration'),
 	"inputfelderform:inputFelder:RoamingToCHAnr":callsToCHfromAbroad(user_ID).get('number'),
 	"inputfelderform:inputFelder:j_idt397_collapsed":"false",
@@ -135,17 +135,17 @@ def getContractsDict(user_ID):
 	# print(formDataExt)
 
 	headers = { 
-	'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+	'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 	'Accept-Encoding':'gzip, deflate',
-	'Accept-Language':'en-US,en;q=0.5',
+	'Accept-Language':'en-US,en;q=0.8',
 	'Connection':'keep-alive',
 	'Content-Type':'application/x-www-form-urlencoded',
 	'Cookie':sessionID,
-	'Host':'www.dschungelkompass.ch',
+	'Host':'dschungelkompass.ch',
 	'Origin':'http://www.dschungelkompass.ch',
 	'Referer':'http://www.dschungelkompass.ch/mobile/welcomeSchnellprofil.xhtml',
 	'Upgrade-Insecure-Requests':'1',
-	'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+	'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'
 	}
 	req = requests.post(url2, data = data4, headers = headers)
 
