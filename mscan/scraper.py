@@ -196,9 +196,7 @@ def getContractsDict(user_ID):
 
 		contractsParsed.append(cParsed)
 	
-	for c in contractsParsed:
-		for k in c:
-			print(str(k) + " " +str( c.get(k)))
+
 			
 	contractsParsed = sorted(contractsParsed, key=itemgetter('Price'), reverse=True) 
 	# contractsParsedDict  = {}

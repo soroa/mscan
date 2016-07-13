@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, render_template, redirect, url_for, request,  jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
 import  datetime
@@ -314,6 +315,9 @@ def getContracts(user_ID):
 			contractsDictArray = getContractsDict(user_ID)
 
 			contractsJSON =json.dumps(contractsDictArray)
+			for c in contractsDictArray:
+				for k in c:
+				print(str(k) + " " +str( c.get(k)))
 			print(contractsJSON)
 			return jsonify(message="contracts", contracts =  contractsJSON)
 	if request.method == "GET":
