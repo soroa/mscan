@@ -22,7 +22,7 @@ def getContractsDict(user_ID):
 
 	url ="http://www.dschungelkompass.ch/mobile/welcomeSchnellprofil.xhtml"
 
-	url2 ="http://www.dschungelkompass.ch/mobile/welcomeErweitertesprofil.xhtml"
+	url2 ="http://dschungelkompass.ch/mobile/welcomeErweitertesprofil.xhtml"
 
 
 
@@ -150,7 +150,7 @@ def getContractsDict(user_ID):
 	'Upgrade-Insecure-Requests':'1',
 	'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'
 	}
-	req = requests.post(url2, data = data7, headers = headers)
+	req = requests.post(url, data = data7, headers = headers)
 
 	resultsSouped = BeautifulSoup(req.content)
 
