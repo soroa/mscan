@@ -493,7 +493,8 @@ def getSMSWhileRoaming(user_ID):
 
 
 def isSwissMobileNumber(number):
-	if (number[:3]=="075" ) or  (number[:3]=="076" ) or  (number[:3]=="077" ) or (number[:3]=="078" ) or (number[:3]=="079" ) or (number[:5]=="+4175") or (number[:5]=="+4176") or (number[:5]=="+4177") or (number[:5]=="+4178") or (number[:5]=="+4179"):
+	if (number[:3]=="075" ) or  (number[:3]=="076" ) or  (number[:3]=="077" ) or (number[:3]=="078" ) or (number[:3]=="079" ) or (number[:5]=="+4175") or (number[:5]=="+4176") or (number[:5]=="+4177") or (number[:5]=="+4178") or (number[:5]=="+4179")
+	or (number[:6]=="004175") or (number[:6]=="004176") or (number[:6]=="004177")or (number[:6]=="004178") or (number[:6]=="004179"):
 		
 		return True
 	else: 
