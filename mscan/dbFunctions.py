@@ -119,7 +119,7 @@ def callsFixedCH(user_ID):
 				duration +=int(c.duration); 
 
 				
-		return {'number': mapTo30Days(counter,getDaysSinceSignUp(user_ID)), 'duration': str(mapTo30Days(float(math.ceil((duration/60))),getDaysSinceSignUp(user_ID)))}
+		return {'number': mapTo30Days(counter,getDaysSinceSignUp(user_ID)), 'duration': str(mapTo30Days(float((float(duration)/60.0)),getDaysSinceSignUp(user_ID)))}
 
 
 #tested: ok 
@@ -138,7 +138,7 @@ def CallsMobileCH(user_ID):
 				print("duration is " + str(c.duration))
 				duration +=int(c.duration);
 				print("tot duration is " + str(duration)) 
-		return {'number': mapTo30Days(counter,getDaysSinceSignUp(user_ID)), 'duration': str(mapTo30Days(float(duration/60),getDaysSinceSignUp(user_ID)))}
+		return {'number': mapTo30Days(counter,getDaysSinceSignUp(user_ID)), 'duration': str(mapTo30Days(float((float(duration)/60.0)),getDaysSinceSignUp(user_ID)))}
 
 def totalCallsMinutesCH(user_ID):
 
@@ -271,7 +271,7 @@ def dataCH(user_ID):
 		for m in mds: 
 			counter +=int(m.totalMB)
 
-		return str(mapTo30Days(float(counter/1000000),getDaysSinceSignUp(user_ID)))
+		return str(mapTo30Days(float(float(counter)/1000000.0),getDaysSinceSignUp(user_ID)))
 
 
 # .......................................
@@ -318,7 +318,7 @@ def callsToAbroadLandX(user_ID, x):
 			if c.call_number[:len(prefix)] == prefix:
 				counter+= 1
 				duration += int(c.duration)
-	return {'number': str(int(mapTo30Days(counter/2,getDaysSinceSignUp(user_ID)))), 'duration': str(int(mapTo30Days(float(duration/120),getDaysSinceSignUp(user_ID)))), 'country': xMostfrequentCountry}
+	return {'number': str(int(mapTo30Days(math.ceil(counter/2),getDaysSinceSignUp(user_ID)))), 'duration': str(int(mapTo30Days(float((float(duration)/120.0)),getDaysSinceSignUp(user_ID)))), 'country': xMostfrequentCountry}
 
 
 
@@ -347,7 +347,7 @@ def callsToAbroadFromAbroadLandX(user_ID, x):
 			if c.call_number[:len(prefix)] == prefix:
 				counter+= 1
 				duration += int(c.duration)
-	return {'number': str(int(mapTo30Days(counter,getDaysSinceSignUp(user_ID)))), 'duration': str(int(mapTo30Days(float(duration/60),getDaysSinceSignUp(user_ID)))), 'country': xMostfrequentCountry}
+	return {'number': str(int(mapTo30Days(counter,getDaysSinceSignUp(user_ID)))), 'duration': str(int(mapTo30Days(float((float(duration)/120.0)),getDaysSinceSignUp(user_ID)))), 'country': xMostfrequentCountry}
 
 #TODO return empty strings in case there's less than 5 countires
 
@@ -390,7 +390,7 @@ def dataRoaming(user_ID):
 		mds = MobileData.query.filter(and_(MobileData.md_creation_time > since, MobileData.md_user_id==user_ID, MobileData.md_roaming==True ) ).all()
 		for m in mds: 
 			counter +=int(m.totalMB)
-		return str(mapTo30Days(float(counter/1000000),getDaysSinceSignUp(user_ID)))
+		return str(mapTo30Days(float(float(counter)/1000000.0),getDaysSinceSignUp(user_ID)))
 
 
 
